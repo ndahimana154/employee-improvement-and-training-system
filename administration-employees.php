@@ -64,31 +64,31 @@
                         <tr>
                             <td>
                                 #
-                            </td>
-                            <td>
+                            </th>
+                            <th>
                                 National ID
-                            </td>
-                            <td>
+                            </th>
+                            <th>
                                 Firstname
-                            </td>
-                            <td>
+                            </th>
+                            <th>
                                 Lastname
-                            </td>
-                            <td>
+                            </th>
+                            <th>
                                 Email
-                            </td>
-                            <td>
+                            </th>
+                            <th>
                                 Username
-                            </td>
-                            <td>
+                            </th>
+                            <th>
                                 User type
-                            </td>
-                            <td>
+                            </th>
+                            <th>
                                 User state
-                            </td>
-                            <td>
+                            </th>
+                            <th>
                                 Actions
-                            </td>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
