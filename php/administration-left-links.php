@@ -16,6 +16,12 @@
                     <a class="nav-link" href="administration-employees.php"><i class="fas fa-users"></i> Employees</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="administration-new-trainings.php"><i class="fas fa-users"></i> New trainings</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="administration-trainings.php"><i class="fas fa-users"></i> Trainings</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="sign-out.php?administration"><i class="fas fa-sign-out"></i> Signout</a>
                 </li>
                 <!-- Add more navigation links here -->
