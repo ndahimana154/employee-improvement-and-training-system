@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include("php/connection.php");
 ?>
 <!DOCTYPE html>
@@ -6,69 +7,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="fontawesome-free-5.15.4-web\css\all.css">
-    <title>User Login</title>
+    <title>Employee Training System</title>
+    <!-- Link Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Link Font-awesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .login-container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 30px;
+            margin-top: 100px;
+            background-color: white;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
 <body>
-    <form action="" method="post">
-        <h1>
-            Sign into your account
-        </h1>
-        <?php
-            if (isset($_POST['logBTN'])) {
-                $username = $_POST['usern'];
-                $password = $_POST['passw'];
-                $checkusername = mysqli_query($server,"SELECT * from users 
-                    WHERE user_name='$username'
-                ");
-                if (mysqli_num_rows($checkusername) != 1) {
-                    ?>
-                    <p>
-                        Username doesn't exists
-                    </p>
-                    <?php
-                }
-                else {
-                    $checkUsnnpass = mysqli_query($server,"SELECT * from users 
-                        WHERE user_name = '$username' AND user_pass = '$password'
+    <!-- Header -->
+    <?php
+        include("php/out-header.php");
+    ?>
+    <div class="container login-container">
+        <form action="" method="post">
+            <h1 class="mb-4 text-center">Sign into your account</h1>
+            <?php
+                if (isset($_POST['logBTN'])) {
+                    $username = $_POST['usern'];
+                    $password = $_POST['passw'];
+                    $checkusername = mysqli_query($server, "SELECT * from users 
+                        WHERE user_name='$username'
                     ");
-                    if (mysqli_num_rows($checkUsnnpass) != 1) {
+                    if (mysqli_num_rows($checkusername) != 1) {
                         ?>
-                        <p>
-                            Username and password doesn't match
-                        </p>
+                        <div class="alert alert-danger" role="alert">
+                            Username doesn't exists
+                        </div>
                         <?php
-                    }
-                    else {
-                        // Get he user Type
-                        $getusertype = mysqli_fetch_array($checkUsnnpass);
-                        $user_type = $getusertype['user_type'];
-                        if ($user_type== 'Adminstration') {
-                            header("location: adminstration-welcome.php");
+                    } else {
+                        $checkUsnnpass = mysqli_query($server, "SELECT * from users 
+                            WHERE user_name = '$username' AND user_pass = '$password'
+                        ");
+                        if (mysqli_num_rows($checkUsnnpass) != 1) {
+                            ?>
+                            <div class="alert alert-danger" role="alert">
+                                Username and password doesn't match
+                            </div>
+                            <?php
+                        } else {
+                            // Get the user Type
+                            $getusertype = mysqli_fetch_array($checkUsnnpass);
+                            $user_type = $getusertype['user_type'];
+                            $user_id = $getusertype['user_id'];
+                            if ($user_type == 'Administration') {
+                                $_SESSION['user_name'] = $username;
+                                $_SESSION['user_type'] = $user_type;
+                                $_SESSION['user_id'] = $user_id;
+                                header("location: adminstration-home.php?welcome");
+                            }
                         }
                     }
-                }
-            }
-        ?>
-        
-        <p>
-            Username
-        </p>
-        <p>
-            <input type="text" name="usern" placeholder="Type..." name="">
-        </p>
-        <p>
-            Password
-        </p>
-        <p>
-            <input type="text" name="passw" placeholder="Type..." name="">
-        </p>
-        <p>
-            <button type="submit" name="logBTN">
-                <i class="fa fa-sign-in-alt"></i>
-                Login
+                }            
+            ?>
+            <div class="form-group">
+                <label for="usern">Username</label>
+                <input type="text" class="form-control" id="usern" name="usern" placeholder="Type...">
+            </div>
+            <div class="form-group">
+                <label for="passw">Password</label>
+                <input type="password" class="form-control" id="passw" name="passw" placeholder="Type...">
+            </div>
+            <button type="submit" class="btn btn-primary" name="logBTN">
+                <i class="fa fa-sign-in-alt"></i> Login
             </button>
-        </p>
-    </form>
+        </form>
+    </div>
+
+    <!-- JavaScript libraries and scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
