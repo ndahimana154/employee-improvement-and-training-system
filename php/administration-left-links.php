@@ -4,7 +4,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fas fa-chart-bar"></i> Dashboard</a>
+                    <a class="nav-link" href="adminstration-home.php"><i class="fas fa-chart-bar"></i> Dashboard</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#"><i class="fas fa-clipboard-list"></i> Training Overview</a>

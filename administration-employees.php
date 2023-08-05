@@ -69,6 +69,9 @@
                                 National ID
                             </th>
                             <th>
+                                Department
+                            </th>
+                            <th>
                                 Firstname
                             </th>
                             <th>
@@ -93,7 +96,10 @@
                     </thead>
                     <tbody>
                         <?php
-                            $get_emp = mysqli_query($server,"SELECT * from users WHERE (user_type='Employee' OR user_type='Administration') AND user_id!='$acting_admin_id'");
+                            $get_emp = mysqli_query($server,"SELECT * from users,departments 
+                                WHERE (user_type='Employee' OR user_type='Administration') AND user_id!='$acting_admin_id'
+                                AND users.department = departments.depart_id    
+                            ");
                             $count=1;
                             while ($data_emp = mysqli_fetch_array($get_emp)) {
                                 ?>
@@ -104,6 +110,11 @@
                                     <td>
                                         <?php
                                             echo $data_emp['user_nid'];
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                            echo $data_emp['depart_name'];
                                         ?>
                                     </td>
                                     <td>

@@ -66,8 +66,17 @@
                             $lastname = $_POST['ln'];
                             $email = $_POST['em'];
                             $nid = $_POST['nid'];
+                            $phone = $_POST['ph'];
+                            $depart = $_POST['depart'];
                             $check_em_exist = mysqli_query($server,"SELECT * from users WHERE user_email = '$email'");
-                            if (mysqli_num_rows($check_em_exist) > 0) {
+                            if ($depart=='Select department') {
+                                ?>
+                                <p class="alert alert-danger">
+                                    Please select department
+                                </p>
+                                <?php
+                            }
+                            elseif (mysqli_num_rows($check_em_exist) > 0) {
                                 ?>
                                 <p class="alert alert-danger">
                                     User email already exists.
@@ -84,7 +93,7 @@
                                     <?php
                                 }
                                 else {
-                                    $new = mysqli_query($server,"INSERT into users VALUES(null,'$nid','Not set Yet','$firstname','$lastname','$email','Not set Yet','Employee','No account yet')");
+                                    $new = mysqli_query($server,"INSERT into users VALUES(null,'$nid','Not set Yet','$firstname','$lastname','$email','$phone','Not set Yet','Employee','$depart','No account yet')");
                                     if (!$new) {
                                         ?>
                                         <p class="alert alert-danger">
@@ -122,10 +131,43 @@
                         <input type="email" name="em" placeholder="Type..." class="form-control">
                     </p>
                     <p>
-                        Employee National Id
+                        Phone number
+                    </p>
+                    <p>
+                        <input type="number" name="ph" placeholder="Type..." class="form-control">
+                    </p>
+                    <p>
+                        National Id
                     </p>
                     <p>
                         <input type="number" name="nid" placeholder="Type..." class="form-control">
+                    </p>
+                    <p>
+                        Department
+                    </p>
+                    <p>
+                        <select name="depart" id="" class="form-control">
+                            <option value="Select department">
+                                Select department
+                            </option>
+                            <?php
+                                $get_departs = mysqli_query($server,"SELECT * from departments ORDER BY depart_name ASC");
+                                if (mysqli_num_rows($get_departs) < 1) {
+                                    ?>
+                                    <option value="Select department">
+                                        No values found.
+                                    </option>
+                                    <?php
+                                }
+                                while($data_departs = mysqli_fetch_array($get_departs)) {
+                                    ?>
+                                    <option value="<?php echo $data_departs['depart_id']; ?>">
+                                        <?php echo $data_departs['depart_name'] ?>
+                                    </option>
+                                    <?php
+                                }
+                            ?>
+                        </select>
                     </p>
                     <p>
                         <button type="submit" name="save_emp" class="btn btn-success">

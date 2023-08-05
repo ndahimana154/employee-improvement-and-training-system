@@ -91,7 +91,14 @@
                             }
 
                             // Check the errors
-                            if (mysqli_num_rows($checktopic) >= 1) {
+                            if ($depart=='Select department') {
+                                ?>
+                                <p class="alert alert-danger">
+                                    Please select department
+                                </p>
+                                <?php
+                            }
+                            elseif (mysqli_num_rows($checktopic) >= 1) {
                                 $uploadOk = 0;
                                 ?>
                                 <p class="alert alert-danger">

@@ -44,7 +44,7 @@
     <?php include("php/administration-header.php"); ?>
 
     <div class="">
-        <div class="row full-height">
+        <div class="row">
             <!-- Left navigation links -->
             <?php
                 include("php/administration-left-links.php");
@@ -53,6 +53,21 @@
             <div class="col-md-8">
                 <!-- Right div with dashboard content -->
                 <h2>Dashboard</h2>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card bg-light">
+                            <div class="card-body">
+                                <?php
+                                    $get_total_trainngs = mysqli_query($server,"SELECT * from trainings");
+                                ?>
+                                <h5 class="card-title">Trainings</h5>
+                                <p class="card-text">Total: <?php echo mysqli_num_rows($get_total_trainngs); ?></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Add more dashboard cards here -->
+                </div>
                 <!-- Add your dashboard components here -->
             </div>
         </div>
