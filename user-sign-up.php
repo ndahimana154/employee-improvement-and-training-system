@@ -49,15 +49,22 @@
                         <?php
                     }
                     else {
-                        ?>
-                        
-                        <?php
-                    }
+                        $check_if_not_yet = mysqli_query($server,"SELECT * from users WHERE user_email = '$email' AND user_nid='$nid' AND user_state='No account yet'");
+                        if (mysqli_num_rows($check_if_not_yet)!=1) {
+                            ?>
+                            <p class="alert alert-danger">
+                                User account already exists
+                            </p>
+                            <?php
+                        }
+                        else {
+                            
+                        }
                 }            
             ?>
             <div class="form-group">
                 <label for="usern">User email</label>
-                <input type="email" class="form-control" id="em" name="usern" placeholder="Type...">
+                <input type="email" class="form-control" name="em" placeholder="Type...">
             </div>
             <div class="form-group">
                 <label for="passw">User national id</label>
