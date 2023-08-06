@@ -65,6 +65,17 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-4">
+                        <div class="card bg-light">
+                            <div class="card-body">
+                                <?php
+                                    $get_total_trainngs = mysqli_query($server,"SELECT * from trainings");
+                                ?>
+                                <h5 class="card-title">Trainings</h5>
+                                <p class="card-text">Total: <?php echo mysqli_num_rows($get_total_trainngs); ?></p>
+                            </div>
+                        </div>
+                    </div>
                     
                     <!-- Add more dashboard cards here -->
                 </div>

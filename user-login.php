@@ -40,6 +40,7 @@
                 if (isset($_POST['logBTN'])) {
                     $username = $_POST['usern'];
                     $password = $_POST['passw'];
+                    $password = md5($password);
                     $checkusername = mysqli_query($server, "SELECT * from users 
                         WHERE user_name='$username'
                     ");
@@ -69,6 +70,12 @@
                                 $_SESSION['user_type'] = $user_type;
                                 $_SESSION['user_id'] = $user_id;
                                 header("location: adminstration-home.php?welcome");
+                            }
+                            elseif ($user_type == 'Employee') {
+                                $_SESSION['employee_username'] = $username;
+                                $_SESSION['employee_type'] = $user_type;
+                                $_SESSION['employee_id'] = $user_id;
+                                header("location: employee-home.php?welcome");
                             }
                         }
                     }

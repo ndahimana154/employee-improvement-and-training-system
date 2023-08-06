@@ -68,6 +68,18 @@
                             $nid = $_POST['nid'];
                             $phone = $_POST['ph'];
                             $depart = $_POST['depart'];
+                            $nid = $_POST['nid'];
+
+                            // Generate a random initialization vector (IV)
+                            $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length('aes-256-cbc'));
+
+                            // Encrypt the data using AES-256-CBC encryption
+                            $encryptedNID = openssl_encrypt($nid, 'aes-256-cbc', 'your_encryption_key', 0, $iv);
+
+                            // Store the encrypted data and IV securely, such as in a database
+                            // Make sure to keep the IV secret and associated with the encrypted data
+
+
                             $check_em_exist = mysqli_query($server,"SELECT * from users WHERE user_email = '$email'");
                             if ($depart=='Select department') {
                                 ?>
@@ -84,7 +96,7 @@
                                 <?php
                             }
                             else {
-                                $check_nid_exists = mysqli_query($server,"SELECT * from users WHERE user_nid='$nid'");
+                                $check_nid_exists = mysqli_query($server,"SELECT * from users WHERE user_nid='$encryptedNID'");
                                 if (mysqli_num_rows($check_nid_exists) >0) {
                                     ?>
                                     <p class="alert alert-danger">
@@ -93,7 +105,7 @@
                                     <?php
                                 }
                                 else {
-                                    $new = mysqli_query($server,"INSERT into users VALUES(null,'$nid','Not set Yet','$firstname','$lastname','$email','$phone','Not set Yet','Employee','$depart','No account yet')");
+                                    $new = mysqli_query($server,"INSERT into users VALUES(null,'$encryptedNID','Not set Yet','$firstname','$lastname','$email','$phone','Not set Yet','Employee','$depart','No account yet')");
                                     if (!$new) {
                                         ?>
                                         <p class="alert alert-danger">

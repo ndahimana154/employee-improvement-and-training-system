@@ -50,7 +50,7 @@
                 include("php/administration-left-links.php");
             ?>
             <!-- Dashboard Content -->
-            <div class="col-md-8">
+            <div class="col-md-10">
                 <div class="d-flex">
                     <!-- <a href="" class="btn btn-success">
                         <i class="fa fa-arrow-left"></i>

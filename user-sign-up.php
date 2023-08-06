@@ -38,38 +38,52 @@
             <h1 class="mb-4 text-center">Create your account</h1>
             <?php
                 if (isset($_POST['check_em_nid'])) {
-                    $email = $_POST['em'];
-                    $nid = $_POST['nid'];
-                    $check_exist = mysqli_query($server,"SELECT * from users WHERE user_email = '$email' AND user_nid='$nid'");
-                    if (mysqli_num_rows($check_exist) !=1) {
+                    $userEmail = $_POST['em'];
+                    $userNID = $_POST['passw'];
+                    
+                    $check_userAcc = mysqli_query($server,"SELECT * from users WHERE user_nid='$userNID' AND user_email='$userEmail'
+                    ");
+                    
+                    if (mysqli_num_rows($check_userAcc) !=1) {
                         ?>
                         <p class="alert alert-danger">
-                            User doesn't exists
+                            No user with these credentials.
                         </p>
                         <?php
                     }
                     else {
-                        $check_if_not_yet = mysqli_query($server,"SELECT * from users WHERE user_email = '$email' AND user_nid='$nid' AND user_state='No account yet'");
-                        if (mysqli_num_rows($check_if_not_yet)!=1) {
+                        $check_userAccState = mysqli_query($server,"SELECT * from users WHERE user_nid='$userNID' AND user_email='$userEmail'
+                            AND user_state='No account yet'
+                        ");
+                        if (mysqli_num_rows($check_userAccState) !=1) {
                             ?>
-                            <p class="alert alert-danger">
-                                User account already exists
+                            <p class="alert alert alert-danger">
+                                Account already exists.
                             </p>
                             <?php
                         }
                         else {
-                            
+                            $data_useAccstate = mysqli_fetch_array($check_userAccState);
+                            $user_id = $data_useAccstate['user_id'];
+                            $user_email= $data_useAccstate['user_email'];
+                            ?>
+                            <p class="alert alert-success">
+                                The account is matching now.
+                                Click <a href="user-sign-up-proceed.php?user_id=<?php echo $user_id; ?>&email=<?php echo $user_email; ?>">proceed</a> to setup your account.
+                            </p>
+                            <?php
                         }
                     }
-                }            
+                }
             ?>
+
             <div class="form-group">
                 <label for="usern">User email</label>
-                <input type="email" class="form-control" name="em" placeholder="Type...">
+                <input type="email" class="form-control" name="em" placeholder="Type..." required>
             </div>
             <div class="form-group">
                 <label for="passw">User national id</label>
-                <input type="number" class="form-control" id="nid" name="passw" placeholder="Type...">
+                <input type="text" class="form-control" id="nid" name="passw" placeholder="Type..." required>
             </div>
             <button type="submit" class="btn btn-primary" name="check_em_nid">
                 <i class="fa fa-check"></i> Proceed
