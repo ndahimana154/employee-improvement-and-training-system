@@ -53,6 +53,9 @@
             <?php
                 $get_trainings = mysqli_query($server,"SELECT * from trainings WHERE
                     training_depart='$employee_acting_depart_id'
+                    -- AND training_status
+                    ORDER BY training_start DESC,
+                    training_end DESC
                 ");
                 while ($data_trainings = mysqli_fetch_array($get_trainings)) {
                     ?>
@@ -66,7 +69,7 @@
                                     <?php echo $data_trainings['training_start'] ?> until <?php echo $data_trainings['training_end']; ?>
                                 </p>
                                 <p>
-                                    <a href="employee-trainings-content?training=<?php echo $data_trainings['training_id']; ?>" class="btn btn-primary w-100">
+                                    <a href="employee-trainings-content.php?training=<?php echo $data_trainings['training_id']; ?>" class="btn btn-primary w-100">
                                         <i class="fas fa-newspaper"></i> 
                                         Contents
                                     </a>

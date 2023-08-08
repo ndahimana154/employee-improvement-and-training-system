@@ -68,6 +68,7 @@
                             $end = $_POST['end'];
                             $cover = $_FILES['coverimage']['name'];
                             $depart = $_POST['depart'];
+                            $description = $_POST['descri'];
                             $checktopic =mysqli_query($server,"SELECT * from trainings WHERE training_topic='$topic'");
 
                             $targetDir = "trainings/covers/"; // Create a directory named "uploads" to store uploaded files
@@ -139,7 +140,7 @@
                             } 
                             else {
                                 if (move_uploaded_file($_FILES["coverimage"]["tmp_name"], $targetFile)) {
-                                    $new = mysqli_query($server,"INSERT into trainings VALUES(null,'$topic','$strt','$end','$cover','$depart','Progress')");
+                                    $new = mysqli_query($server,"INSERT into trainings VALUES(null,'$topic','$description','$strt','$end','$cover','$depart','Progress')");
                                     ?>
                                     <p class="alert alert-success">
                                         Training is created successfully.
@@ -160,6 +161,12 @@
                     </p>
                     <p>
                         <input type="text" name="topic" placeholder="Type..." class="form-control">
+                    </p>
+                    <p>
+                        Training description
+                    </p>
+                    <p>
+                        <textarea name="descri" class="form-control"></textarea>
                     </p>
                     <p>
                         Training startdate
