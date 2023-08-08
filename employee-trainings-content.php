@@ -82,7 +82,7 @@
                         </div>
                         <div class="row bg-light" style="height: 700px;">
                             <!-- Training Contents Column -->
-                            <div class="col-md-3 text-light p-4">
+                            <div class="col-md-3 text-light p-4" id="contents_list">
                                 <h4 class="text-dark m-3">
                                     Contents
                                 </h4>
@@ -134,16 +134,75 @@
                                         <p class="" style="margin-left: 10px;">
                                             <?php echo $data_check_exits['training_description']; ?>
                                         </p>
+                                        <div class="achievements">
+                                            <h5 class="font-weight-bold">
+                                                Achievements
+                                            </h5>
+                                            <?php
+                                                $get_total_contents = mysqli_query($server,"SELECT * from training_contents 
+                                                    WHERE
+                                                    training = '$training'    
+                                                ");
+                                                $get_passed_contents = mysqli_query($server,"SELECT * from 
+                                                    empl_trainings_conent_completion WHERE
+                                                    employee = '$acting_employee_id' 
+                                                    AND training = '$training'
+                                                    AND status = 'Completed'
+                                                ");
+                                                $num_contents = mysqli_num_rows($get_total_contents);
+                                                $num_completed = mysqli_num_rows($get_passed_contents);
+                                                // Calculate percentage
+                                                $completetion_percenage = ($num_completed/$num_contents) * 100;
+                                                // echo $completetion_percenage;
+                                            ?>
+                                            <h4 style="text-transform: uppercase;">
+                                                Content completion
+                                            </h4>
+                                            <div class="progress" title="You have completed <?php echo $completetion_percenage."%"; ?> of the training contents.">
+                                                <div class="progress-bar" role="progressbar" style="width: <?php echo $completetion_percenage; ?>%;" aria-valuenow="<?php echo $completionPercentage; ?>" aria-valuemin="0" aria-valuemax="100">
+                                                    <?php echo $completetion_percenage; ?>%
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Chat with Professionals Column -->
-                            <div class="col-md-4 text-light p-4">
-                                <h4 class="text-dark m-3">
-                                    Professional
-                                </h4>
-                                
+                            <div class="col-md-4 p-4">
+                            <div class="container mt-5">
+                                <div class="card" style="height: 600px;">
+                                    <div class="card-header bg-primary text-white">
+                                        <h4 class="mb-0">Professional Chat</h4>
+                                        <p class="mb-0">Chatting with: John Doe</p>
+                                    </div>
+                                    <div class="card-body chat-messages">
+                                        <div class="message sender">
+                                            <p>Hello, how can I help you?</p>
+                                            <div class="time">
+                                                10:30 AM
+                                                <i class="fas fa-check delivered"></i>
+                                            </div>
+                                        </div>
+                                        <div class="message receiver">
+                                            <p>Hi, I have a question about the training content.</p>
+                                            <div class="time">
+                                                10:35 AM
+                                            </div>
+                                        </div>
+                                        <!-- Add more messages here -->
+                                    </div>
+                                    <div class="card-footer bg-light">
+                                        <form class="d-flex">
+                                            <input type="text" class="form-control" placeholder="Type your message...">
+                                            <button type="submit" class="btn btn-primary ml-2"><i class="fas fa-paper-plane"></i></button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
                             </div>
                         </div>
 

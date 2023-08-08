@@ -38,7 +38,8 @@
                     The conent is marked as complete.
                 </p>
                 <?php
-                heade
+                // header("Refresh: 0");
+                // header("location: home.php");
             }
         }
     }

@@ -25,7 +25,7 @@
                 <div class="content_file">
                     <iframe src="<?php echo $data_contents['content_file']; ?>" frameborder="0" width="100%" height="700px" ></iframe>
                 </div>
-                <div id="content_mark" style="display:none;">vvgg</div>
+                <div id="content_mark" style="display:none;"></div>
                 <div class="controls" style="text-align: center;">
                     <?php
                         $check_if_completed = mysqli_query($server,"SELECT * from empl_trainings_conent_completion
@@ -62,9 +62,12 @@
             $("#content_mark").css({
                 "display" : "block"
             })
+            
             $("#content_mark").load("php/employee_content_mark.php",{
                 "contents": content
             });
+            
+            
         })
     })
 </script>
