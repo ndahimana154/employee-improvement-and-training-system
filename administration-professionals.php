@@ -44,7 +44,7 @@
     <?php include("php/administration-header.php"); ?>
 
     <div class="">
-        <div class="row p-2">
+        <div class="row">
             <!-- Left navigation links -->
             <?php
                 include("php/administration-left-links.php");
@@ -56,7 +56,7 @@
                         <i class="fa fa-arrow-left"></i>
                     </a> -->
                     <h2>
-                        Employee list
+                        Professionals list
                     </h2>
                 </div>
                 <table class="table table-hover table-responsive">
@@ -64,12 +64,6 @@
                         <tr>
                             <td>
                                 #
-                            </th>
-                            <th>
-                                National id
-                            </th>
-                            <th>
-                                Department
                             </th>
                             <th>
                                 Firstname
@@ -80,14 +74,12 @@
                             <th>
                                 Email
                             </th>
+                            
                             <th>
-                                Username
+                                Phone
                             </th>
                             <th>
-                                User type
-                            </th>
-                            <th>
-                                User state
+                                Status
                             </th>
                             <th>
                                 Actions
@@ -96,12 +88,24 @@
                     </thead>
                     <tbody>
                         <?php
-                            $get_emp = mysqli_query($server,"SELECT * from users,departments 
-                                WHERE (user_type='Employee' OR user_type='Administration') AND user_id!='$acting_admin_id'
-                                AND users.department = departments.depart_id    
+                            $get_pro = mysqli_query($server,"SELECT * from 
+                                professionals 
+                                ORDER BY 
+                                professional_fn ASC,
+                                professional_ln ASC,
+                                professional_email ASC  
                             ");
                             $count=1;
-                            while ($data_emp = mysqli_fetch_array($get_emp)) {
+                            if (mysqli_num_rows($get_pro) < 1) {
+                                ?>
+                                <tr>
+                                    <td colpan="100">
+                                        No values found!
+                                    </td>
+                                </tr>
+                                <?php
+                            }
+                            while ($data_pro = mysqli_fetch_array($get_pro)) {
                                 ?>
                                 <tr>
                                     <td>
@@ -109,47 +113,32 @@
                                     </td>
                                     <td>
                                         <?php
-                                            echo $data_emp['user_nid'];
+                                            echo $data_pro['professional_fn'];
                                         ?>
                                     </td>
                                     <td>
                                         <?php
-                                            echo $data_emp['depart_name'];
+                                            echo $data_pro['professional_ln'];
                                         ?>
                                     </td>
                                     <td>
                                         <?php
-                                            echo $data_emp['user_fn'];
+                                            echo $data_pro['professional_email'];
                                         ?>
                                     </td>
                                     <td>
                                         <?php
-                                            echo $data_emp['user_ln'];
+                                            echo $data_pro['professional_phone'];
                                         ?>
                                     </td>
                                     <td>
                                         <?php
-                                            echo $data_emp['user_email'];
+                                            echo $data_pro['professional_status'];
                                         ?>
                                     </td>
                                     <td>
-                                        <?php
-                                            echo $data_emp['user_name'];
-                                        ?>
-                                    </td>
-                                    <td>
-                                        <?php
-                                            echo $data_emp['user_type'];
-                                        ?>
-                                    </td>
-                                    <td>
-                                        <?php
-                                            echo $data_emp['user_state'];
-                                        ?>
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-danger">
-                                            <i class="fa fa-trash"></i>
+                                        <button class="btn btn-success">
+                                            <i class="fas fa-chevron-right"></i>
                                         </button>
                                     </td>
                                 </tr>
