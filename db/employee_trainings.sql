@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 09, 2023 at 12:31 AM
+-- Generation Time: Aug 09, 2023 at 02:35 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -89,8 +89,16 @@ CREATE TABLE `professionals` (
   `professional_fn` varchar(255) NOT NULL,
   `professional_ln` varchar(255) NOT NULL,
   `professional_email` varchar(255) NOT NULL,
-  `professional_phone` int(12) NOT NULL
+  `professional_phone` int(12) NOT NULL,
+  `professional_status` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `professionals`
+--
+
+INSERT INTO `professionals` (`professional_id`, `professional_fn`, `professional_ln`, `professional_email`, `professional_phone`, `professional_status`) VALUES
+(1, 'Kagame', 'Paul', 'kagame@gmail.com', 788722727, 'Offline');
 
 -- --------------------------------------------------------
 
@@ -116,7 +124,8 @@ CREATE TABLE `trainings` (
 INSERT INTO `trainings` (`training_id`, `training_topic`, `training_description`, `training_start`, `training_end`, `training_cover`, `training_depart`, `training_status`) VALUES
 (1, 'High jump up Skills for good destiny', '', '2023-08-05', '2023-08-12', 'pexels-leon-ardho-2468339.jpg', 6, 'Progress'),
 (2, 'N-COmputing management study', 'This is the trainings which will be cool when it starts with the after days and it can be best if we create a good contstructing plan. And i think it will be good This is the trainings which will be cool when it starts with the after days and it can be best if we create a good contstructing plan. And i think it will be good This is the trainings which will be cool when it starts with the after days and it can be best if we create a good contstructing plan. And i think it will be good', '2023-08-06', '2023-08-25', 'pexels-rdne-stock-project-7948054.jpg', 8, 'Progress'),
-(3, 'Starting the days with us can be cool', 'This is the trainings which will be cool when it starts with the after days and it can be best if we create a good contstructing plan. And i think it will be good', '2023-08-10', '2023-08-30', 'pexels-ivan-samkov-4240497.jpg', 8, 'Progress');
+(3, 'Starting the days with us can be cool', 'This is the trainings which will be cool when it starts with the after days and it can be best if we create a good contstructing plan. And i think it will be good', '2023-08-10', '2023-08-30', 'pexels-ivan-samkov-4240497.jpg', 8, 'Progress'),
+(4, 'Let me try to do this', 'You trying to do what?', '2023-08-09', '2023-08-31', 'pexels-ivan-samkov-4240497.jpg', 6, 'Progress');
 
 -- --------------------------------------------------------
 
@@ -145,7 +154,8 @@ INSERT INTO `training_contents` (`training_content_id`, `training`, `content_nam
 (7, 2, 'I think DOcx is not problem', 'trainings/contents/I think DOcx is not problem - N-COmputing management study.docx'),
 (8, 2, 'Getting it by noe', 'trainings/contents/Getting it by noe - N-COmputing management study.pdf'),
 (9, 2, 'fdbfx', 'trainings/contents/fdbfx - N-COmputing management study.pdf'),
-(10, 2, 'New test', 'trainings/contents/New test - N-COmputing management study.pdf');
+(10, 2, 'New test', 'trainings/contents/New test - N-COmputing management study.pdf'),
+(11, 2, 'Yes yes', 'trainings/contents/Yes yes - N-COmputing management study.pdf');
 
 -- --------------------------------------------------------
 
@@ -160,6 +170,13 @@ CREATE TABLE `training_professionals` (
   `unique_id` text NOT NULL,
   `tr_pro_status` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `training_professionals`
+--
+
+INSERT INTO `training_professionals` (`tr_pro_id`, `training`, `professional`, `unique_id`, `tr_pro_status`) VALUES
+(1, 2, 1, '0866065109a0afa7e14ab87c8db9f36d', 'Progress');
 
 -- --------------------------------------------------------
 
@@ -187,7 +204,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`user_id`, `user_nid`, `user_name`, `user_fn`, `user_ln`, `user_email`, `user_phone`, `user_pass`, `user_type`, `department`, `user_state`) VALUES
 (2, '12222', 'ndahimana154', 'Ndahimana', 'Bonheur', 'ndahimana154@gmail.com', 0, '81dc9bdb52d04dc20036dbd8313ed055', 'Administration', 11, 'Working'),
-(9, 'Ll8kmDc4X83mRKKuoF6t5A==', 'twitegure123', 'Twitegure', 'Pacifique', 'twi@gmail.com', 782277377, '827ccb0eea8a706c4c34a16891f84e7b', 'Employee', 8, 'Working');
+(9, 'Ll8kmDc4X83mRKKuoF6t5A==', 'twitegure123', 'Twitegure', 'Pacifique', 'twi@gmail.com', 782277377, '827ccb0eea8a706c4c34a16891f84e7b', 'Employee', 8, 'Working'),
+(10, 'UNnusJAiLsMvlecwnFxGbg==', 'Not set Yet', 'Tsinda', 'Cyimana', 'tsinda@gmail.com', 782736463, 'Not set Yet', 'Employee', 8, 'No account yet');
 
 --
 -- Indexes for dumped tables
@@ -263,31 +281,31 @@ ALTER TABLE `empl_trainings_conent_completion`
 -- AUTO_INCREMENT for table `professionals`
 --
 ALTER TABLE `professionals`
-  MODIFY `professional_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `professional_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `trainings`
 --
 ALTER TABLE `trainings`
-  MODIFY `training_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `training_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `training_contents`
 --
 ALTER TABLE `training_contents`
-  MODIFY `training_content_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `training_content_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `training_professionals`
 --
 ALTER TABLE `training_professionals`
-  MODIFY `tr_pro_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `tr_pro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables
