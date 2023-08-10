@@ -50,60 +50,119 @@
                 include("php/administration-left-links.php");
             ?>
             <!-- Dashboard Content -->
-            <div class="col-md-8">
+            <div class="col-md-9">
                 <h2>
                     Employee trainings
                 </h2>
-                <div class="row">
-                    <?php
-                        $get_trainings = mysqli_query($server,"SELECT * from 
-                        trainings,departments
-                        WHERE 
-                        trainings.training_depart = departments.depart_id
-                        ORDER BY training_status DESC,
-                        training_start DESC,training_end DESC");
-                        if (mysqli_num_rows($get_trainings) < 1) {
-                            ?>
-                            <p class="alert alert-danger">
-                                No trainings available
-                            </p>
+                <div class="r">
+                    <table class="table table-hover table-responsive">
+                        <thead>
+                            <tr>
+                                <td>
+                                    #
+                                </th>
+                                <th>
+                                    Training topic
+                                </th>
+                               
+                                <th>
+                                    Start date
+                                </th>
+                                <th>
+                                    End time
+                                </th>
+                                <th>
+                                    Department
+                                </th>
+                                <th>
+                                    Professional's email
+                                </th>
+                                <th>
+                                    Status
+                                </th>
+                                
+                                <th>
+                                    Actions
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
                             <?php
-                        }
-                        while ($data_trainings = mysqli_fetch_array($get_trainings)) {
-                            ?>
-                            <div class="col-md-4 mb-4">
-                                <div class="card">
-                                    <img src="trainings/covers/<?php echo $data_trainings['training_cover'] ?>" class="card-img-top" alt="Training 1">
-                                    <div class="card-body">
-                                        <h2 class="h4 text-primary"><?php echo $data_trainings['training_topic'] ?></h2>
-                                        <p class="card-text">
-                                            From <?php echo $data_trainings['training_start']; ?> to <?php echo $data_trainings['training_end']; ?>
-                                        </p>
-                                        <p class="card-text">Department: <?php echo $data_trainings['depart_name'];  ?></p>
-                                        <p>
+                                $get_trainings = mysqli_query($server,"SELECT * from 
+                                    trainings,departments
+                                    WHERE 
+                                    trainings.training_depart = departments.depart_id
+                                    ORDER BY training_status DESC,
+                                    training_start DESC,training_end DESC
+                                ");
+                                $count=1;
+                                while ($data_trainings = mysqli_fetch_array($get_trainings)) {
+                                    ?>
+                                    <tr>
+                                        <td>
+                                            <?php echo $count++; ?>
+                                        </td>
+                                        <td>
                                             <?php
-                                                $training = $data_trainings['training_id'];
-                                                $get_contentnum = mysqli_query($server,"SELECT * from training_contents WHERE training='$training'");
+                                                echo $data_trainings['training_topic'];
                                             ?>
-                                            No contents: <?php echo mysqli_num_rows($get_contentnum); ?>
-                                        </p>
-                                        <a href="administration-trainings-add-content.php?training_id=<?php echo $data_trainings['training_id']; ?>" class="btn btn-success">
-                                            <i class="fa fa-plus-circle"></i> content
-                                        </a>
-                                        <button class="btn btn-primary">
-                                            <i class="fa fa-eye"></i>
-                                            view contents
-                                        </button>
-                                        <button class="btn btn-danger">
-                                            <i class="fa fa-trash"></i>
-                                            Terminate
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <?php
-                        }
-                    ?>
+                                        </td>
+                                       
+                                        <td>
+                                            <?php
+                                                echo $data_trainings['training_start'];
+                                            ?>
+                                        </td>
+                                        <td>
+                                            <?php
+                                                echo $data_trainings['training_end'];
+                                            ?>
+                                        </td>
+                                        <td>
+                                            <?php
+                                                echo $data_trainings['depart_name'];
+                                            ?>
+                                        </td>
+                                        <td>
+                                            <?php
+                                                $training_id = $data_trainings['training_id'];
+                                                $get_professional_tr = mysqli_query($server,"SELECT * from training_professionals
+                                                    WHERE training='$training_id'
+                                                ");
+                                                if (mysqli_num_rows($get_professional_tr) < 1) {
+                                                    ?>
+                                                    No professional
+                                                    <?php
+                                                }
+                                                while ($data_profe_tr = mysqli_fetch_array($get_professional_tr)) {
+                                                    $profes = $data_profe_tr['professional'];
+                                                    $get_profe_info = mysqli_fetch_array(mysqli_query($server,"SELECT * from
+                                                        professionals WHERE professional_id = '$profes'
+                                                    "));
+                                                    echo $get_profe_info['professional_email']." ";
+                                                }
+                                            ?>
+                                        </td>
+                                        <td>
+                                            <?php
+                                                echo $data_trainings['training_status'];
+                                            ?>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-danger">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                            <a href="trainings/covers/<?php echo $data_trainings['training_cover']; ?>" title="View training image." target="_blank" class="btn btn-warning">
+                                                <i class="fa fa-external-link"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <?php
+                                }
+                            ?>
+                        </tbody>
+                    </table>
+                   
                 </div>
             </div>
         </div>
