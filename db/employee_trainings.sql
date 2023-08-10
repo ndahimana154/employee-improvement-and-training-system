@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 09, 2023 at 02:35 AM
+-- Generation Time: Aug 10, 2023 at 06:00 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -76,7 +76,10 @@ INSERT INTO `empl_trainings_conent_completion` (`id`, `employee`, `training`, `c
 (5, 9, 2, 5, 'Completed', '2023-08-09 00:25:16'),
 (6, 9, 2, 7, 'Completed', '2023-08-09 00:25:43'),
 (7, 9, 2, 8, 'Completed', '2023-08-09 00:30:18'),
-(8, 9, 2, 9, 'Completed', '2023-08-09 00:35:01');
+(8, 9, 2, 9, 'Completed', '2023-08-09 00:35:01'),
+(9, 9, 2, 11, 'Completed', '2023-08-10 17:47:34'),
+(10, 9, 2, 10, 'Completed', '2023-08-10 17:47:45'),
+(11, 9, 5, 12, 'Completed', '2023-08-10 18:47:47');
 
 -- --------------------------------------------------------
 
@@ -125,7 +128,8 @@ INSERT INTO `trainings` (`training_id`, `training_topic`, `training_description`
 (1, 'High jump up Skills for good destiny', '', '2023-08-05', '2023-08-12', 'pexels-leon-ardho-2468339.jpg', 6, 'Progress'),
 (2, 'N-COmputing management study', 'This is the trainings which will be cool when it starts with the after days and it can be best if we create a good contstructing plan. And i think it will be good This is the trainings which will be cool when it starts with the after days and it can be best if we create a good contstructing plan. And i think it will be good This is the trainings which will be cool when it starts with the after days and it can be best if we create a good contstructing plan. And i think it will be good', '2023-08-06', '2023-08-25', 'pexels-rdne-stock-project-7948054.jpg', 8, 'Progress'),
 (3, 'Starting the days with us can be cool', 'This is the trainings which will be cool when it starts with the after days and it can be best if we create a good contstructing plan. And i think it will be good', '2023-08-10', '2023-08-30', 'pexels-ivan-samkov-4240497.jpg', 8, 'Progress'),
-(4, 'Let me try to do this', 'You trying to do what?', '2023-08-09', '2023-08-31', 'pexels-ivan-samkov-4240497.jpg', 6, 'Progress');
+(4, 'Let me try to do this', 'You trying to do what?', '2023-08-09', '2023-08-31', 'pexels-ivan-samkov-4240497.jpg', 6, 'Progress'),
+(5, 'Bad effect of Python snake', '\"Explore the ecological impact of Python snakes in their native and introduced habitats. Learn how these reptiles affect local ecosystems, predator-prey dynamics, and biodiversity. Understand the positive role in pest control and the challenges posed by their presence in new environments.\"', '2023-08-17', '2023-08-31', '8bea1236-10a0-460e-8c32-51fc7582059c.png', 8, 'Progress');
 
 -- --------------------------------------------------------
 
@@ -155,7 +159,11 @@ INSERT INTO `training_contents` (`training_content_id`, `training`, `content_nam
 (8, 2, 'Getting it by noe', 'trainings/contents/Getting it by noe - N-COmputing management study.pdf'),
 (9, 2, 'fdbfx', 'trainings/contents/fdbfx - N-COmputing management study.pdf'),
 (10, 2, 'New test', 'trainings/contents/New test - N-COmputing management study.pdf'),
-(11, 2, 'Yes yes', 'trainings/contents/Yes yes - N-COmputing management study.pdf');
+(11, 2, 'Yes yes', 'trainings/contents/Yes yes - N-COmputing management study.pdf'),
+(12, 5, 'Introduction to Python Snakes', 'trainings/contents/Introduction to Python Snakes - Bad effect of Python snake.mp4'),
+(13, 5, 'Natural Habitat and Distribution', 'trainings/contents/Natural Habitat and Distribution - Bad effect of Python snake.mp4'),
+(14, 5, 'Introduction to Invasive Species', 'trainings/contents/Introduction to Invasive Species - Bad effect of Python snake.mp4'),
+(15, 5, 'Introduction to Ecosystems', 'trainings/contents/Introduction to Ecosystems - Bad effect of Python snake.mp4');
 
 -- --------------------------------------------------------
 
@@ -275,7 +283,7 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT for table `empl_trainings_conent_completion`
 --
 ALTER TABLE `empl_trainings_conent_completion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `professionals`
@@ -287,13 +295,13 @@ ALTER TABLE `professionals`
 -- AUTO_INCREMENT for table `trainings`
 --
 ALTER TABLE `trainings`
-  MODIFY `training_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `training_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `training_contents`
 --
 ALTER TABLE `training_contents`
-  MODIFY `training_content_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `training_content_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `training_professionals`
