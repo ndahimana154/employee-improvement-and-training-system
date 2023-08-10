@@ -65,7 +65,7 @@
                         if (mysqli_num_rows($checktraing_exists) != 1) {
                             ?>
                             <p class="alert alert-danger">
-                                Training doesn't exists.
+                                Training doesn't exist.
                             </p>
                             <?php
                         }
@@ -75,30 +75,40 @@
                             ?>
                             <h2>Upload training content</h2>
                             <form action="" method="post" enctype="multipart/form-data">
-                            <?php
-                                if(isset($_POST["submit"])) {
-                                    $training = $_POST['training'];
-                                    $content = $_POST['content'];
-                                    $pdfFileType = strtolower(pathinfo($_FILES["pdfFile"]["name"], PATHINFO_EXTENSION));
-                                    $targetDir = "trainings/contents/";
-                                    $targetFile = $targetDir .  $content ." - " .  $training_topic . '.' . $pdfFileType;
+                                <?php
+                                    if(isset($_POST["submit"])) {
+                                        $training = $_POST['training'];
+                                        $content = $_POST['content'];
+                                        $pdfFileType = strtolower(pathinfo($_FILES["pdfFile"]["name"], PATHINFO_EXTENSION));
+                                        $targetDir = "trainings/contents/";
+                                        $targetFile = $targetDir .  $content ." - " .  $training_topic . '.' . $pdfFileType;
 
-                                    if (move_uploaded_file($_FILES["pdfFile"]["tmp_name"], $targetFile)) {
-                                        $new= mysqli_query($server,"INSERT into training_contents VALUES(null,'$training','$content','$targetFile')");
-                                        ?>
-                                        <p class="alert alert-success">
-                                            Training content is added succesffully.
-                                        </p>
-                                        <?php
-                                    } else {
-                                        ?>
-                                        <p class="alert alert-danger">
-                                            Adding content failed.
-                                        </p>
-                                        <?php
+                                        // Check if the uploaded file is a video
+                                        $allowedExtensions = array("mp4", "avi", "mkv");
+                                        if (!in_array($pdfFileType, $allowedExtensions)) {
+                                            ?>
+                                            <p class="alert alert-danger">
+                                                Only video files are allowed.
+                                            </p>
+                                            <?php
+                                        } else {
+                                            if (move_uploaded_file($_FILES["pdfFile"]["tmp_name"], $targetFile)) {
+                                                $new= mysqli_query($server,"INSERT into training_contents VALUES(null,'$training','$content','$targetFile')");
+                                                ?>
+                                                <p class="alert alert-success">
+                                                    Training content is added successfully.
+                                                </p>
+                                                <?php
+                                            } else {
+                                                ?>
+                                                <p class="alert alert-danger">
+                                                    Adding content failed.
+                                                </p>
+                                                <?php
+                                            }
+                                        }
                                     }
-                                }
-                            ?>
+                                ?>
                                 <div class="form-group">
                                     <label for="content">Training name:</label>
                                     <input type="text" value="<?php echo $training; ?>" class="form-control" id="content" name="training" hidden>
@@ -109,8 +119,8 @@
                                     <input type="text" class="form-control" id="content" name="content" placeholder="Type..." required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="pdfFile">Content file:</label>
-                                    <input type="file" class="form-control-file" id="pdfFile" name="pdfFile" accept=".pdf" required>
+                                    <label for="pdfFile">Content file (Only video files):</label>
+                                    <input type="file" class="form-control-file" id="pdfFile" name="pdfFile" accept=".mp4,.avi,.mkv" required>
                                 </div>
                                 <button type="submit" class="btn btn-primary" name="submit">Upload</button>
                             </form>
@@ -149,4 +159,3 @@
     </style>
 </body>
 </html>
-
