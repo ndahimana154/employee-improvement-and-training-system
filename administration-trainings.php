@@ -152,6 +152,9 @@
                                             <button class="btn btn-danger">
                                                 <i class="fa fa-trash"></i>
                                             </button>
+                                            <a href="administration-trainings-add-content.php?training_id=<?php echo $data_trainings['training_id'] ?>" class="btn btn-success">
+                                                <i class="fas fa-angle-double-right"></i>
+                                            </a>
                                             <a href="trainings/covers/<?php echo $data_trainings['training_cover']; ?>" title="View training image." target="_blank" class="btn btn-warning">
                                                 <i class="fa fa-external-link"></i>
                                             </a>
