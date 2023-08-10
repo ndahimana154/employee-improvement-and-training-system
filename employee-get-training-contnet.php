@@ -16,7 +16,6 @@
     <!-- Link Jquery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Js Files -->
-    <script src="js/employee-get-trainings-content.js"></script>
 </head>
 <body>
     <!-- Header -->
@@ -54,7 +53,7 @@
     <section class="">
         <div class="" style="width: 80%;margin:auto;">
             <?php
-                if (!isset($_GET['training'])) {
+                if (!isset($_GET['training']) || !isset($_GET['content'])) {
                     ?>
                     <p class="alert alert-danger">
                         No training sent to the server.
@@ -63,22 +62,36 @@
                 }
                 else {
                     $training = $_GET['training'];
+                    $content_id = $_GET['content'];
                     // Check if the training exists
                     $check_exists = mysqli_query($server,"SELECT * from trainings WHERE
                         training_id='$training'
                     ");
-                    if (mysqli_num_rows($check_exists) != 1) {
+
+                    // Check if content exists
+                    $check_content_exiss = mysqli_query($server,"SELECT * from training_contents
+                        WHERE 
+                        training_content_id = '$content_id'
+                        AND training = '$training'
+                    ");
+                    if (mysqli_num_rows($check_exists) != 1 || mysqli_num_rows($check_content_exiss) !=1) {
                         ?>
                         <p class="alert alert-danger">
-                            The training is not found.
+                            The contents are not found.
                         </p>
                         <?php
                     }
                     else {
                         $data_check_exits = mysqli_fetch_array($check_exists);
+                        $data_cehc_content_exists = mysqli_fetch_array($check_content_exiss);
                         ?>
                         <div class="contents m-3">
-                            <a href="employee-trainings.php" class="text-dark font-weight-bold">Trainings</a> / <a href="" class="text-dark font-weight-bold"><?php echo $data_check_exits['training_topic']; ?></a>
+                            <a href="employee-trainings.php" class="text-dark font-weight-bold">Trainings</a> 
+                            / 
+                            <a href="employee-trainings-content.php?training=<?php echo $training; ?>" class="text-dark font-weight-bold"><?php echo $data_check_exits['training_topic']; ?></a>
+                            /
+                            <a href="" class="text-dark font-weight-bold"><?php echo $data_cehc_content_exists['content_name']; ?></a>
+
                         </div>
                         <div class="row bg-light" style="height: 700px;">
                             <!-- Training Contents Column -->
@@ -86,48 +99,7 @@
 
                             <!-- Training Description Column -->
                             <div class="col-md-5 bg-light p-4">
-                                <div id="trai_description">
-                                    <div class="" style="font-size: 20px;">
-                                        <h4 class="text-decoration-underline">
-                                            About:
-                                        </h4>
-                                        <p class="" style="margin-left: 10px;">
-                                            <?php echo $data_check_exits['training_description']; ?>
-                                        </p>
-                                        <div class="achievements">
-                                            <h5 class="font-weight-bold">
-                                                Achievements
-                                            </h5>
-                                            <?php
-                                                $get_total_contents = mysqli_query($server,"SELECT * from training_contents 
-                                                    WHERE
-                                                    training = '$training'    
-                                                ");
-                                                $get_passed_contents = mysqli_query($server,"SELECT * from 
-                                                    empl_trainings_conent_completion WHERE
-                                                    employee = '$acting_employee_id' 
-                                                    AND training = '$training'
-                                                    AND status = 'Completed'
-                                                ");
-                                                $num_contents = mysqli_num_rows($get_total_contents);
-                                                $num_completed = mysqli_num_rows($get_passed_contents);
-                                                // Calculate percentage
-                                                $completetion_percenage = ($num_completed/$num_contents) * 100;
-                                                // echo $completetion_percenage;
-                                            ?>
-                                            <h4 style="text-transform: uppercase;">
-                                                Content completion
-                                            </h4>
-                                            <div class="progress" title="You have completed <?php echo $completetion_percenage."%"; ?> of the training contents.">
-                                                <div class="progress-bar" role="progressbar" style="width: <?php echo $completetion_percenage; ?>%;" aria-valuenow="<?php echo $completionPercentage; ?>" aria-valuemin="0" aria-valuemax="100">
-                                                    <?php echo $completetion_percenage; ?>%
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-
-                                    </div>
-                                </div>
+                                <?php include("php/employee-get-training-content.php"); ?>
                             </div>
 
                             <!-- Chat with Professionals Column -->

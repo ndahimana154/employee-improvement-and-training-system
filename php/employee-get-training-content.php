@@ -1,9 +1,6 @@
 <?php
-    session_start();
-    include("connection.php");
-    include("employee-sessions.php");
-    if (isset($_POST['content'])) {
-        $content_id = $_POST['content'];
+    if (isset($_GET['content'])) {
+        $content_id = $_GET['content'];
         $get_content_info = mysqli_query($server,"SELECT * from training_contents
             WHERE training_content_id = '$content_id'
         ");
@@ -22,6 +19,62 @@
                 <h3 class="m-3">
                     <?php echo $data_contents['content_name']; ?>
                 </h3>
+                <?php
+                    if (isset($_GET['training']) && isset($_GET['content']) && isset($_GET['content_mark'])) {
+                        $content_mark = $_GET['content_mark'];
+                        $check_content_to_mark_exists = mysqli_query($server,"SELECT * from
+                            training_contents WHERE
+                            training_content_id = '$content_mark'
+                        ");
+                        if (mysqli_num_rows($check_content_to_mark_exists) != 1) {
+                            ?>
+                            <p class="alert alert-danger">
+                                Content failed.
+                            </p>
+                            <?php
+                        }
+                        else {
+                            $get_content_info = mysqli_fetch_array(mysqli_query($server,"SELECT * from training_contents
+                                WHERE training_content_id = '$content_mark'
+                            "));
+                            $training = $get_content_info['training'];
+                            $check_content_info = mysqli_query($server,"SELECT * from empl_trainings_conent_completion
+                            WHERE employee='$acting_employee_id'
+                            AND training = '$training'
+                            AND content = '$content_mark'
+                            AND status = 'Completed'
+                            ");
+                            if (mysqli_num_rows($check_content_info) > 0) {
+                                ?>
+                                <p class="alert alert-danger">
+                                    You have already completed this course.
+                                </p>
+                                <?php
+                            }
+                            else {
+                                $mark =mysqli_query($server,"INSERT into empl_trainings_conent_completion 
+                                values(null,'$acting_employee_id','$training','$content_mark','Completed',now())
+                                ");
+                                if (!$mark) {
+                                    ?>
+                                    <p class="alert alert-danger">
+                                        The content is not marked.
+                                    </p>
+                                    <?php
+                                }
+                                else {
+                                    ?>
+                                    <p class="alert alert-success">
+                                        The content is marked completely.
+                                    </p>
+                                    <?php
+                                    // header("Refresh: 0");
+                                    // header("location: home.php");
+                                }
+                            }
+                        }
+                    }
+                ?>
                 <div class="content_file">
                     <iframe src="<?php echo $data_contents['content_file']; ?>" frameborder="0" width="100%" height="700px" ></iframe>
                 </div>
@@ -36,10 +89,10 @@
                         ");
                         if (mysqli_num_rows($check_if_completed) !=1) {
                             ?>
-                            <button class="btn btn-success" id="mark_complete" value="<?php echo $content_id; ?>">
+                            <a href="?training=<?php echo $training ?>&content=<?php echo $content_id; ?>&content_mark=<?php echo $content_id; ?>" class="btn btn-success">
                                 <i class="fa fa-check-circle"></i>
                                 Mark as complete
-                            </button>
+                            </a>
                             <?php
                         }
                     ?>
@@ -50,6 +103,13 @@
         }
         
     } 
+    else {
+        ?>
+        <p class="alert alert-danger">
+            No contents sent to server.
+        </p>
+        <?php
+    }
 ?>
 
 <!-- Link Jquery -->
