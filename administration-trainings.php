@@ -125,9 +125,11 @@
                                         </td>
                                         <td>
                                             <?php
+                                                
                                                 $training_id = $data_trainings['training_id'];
                                                 $get_professional_tr = mysqli_query($server,"SELECT * from training_professionals
                                                     WHERE training='$training_id'
+                                                    
                                                 ");
                                                 if (mysqli_num_rows($get_professional_tr) < 1) {
                                                     ?>

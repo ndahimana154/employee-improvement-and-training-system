@@ -109,23 +109,33 @@
                                                     AND training = '$training'
                                                     AND status = 'Completed'
                                                 ");
-                                                $num_contents = mysqli_num_rows($get_total_contents);
-                                                $num_completed = mysqli_num_rows($get_passed_contents);
-                                                // Calculate percentage
-                                                $completetion_percenage = ($num_completed/$num_contents) * 100;
-                                                // echo $completetion_percenage;
+                                                if (mysqli_num_rows($get_total_contents) < 1) {
+                                                    ?>
+                                                    <p class="alert alert-danger">
+                                                        No contents to complete
+                                                    </p>
+                                                    <?php
+                                                }
+                                                else {
+                                                    $num_contents = mysqli_num_rows($get_total_contents);
+                                                    // $num_contents = 1
+                                                    $num_completed = mysqli_num_rows($get_passed_contents);
+                                                    // Calculate percentage
+                                                    $completetion_percenage = ($num_completed/$num_contents) * 100;
+                                                    // echo $completetion_percenage;
+                                                    ?>
+                                                    <h4 style="text-transform: uppercase;">
+                                                        Content completion
+                                                    </h4>
+                                                    <div class="progress" title="You have completed <?php echo $completetion_percenage."%"; ?> of the training contents.">
+                                                        <div class="progress-bar" role="progressbar" style="width: <?php echo $completetion_percenage; ?>%;" aria-valuenow="<?php echo $completionPercentage; ?>" aria-valuemin="0" aria-valuemax="100">
+                                                            <?php echo $completetion_percenage; ?>%
+                                                        </div>
+                                                    </div>
+                                                    <?php
+                                                }
                                             ?>
-                                            <h4 style="text-transform: uppercase;">
-                                                Content completion
-                                            </h4>
-                                            <div class="progress" title="You have completed <?php echo $completetion_percenage."%"; ?> of the training contents.">
-                                                <div class="progress-bar" role="progressbar" style="width: <?php echo $completetion_percenage; ?>%;" aria-valuenow="<?php echo $completionPercentage; ?>" aria-valuemin="0" aria-valuemax="100">
-                                                    <?php echo $completetion_percenage; ?>%
-                                                </div>
-                                            </div>
                                         </div>
-                                        
-
                                     </div>
                                 </div>
                             </div>

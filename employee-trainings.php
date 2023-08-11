@@ -51,8 +51,19 @@
     <div class="container">
         <div class="row">
             <?php
+                $today = date("Y-m-d");
+                // echo $today;
                 $get_trainings = mysqli_query($server,"SELECT * from trainings WHERE
                     training_depart='$employee_acting_depart_id'
+                    AND training_start <= '$today'
+                    AND training_end > '$HTTP_RAW_POST_DATA
+                    
+                    
+                    
+                    
+                    
+                    '
+
                     -- AND training_status
                     ORDER BY training_start DESC,
                     training_end DESC
