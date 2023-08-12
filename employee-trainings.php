@@ -57,6 +57,7 @@
                     training_depart='$employee_acting_depart_id'
                     AND training_start <= '$today'
                     AND training_end > '$today'
+                    AND training_status = 'Progress'
 
 
                     -- AND training_status

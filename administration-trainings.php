@@ -151,12 +151,28 @@
                                             ?>
                                         </td>
                                         <td>
-                                            <button class="btn btn-danger">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
-                                            <a href="administration-trainings-add-content.php?training_id=<?php echo $data_trainings['training_id'] ?>" class="btn btn-success">
-                                                <i class="fas fa-angle-double-right"></i>
+                                            <a href="administration-trainings-add-content.php?training_id=<?php echo $data_trainings['training_id'] ?>" title="View training contents" class="btn btn-success">
+                                                <i class="fas fa-file-alt"></i>
                                             </a>
+                                            <a href="administrator-edit-training.php?training_id=<?php echo $data_trainings['training_id'] ?>" class="btn btn-primary" title="Edit training">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                            <?php
+                                                if ($data_trainings['training_status'] == 'Progress') {
+                                                    ?>
+                                                    <a href="administrator-ban-training.php?training_id=<?php echo $data_trainings['training_id'] ?>" class="btn btn-danger" title="Disable training">
+                                                        <i class="fas fa-toggle-off"></i>
+                                                    </a>
+                                                    <?php
+                                                }
+                                                else {
+                                                    ?>
+                                                    <a href="administrator-unban-training.php?training_id=<?php echo $data_trainings['training_id'] ?>" class="btn btn-success" title="Enable training">
+                                                        <i class="fas fa-toggle-on"></i>
+                                                    </a>
+                                                    <?php
+                                                }
+                                            ?>
                                             <a href="trainings/covers/<?php echo $data_trainings['training_cover']; ?>" title="View training image." target="_blank" class="btn btn-warning">
                                                 <i class="fa fa-external-link"></i>
                                             </a>

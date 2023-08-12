@@ -69,7 +69,20 @@
                             $cover = $_FILES['coverimage']['name'];
                             $depart = $_POST['depart'];
                             $description = $_POST['descri'];
-                            $checktopic =mysqli_query($server,"SELECT * from trainings WHERE training_topic='$topic'");
+                            $training_status = "Progress";
+                            if ($today < $strt) {
+                                $training_status="Waiting";
+                            }
+                            elseif ($today >= $strt && $today <= $end) {
+                                $training_status = "Progress";
+                            }
+                            elseif ($today > $end) {
+                                $training_status = "Ended";
+                            }
+                            $checktopic =mysqli_query($server,"SELECT * from trainings 
+                                WHERE training_topic='$topic'
+                                AND training_depart = '$depart'
+                            ");
 
                             $targetDir = "trainings/covers/"; // Create a directory named "uploads" to store uploaded files
                             $targetFile = $targetDir . basename($_FILES["coverimage"]["name"]);
@@ -140,7 +153,7 @@
                             } 
                             else {
                                 if (move_uploaded_file($_FILES["coverimage"]["tmp_name"], $targetFile)) {
-                                    $new = mysqli_query($server,"INSERT into trainings VALUES(null,'$topic','$description','$strt','$end','$cover','$depart','Progress')");
+                                    $new = mysqli_query($server,"INSERT into trainings VALUES(null,'$topic','$description','$strt','$end','$cover','$depart','$training_status')");
                                     ?>
                                     <p class="alert alert-success">
                                         Training is created successfully.

@@ -110,7 +110,7 @@
                                     }
                                 ?>
                                 <div class="form-group">
-                                    <label for="content">Training name:</label>
+                                    <label for="content">Training topic:</label>
                                     <input type="text" value="<?php echo $training; ?>" class="form-control" id="content" name="training" hidden>
                                     <input type="text" class="form-control" value="<?php echo $training_topic; ?>" readonly>
                                 </div>
