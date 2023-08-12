@@ -56,13 +56,8 @@
                 $get_trainings = mysqli_query($server,"SELECT * from trainings WHERE
                     training_depart='$employee_acting_depart_id'
                     AND training_start <= '$today'
-                    AND training_end > '$HTTP_RAW_POST_DATA
-                    
-                    
-                    
-                    
-                    
-                    '
+                    AND training_end > '$today'
+
 
                     -- AND training_status
                     ORDER BY training_start DESC,

@@ -1,5 +1,10 @@
 <?php
     $acting_employee_id = $_SESSION['employee_id'];
+    // Get the employee usernames
+    $get_infos = mysqli_fetch_array(mysqli_query($server,"SELECT * from users
+        WHERE user_id = '$acting_employee_id'
+    "));
+    $acting_employee_email = $get_infos['user_email'];
     $acting_employee_usern = $_SESSION['employee_username'];
     $acting_employee_type = $_SESSION['employee_type'];
     if (!isset($_SESSION['employee_id'])) {
