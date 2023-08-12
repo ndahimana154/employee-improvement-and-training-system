@@ -28,16 +28,16 @@
                 <?php
                     if (isset($_GET['welcome'])) {
                         ?>
-                        <h2>
+                        <h4>
                             Welcome <?php echo $acting_employee_usern; ?>
-                        </h2>
+                        </h4>
                         <?php
                     }
                     else {
                         ?>
-                        <h2>
+                        <h4>
                             <?php echo $acting_employee_usern; ?>
-                        </h2>
+                        </h4>
                         <?php
                     }
                 ?>
