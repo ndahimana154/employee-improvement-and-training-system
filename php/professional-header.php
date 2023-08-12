@@ -12,11 +12,11 @@
                     <ul class="navbar-nav">
                         <!-- <li class="nav-item">
                             <a class="nav-link text-light" href="#"><i class="fas fa-home"></i> Home</a>
-                        </li>
+                        </li> -->
                         
                         <li class="nav-item">
-                            <a class="nav-link text-light" href="sign-out.php?employee"><i class="fas fa-sign-out"></i> Signout</a>
-                        </li> -->
+                            <a class="nav-link text-light" href="sign-out.php?professional"><i class="fas fa-sign-out"></i> Signout</a>
+                        </li>
                     </ul>
                 </div>
             </div>

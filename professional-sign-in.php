@@ -85,7 +85,7 @@
             </div>
             <div class="form-group">
                 <label for="passw">Unique ID</label>
-                <input type="text" class="form-control" name="uniqueid" placeholder="Type...">
+                <input type="password" class="form-control" name="uniqueid" placeholder="Type...">
             </div>
             <button type="submit" class="btn btn-primary" name="logBTN">
                 <i class="fa fa-sign-in-alt"></i> Login

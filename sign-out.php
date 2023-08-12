@@ -4,8 +4,12 @@
         session_destroy();
         header("location: user-login.php");
     }
-    if (isset($_GET['employee'])) {
+    elseif (isset($_GET['employee'])) {
         session_destroy();
         header("location: user-login.php");
+    }
+    elseif (isset($_GET['professional'])) {
+        session_destroy();
+        header("location: professional-sign-in.php");
     }
 ?>
