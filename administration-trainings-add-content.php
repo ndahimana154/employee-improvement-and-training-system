@@ -78,7 +78,7 @@
                                 <?php
                                     if(isset($_POST["submit"])) {
                                         $training = $_POST['training'];
-                                        $content = $_POST['content'];
+                                        $content = mysqli_real_escape_string($server,$_POST['content']);
                                         $pdfFileType = strtolower(pathinfo($_FILES["pdfFile"]["name"], PATHINFO_EXTENSION));
                                         $targetDir = "trainings/contents/";
                                         $targetFile = $targetDir .  $content ." - " .  $training_topic . '.' . $pdfFileType;

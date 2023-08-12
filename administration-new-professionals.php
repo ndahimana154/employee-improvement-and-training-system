@@ -62,10 +62,10 @@
                 <form action="" method="post" class="p-2">
                     <?php
                         if (isset($_POST['save_emp'])) {
-                            $firstname = $_POST['fn'];
-                            $lastname = $_POST['ln'];
-                            $email = $_POST['em'];
-                            $phone = $_POST['ph'];
+                            $firstname = mysqli_real_escape_string($server,$_POST['fn']);
+                            $lastname = mysqli_real_escape_string($server,$_POST['ln']);
+                            $email = mysqli_real_escape_string($server,$_POST['em']);
+                            $phone = mysqli_real_escape_string($server,$_POST['ph']);
                             $training = $_POST['training'];
 
                             // Generate a unique ID

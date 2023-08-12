@@ -62,13 +62,13 @@
                 <form action="" method="post" enctype="multipart/form-data">
                     <?php
                         if(isset($_POST["save_trng"])) {
-                            $topic = $_POST['topic'];
+                            $topic = mysqli_real_escape_string($server,$_POST['topic']);
                             $today = date("Y-m-d");
                             $strt = $_POST['start'];
                             $end = $_POST['end'];
                             $cover = $_FILES['coverimage']['name'];
-                            $depart = $_POST['depart'];
-                            $description = $_POST['descri'];
+                            $depart = mysqli_real_escape_string($server,$_POST['depart']);
+                            $description = mysqli_real_escape_string($server,$_POST['descri']);
                             $training_status = "Progress";
                             if ($today < $strt) {
                                 $training_status="Waiting";

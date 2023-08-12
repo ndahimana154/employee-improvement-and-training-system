@@ -62,13 +62,13 @@
                 <form action="" method="post">
                     <?php
                         if (isset($_POST['save_emp'])) {
-                            $firstname = $_POST['fn'];
-                            $lastname = $_POST['ln'];
-                            $email = $_POST['em'];
-                            $nid = $_POST['nid'];
-                            $phone = $_POST['ph'];
-                            $depart = $_POST['depart'];
-                            $nid = $_POST['nid'];
+                            $firstname = mysqli_real_escape_string($server,$_POST['fn']);
+                            $lastname = mysqli_real_escape_string($server,$_POST['ln']);
+                            $email = mysqli_real_escape_string($server,$_POST['em']);
+                            $nid = mysqli_real_escape_string($server,$_POST['nid']);
+                            $phone = mysqli_real_escape_string($server,$_POST['ph']);
+                            $depart = mysqli_real_escape_string($server,$_POST['depart']);
+                            $nid = mysqli_real_escape_string($server,$_POST['nid']);
 
                             // Generate a random initialization vector (IV)
                             $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length('aes-256-cbc'));
@@ -128,31 +128,31 @@
                         Firstname
                     </p>
                     <p>
-                        <input type="text" name="fn" placeholder="Type..." class="form-control">
+                        <input type="text" name="fn" placeholder="Type..." class="form-control" required>
                     </p>
                     <p>
                         Lastname
                     </p>
                     <p>
-                        <input type="text" name="ln" placeholder="Type..." class="form-control">
+                        <input type="text" name="ln" placeholder="Type..." class="form-control" required>
                     </p>
                     <p>
                         Email
                     </p>
                     <p>
-                        <input type="email" name="em" placeholder="Type..." class="form-control">
+                        <input type="email" name="em" placeholder="Type..." class="form-control" required>
                     </p>
                     <p>
                         Phone number
                     </p>
                     <p>
-                        <input type="number" name="ph" placeholder="Type..." class="form-control">
+                        <input type="number" name="ph" placeholder="Type..." class="form-control" required>
                     </p>
                     <p>
                         National Id
                     </p>
                     <p>
-                        <input type="number" name="nid" placeholder="Type..." class="form-control">
+                        <input type="number" name="nid" placeholder="Type..." class="form-control" required>
                     </p>
                     <p>
                         Department
