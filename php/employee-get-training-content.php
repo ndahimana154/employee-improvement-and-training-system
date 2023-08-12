@@ -21,7 +21,26 @@
                 </h3>
                 <?php
                     if (isset($_GET['training']) && isset($_GET['content']) && isset($_GET['content_mark'])) {
+                        $mark_training = $_GET['training'];
+                        $mark_content = $_GET['content'];
                         // ... (code for marking content as completed)
+                        $mark_content_query = mysqli_query($server,"INSERT into empl_trainings_conent_completion
+                            VALUES(null,'$acting_employee_id','$mark_training','$mark_content','Completed',now())
+                        ");
+                        if (!$mark_content_query) {
+                            ?>
+                            <p class="alert alert-danger">
+                                Content is not marked as complete.
+                            </p>
+                            <?php
+                        }
+                        else {
+                            ?>
+                            <p class="alert alert-success">
+                                Content is marked successfully.
+                            </p>
+                            <?php
+                        }
                     }
                 ?>
                 <div class="content_file">
