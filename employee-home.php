@@ -64,13 +64,18 @@
     <!-- Other Information Section -->
     <section class="py-5">
         <div class="container">
+            <h3>
+                OUR PURPOSES
+            </h3>
             <div class="row">
                 <div class="col-md-4">
                     <div class="card">
                         <img src="images/pexels-fauxels-3184423.jpg" class="card-img-top" alt="Image 1">
                         <div class="card-body">
-                            <h5 class="card-title">Training Modules</h5>
-                            <p class="card-text">Explore our wide range of training modules to enhance your skills.</p>
+                            <h5 class="card-title">Efficient Training Management</h5>
+                            <p class="card-text">
+                                Streamline training creation, scheduling, and monitoring for employees. Administrators can easily organize sessions and track progress.
+                            </p>
                             <!-- <a href="#" class="btn btn-primary">Learn More</a> -->
                         </div>
                     </div>
@@ -79,8 +84,10 @@
                     <div class="card">
                         <img src="images/pexels-ivan-samkov-4240497.jpg" class="card-img-top" alt="Image 2">
                         <div class="card-body">
-                            <h5 class="card-title">Progress Tracking</h5>
-                            <p class="card-text">Keep track of your training progress and accomplishments.</p>
+                            <h5 class="card-title">Enhanced Communication</h5>
+                            <p class="card-text">
+                            Foster interaction between employees and trainers. Integrated messaging allows quick questions and collaboration.
+                            </p>
                             <!-- <a href="#" class="btn btn-primary">Learn More</a> -->
                         </div>
                     </div>
@@ -89,8 +96,10 @@
                     <div class="card">
                         <img src="images/pexels-rdne-stock-project-7948054.jpg" class="card-img-top" alt="Image 3">
                         <div class="card-body">
-                            <h5 class="card-title">Communication</h5>
-                            <p class="card-text">Connect with colleagues and trainers through our integrated communication tools.</p>
+                            <h5 class="card-title">Data-Driven Insights</h5>
+                            <p class="card-text">
+                            Access performance analytics and reports. Evaluate training impact and make informed decisions for improvement.
+                            </p>
                             <!-- <a href="#" class="btn btn-primary">Learn More</a> -->
                         </div>
                     </div>
