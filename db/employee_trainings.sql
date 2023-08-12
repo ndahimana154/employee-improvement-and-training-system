@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 10, 2023 at 06:00 PM
+-- Generation Time: Aug 12, 2023 at 04:55 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -84,6 +84,40 @@ INSERT INTO `empl_trainings_conent_completion` (`id`, `employee`, `training`, `c
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `msgs_professional_employee`
+--
+
+CREATE TABLE `msgs_professional_employee` (
+  `msg_id` int(11) NOT NULL,
+  `msg_sender` int(11) NOT NULL,
+  `msg_receiver` int(11) NOT NULL,
+  `msg_content` text NOT NULL,
+  `msg_sendtime` varchar(255) NOT NULL,
+  `msg_status` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `msgs_professional_employee`
+--
+
+INSERT INTO `msgs_professional_employee` (`msg_id`, `msg_sender`, `msg_receiver`, `msg_content`, `msg_sendtime`, `msg_status`) VALUES
+(1, 9, 2, 'Hello', '2023-08-12 03:43:57', 'Not read.'),
+(2, 2, 9, 'qllhai its good', '2023-08-12 08:57:03', 'Not read.'),
+(3, 9, 2, 'Why cani do it?', '2023-08-12 09:06:31', 'Not read.'),
+(4, 9, 2, 'yeah ofcourse its good', '2023-08-12 09:06:59', 'Not read.'),
+(5, 9, 2, 'i think it will scroll down over', '2023-08-12 09:07:14', 'Not read.'),
+(6, 9, 2, 'is that ok??', '2023-08-12 09:07:20', 'Not read.'),
+(7, 2, 9, 'Yeah man its cool', '2023-08-12 11:14:19', 'Not read.'),
+(8, 9, 2, 'what do you want?', '2023-08-12 11:18:47', 'Not read.'),
+(9, 9, 2, 'what do you want?', '2023-08-12 11:19:07', 'Not read.'),
+(10, 2, 10, 'Hello cyimana', '2023-08-12 11:24:37', 'Not read.'),
+(11, 2, 9, '                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Incidunt, ullam. Laboriosam, consectetur? Fugit a minus in? Assumenda excepturi ab vero alias fuga debitis? Eaque exercitationem nobis ipsam atque harum nemo!', '2023-08-12 13:02:31', 'Not read.'),
+(12, 1, 9, 'Hello', '2023-08-12 17:54:52', 'Not read.'),
+(13, 1, 9, 'Umeze ute bruh>??', '2023-08-12 17:55:00', 'Not read.');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `professionals`
 --
 
@@ -101,7 +135,8 @@ CREATE TABLE `professionals` (
 --
 
 INSERT INTO `professionals` (`professional_id`, `professional_fn`, `professional_ln`, `professional_email`, `professional_phone`, `professional_status`) VALUES
-(1, 'Kagame', 'Paul', 'kagame@gmail.com', 788722727, 'Offline');
+(1, 'Kagame', 'Paul', 'kagame@gmail.com', 788722727, 'Online'),
+(2, 'Fally', 'Merci', 'fally@gmail.com', 882928372, 'Offline');
 
 -- --------------------------------------------------------
 
@@ -125,11 +160,15 @@ CREATE TABLE `trainings` (
 --
 
 INSERT INTO `trainings` (`training_id`, `training_topic`, `training_description`, `training_start`, `training_end`, `training_cover`, `training_depart`, `training_status`) VALUES
-(1, 'High jump up Skills for good destiny', '', '2023-08-05', '2023-08-12', 'pexels-leon-ardho-2468339.jpg', 6, 'Progress'),
-(2, 'N-COmputing management study', 'This is the trainings which will be cool when it starts with the after days and it can be best if we create a good contstructing plan. And i think it will be good This is the trainings which will be cool when it starts with the after days and it can be best if we create a good contstructing plan. And i think it will be good This is the trainings which will be cool when it starts with the after days and it can be best if we create a good contstructing plan. And i think it will be good', '2023-08-06', '2023-08-25', 'pexels-rdne-stock-project-7948054.jpg', 8, 'Progress'),
-(3, 'Starting the days with us can be cool', 'This is the trainings which will be cool when it starts with the after days and it can be best if we create a good contstructing plan. And i think it will be good', '2023-08-10', '2023-08-30', 'pexels-ivan-samkov-4240497.jpg', 8, 'Progress'),
-(4, 'Let me try to do this', 'You trying to do what?', '2023-08-09', '2023-08-31', 'pexels-ivan-samkov-4240497.jpg', 6, 'Progress'),
-(5, 'Bad effect of Python snake', '\"Explore the ecological impact of Python snakes in their native and introduced habitats. Learn how these reptiles affect local ecosystems, predator-prey dynamics, and biodiversity. Understand the positive role in pest control and the challenges posed by their presence in new environments.\"', '2023-08-17', '2023-08-31', '8bea1236-10a0-460e-8c32-51fc7582059c.png', 8, 'Progress');
+(1, '2', 'This is the trainings which will be cool when it starts with the after days and it can be best if we create a good contstructing plan. And i think it will be good This is the trainings which will be cool when it starts with the after days and it can be best if we create a good contstructing plan. And i think it will be good This is the trainings which will be cool when it starts with the after days and it can be best if we create a good contstructing plan. And i think it will be good', '2023-08-06', '2023-08-25', 'pexels-leon-ardho-2468339.jpg', 8, 'Progress'),
+(2, '2', 'This is the trainings which will be cool when it starts with the after days and it can be best if we create a good contstructing plan. And i think it will be good This is the trainings which will be cool when it starts with the after days and it can be best if we create a good contstructing plan. And i think it will be good This is the trainings which will be cool when it starts with the after days and it can be best if we create a good contstructing plan. And i think it will be good', '2023-08-06', '2023-08-25', 'pexels-rdne-stock-project-7948054.jpg', 8, 'Disabled'),
+(3, 'H hm kmek', 'This is the trainings which will be cool when it starts with the after days and it can be best if we create a good contstructing plan. And i think it will be good This is the trainings which will be cool when it starts with the after days and it can be best if we create a good contstructing plan. And i think it will be good This is the trainings which will be cool when it starts with the after days and it can be best if we create a good contstructing plan. And i think it will be good', '2023-08-06', '2023-08-25', 'pexels-ivan-samkov-4240497.jpg', 8, 'Progress'),
+(4, 'TRRR', 'This is the trainings which will be cool when it starts with the after days and it can be best if we create a good contstructing plan. And i think it will be good This is the trainings which will be cool when it starts with the after days and it can be best if we create a good contstructing plan. And i think it will be good This is the trainings which will be cool when it starts with the after days and it can be best if we create a good contstructing plan. And i think it will be good', '2023-08-06', '2023-08-25', 'pexels-ivan-samkov-4240497.jpg', 8, 'Disabled'),
+(5, '2', 'This is the trainings which will be cool when it starts with the after days and it can be best if we create a good contstructing plan. And i think it will be good This is the trainings which will be cool when it starts with the after days and it can be best if we create a good contstructing plan. And i think it will be good This is the trainings which will be cool when it starts with the after days and it can be best if we create a good contstructing plan. And i think it will be good', '2023-08-06', '2023-08-25', '8bea1236-10a0-460e-8c32-51fc7582059c.png', 8, 'Disabled'),
+(6, '2', 'This is the trainings which will be cool when it starts with the after days and it can be best if we create a good contstructing plan. And i think it will be good This is the trainings which will be cool when it starts with the after days and it can be best if we create a good contstructing plan. And i think it will be good This is the trainings which will be cool when it starts with the after days and it can be best if we create a good contstructing plan. And i think it will be good', '2023-08-06', '2023-08-25', '56074198-e74f-4ef2-9472-8868686afa6b.png', 8, 'Disabled'),
+(7, '2', 'This is the trainings which will be cool when it starts with the after days and it can be best if we create a good contstructing plan. And i think it will be good This is the trainings which will be cool when it starts with the after days and it can be best if we create a good contstructing plan. And i think it will be good This is the trainings which will be cool when it starts with the after days and it can be best if we create a good contstructing plan. And i think it will be good', '2023-08-06', '2023-08-25', 'Python-Symbol.png', 8, 'Progress'),
+(8, '2', 'This is the trainings which will be cool when it starts with the after days and it can be best if we create a good contstructing plan. And i think it will be good This is the trainings which will be cool when it starts with the after days and it can be best if we create a good contstructing plan. And i think it will be good This is the trainings which will be cool when it starts with the after days and it can be best if we create a good contstructing plan. And i think it will be good', '2023-08-06', '2023-08-25', '38e02103-e2c6-4a63-8074-fa75916f265e.png', 8, 'Disabled'),
+(9, '2', 'This is the trainings which will be cool when it starts with the after days and it can be best if we create a good contstructing plan. And i think it will be good This is the trainings which will be cool when it starts with the after days and it can be best if we create a good contstructing plan. And i think it will be good This is the trainings which will be cool when it starts with the after days and it can be best if we create a good contstructing plan. And i think it will be good', '2023-08-06', '2023-08-25', '96855c84-9e92-4049-968c-91939601e4f0_variated.png', 8, 'Progress');
 
 -- --------------------------------------------------------
 
@@ -184,7 +223,8 @@ CREATE TABLE `training_professionals` (
 --
 
 INSERT INTO `training_professionals` (`tr_pro_id`, `training`, `professional`, `unique_id`, `tr_pro_status`) VALUES
-(1, 2, 1, '0866065109a0afa7e14ab87c8db9f36d', 'Progress');
+(1, 2, 1, '0866065109a0afa7e14ab87c8db9f36d', 'Progress'),
+(2, 7, 2, '6ad885410077a30caa428bd429e542cb', 'Progress');
 
 -- --------------------------------------------------------
 
@@ -233,6 +273,12 @@ ALTER TABLE `empl_trainings_conent_completion`
   ADD KEY `sdiovjsdioiojio` (`training`),
   ADD KEY `sdiojsduichi` (`content`),
   ADD KEY `ciojios` (`employee`);
+
+--
+-- Indexes for table `msgs_professional_employee`
+--
+ALTER TABLE `msgs_professional_employee`
+  ADD PRIMARY KEY (`msg_id`);
 
 --
 -- Indexes for table `professionals`
@@ -286,16 +332,22 @@ ALTER TABLE `empl_trainings_conent_completion`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
+-- AUTO_INCREMENT for table `msgs_professional_employee`
+--
+ALTER TABLE `msgs_professional_employee`
+  MODIFY `msg_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
 -- AUTO_INCREMENT for table `professionals`
 --
 ALTER TABLE `professionals`
-  MODIFY `professional_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `professional_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `trainings`
 --
 ALTER TABLE `trainings`
-  MODIFY `training_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `training_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `training_contents`
@@ -307,7 +359,7 @@ ALTER TABLE `training_contents`
 -- AUTO_INCREMENT for table `training_professionals`
 --
 ALTER TABLE `training_professionals`
-  MODIFY `tr_pro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `tr_pro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
