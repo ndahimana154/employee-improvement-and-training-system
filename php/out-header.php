@@ -17,6 +17,9 @@
                             <a class="nav-link text-light" href="user-login.php"><i class="fas fa-sign-in-alt"></i> Login</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link text-light" href="professional-sign-in.php"><i class="fas fa-user-tie"></i> Professional</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-light" href="user-sign-up.php"><i class="fas fa-user-plus"></i> Signup</a>
                         </li>
                     </ul>
