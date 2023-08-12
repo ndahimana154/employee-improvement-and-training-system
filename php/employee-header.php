@@ -17,6 +17,12 @@
                             <a class="nav-link text-light" href="employee-trainings.php"><i class="fas fa-book"></i> Trainings</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link text-light" href="employee-achievements.php">
+                                <i class="fas fa-chart-line"></i>
+                                Achievements
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-light" href="sign-out.php?employee"><i class="fas fa-sign-out"></i> Signout</a>
                         </li>
                     </ul>

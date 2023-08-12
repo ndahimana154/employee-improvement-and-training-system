@@ -59,55 +59,44 @@
     
     <!-- Other Information Section -->
     <section class="py-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="images/pexels-fauxels-3184423.jpg" class="card-img-top" alt="Image 1">
-                    <div class="card-body">
-                        <h5 class="card-title">Training Modules</h5>
-                        <p class="card-text">Explore our wide range of training modules to enhance your skills.</p>
-                        <!-- <a href="#" class="btn btn-primary">Learn More</a> -->
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="images/pexels-ivan-samkov-4240497.jpg" class="card-img-top" alt="Image 2">
-                    <div class="card-body">
-                        <h5 class="card-title">Progress Tracking</h5>
-                        <p class="card-text">Keep track of your training progress and accomplishments.</p>
-                        <!-- <a href="#" class="btn btn-primary">Learn More</a> -->
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="images/pexels-rdne-stock-project-7948054.jpg" class="card-img-top" alt="Image 3">
-                    <div class="card-body">
-                        <h5 class="card-title">Communication</h5>
-                        <p class="card-text">Connect with colleagues and trainers through our integrated communication tools.</p>
-                        <!-- <a href="#" class="btn btn-primary">Learn More</a> -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-    
-    <!-- Footer -->
-    <footer class="bg-dark text-white py-4">
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
-                    <p>&copy; 2023 Your Company. All rights reserved.</p>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="images/pexels-fauxels-3184423.jpg" class="card-img-top" alt="Image 1">
+                        <div class="card-body">
+                            <h5 class="card-title">Training Modules</h5>
+                            <p class="card-text">Explore our wide range of training modules to enhance your skills.</p>
+                            <!-- <a href="#" class="btn btn-primary">Learn More</a> -->
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-6 text-md-right">
-                    <p>Contact Us | Privacy Policy</p>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="images/pexels-ivan-samkov-4240497.jpg" class="card-img-top" alt="Image 2">
+                        <div class="card-body">
+                            <h5 class="card-title">Progress Tracking</h5>
+                            <p class="card-text">Keep track of your training progress and accomplishments.</p>
+                            <!-- <a href="#" class="btn btn-primary">Learn More</a> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="images/pexels-rdne-stock-project-7948054.jpg" class="card-img-top" alt="Image 3">
+                        <div class="card-body">
+                            <h5 class="card-title">Communication</h5>
+                            <p class="card-text">Connect with colleagues and trainers through our integrated communication tools.</p>
+                            <!-- <a href="#" class="btn btn-primary">Learn More</a> -->
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </footer>
+    </section>
+    
+    <!-- Footer -->
+    <?php include("php/footer.php") ?>
     
     <!-- Link Bootstrap JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
