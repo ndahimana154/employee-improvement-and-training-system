@@ -5,6 +5,11 @@
     }
     else {
         $acting_professional_id = $_SESSION['profe_id'];
+        // Update professionals status
+        $update = mysqli_query($server,"UPDATE professionals
+            SET professional_status = 'Online'
+            WHERE professional_id = '$acting_professional_id'
+        ");
         $acting_training_unique_id = $_SESSION['unique_id'];
         // Get employees information
         $get_emp_info = mysqli_fetch_array(mysqli_query($server,"SELECT * from professionals
