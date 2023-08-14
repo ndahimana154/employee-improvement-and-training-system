@@ -173,6 +173,9 @@
                                                     <?php
                                                 }
                                             ?>
+                                            <a href="administrator-training-overview.php?training_id=<?php echo $data_trainings['training_id'] ?>" title="Training overview" class="btn btn-primary">
+                                                <i class="fas fa-clipboard-list"></i> 
+                                            </a>
                                             <a href="trainings/covers/<?php echo $data_trainings['training_cover']; ?>" title="View training image." target="_blank" class="btn btn-warning">
                                                 <i class="fa fa-external-link"></i>
                                             </a>
