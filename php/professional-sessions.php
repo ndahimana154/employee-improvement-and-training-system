@@ -15,6 +15,9 @@
         $get_emp_info = mysqli_fetch_array(mysqli_query($server,"SELECT * from professionals
             WHERE professional_id = '$acting_professional_id'
         "));
+        $acting_professional_ln = $get_emp_info['professional_ln'];
+        $acting_professional_fn = $get_emp_info['professional_fn'];
+        $acting_professional_phone = $get_emp_info['professional_phone'];
         $acting_professional_email = $get_emp_info['professional_email'];
         // Get the professional training
         $get_trrrr = mysqli_fetch_array(mysqli_query($server,"SELECT * from 
@@ -28,5 +31,12 @@
             trainings WHERE training_id = '$training'
         "));
         $training_depart = $get_training_department['training_depart'];
+
+        // Get the professional unique id
+        $get_profff = mysqli_fetch_array(mysqli_query($server,"SELECT * from  training_professionals
+            WHERE professional = '$acting_professional_id'
+            AND unique_id = '$acting_training_unique_id'
+        "));
+        $acting_professional_training = $get_profff['training'];
     }
 ?>

@@ -15,6 +15,9 @@
                         </li> -->
                         
                         <li class="nav-item">
+                            <a class="nav-link text-light" href="professional-user-profile.php"><i class="fas fa-user-cog"></i> Profile</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-light" href="sign-out.php?professional"><i class="fas fa-sign-out"></i> Signout</a>
                         </li>
                     </ul>
