@@ -5,9 +5,9 @@
             <div class="col-md-6">
                 <p>&copy; 2023 . All rights reserved.</p>
             </div>
-            <div class="col-md-6 text-md-right">
+            <!-- <div class="col-md-6 text-md-right">
                 <p>Contact Us | Privacy Policy</p>
-            </div>
+            </div> -->
         </div>
     </div>
 </footer>
