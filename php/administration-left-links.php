@@ -34,6 +34,12 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="administrator-profile-settings.php">
+                    <i class="fas fa-user-cog"></i>
+                    Profile
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="sign-out.php?administration"><i class="fas fa-sign-out"></i> Signout</a>
                 </li>
                 <!-- Add more navigation links here -->
