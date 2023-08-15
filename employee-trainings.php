@@ -19,31 +19,6 @@
     <?php
         include("php/employee-header.php");
     ?>
-    <div class="container">
-        <div class="row align-items-center">
-            <!-- <div class="col-md-4">
-                <img src="company_logo.png" alt="Company Logo" class="img-fluid">
-            </div> -->
-            <div class="col-md-8">
-                <?php
-                    if (isset($_GET['welcome'])) {
-                        ?>
-                        <h2>
-                            Welcome <?php echo $acting_employee_usern; ?>
-                        </h2>
-                        <?php
-                    }
-                    else {
-                        ?>
-                        <h2>
-                            <?php echo $acting_employee_usern; ?>
-                        </h2>
-                        <?php
-                    }
-                ?>
-            </div>
-        </div>
-    </div>
     
 
     <!-- Display trainings -->

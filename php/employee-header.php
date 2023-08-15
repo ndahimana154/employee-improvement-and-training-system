@@ -11,7 +11,7 @@
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link text-light" href="#"><i class="fas fa-home"></i> Home</a>
+                            <a class="nav-link text-light" href="employee-home.php"><i class="fas fa-home"></i> Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-light" href="employee-trainings.php"><i class="fas fa-book"></i> Trainings</a>
@@ -20,6 +20,12 @@
                             <a class="nav-link text-light" href="employee-achievements.php">
                                 <i class="fas fa-chart-line"></i>
                                 Achievements
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="employee-profile-settings.php">
+                            <i class="fas fa-user-cog"></i>
+                            Profile
                             </a>
                         </li>
                         <li class="nav-item">

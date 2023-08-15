@@ -6,6 +6,9 @@
     "));
     $acting_employee_email = $get_infos['user_email'];
     $acting_employee_usern = $_SESSION['employee_username'];
+    $acting_employee_fn = $get_infos['user_fn'];
+    $acting_employee_ln = $get_infos['user_ln'];
+    $acting_employee_phone = $get_infos['user_phone'];
     $acting_employee_type = $_SESSION['employee_type'];
     if (!isset($_SESSION['employee_id'])) {
         header("location: user-login.php");

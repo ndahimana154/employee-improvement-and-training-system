@@ -51,13 +51,9 @@
             ?>
             <!-- Dashboard Content -->
             <div class="col-md-8">
-                <div class="d-flex">
-                    <!-- <a href="" class="btn btn-success">
-                        <i class="fa fa-arrow-left"></i>
-                    </a> -->
-                    <h2>
-                        User Profile
-                    </h2>
+                <h2>
+                    User Profile
+                </h2>
                 </div>
                 <form action="" method="post" class="p-2">
                     <?php
