@@ -43,18 +43,16 @@
     <!-- Header -->
     <?php include("php/administration-header.php"); ?>
 
-    <div class="">
         <div class="row">
             <!-- Left navigation links -->
             <?php
                 include("php/administration-left-links.php");
             ?>
             <!-- Dashboard Content -->
-            <div class="col-md-8">
+            <div class="col-md-10">
                 <h2>
                     User Profile
                 </h2>
-                </div>
                 <form action="" method="post" class="p-2">
                     <?php
                         if (isset($_POST['save_profile'])) {
@@ -128,7 +126,6 @@
                             </p>
                         </div>
                     </div>
-                    
                 </form>
                 <h4>
                     Change password

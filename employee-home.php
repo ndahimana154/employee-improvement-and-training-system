@@ -14,102 +14,118 @@
     <!-- Link Font-awesome icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-<body>
+<body style="">
     <!-- Header -->
     <?php
         include("php/employee-header.php");
     ?>
-    <!-- Hero Section -->
-    <section id="hero">
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="images/pexels-fox-1595385.jpg" class="d-block w-100" alt="Image 1">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h3>Welcome to the Employee Training System</h3>
-                        <p>Empower your team with knowledge and skills.</p>
+    <!-- Display trainings -->
+    <section class="bg-light">
+    <div class="container">
+        <h2>
+            ACHIEVEMENTS AND PROGRESS
+        </h2>
+        <div class="row">
+            <?php
+                $get_all_trainings = mysqli_query($server,"SELECT * from
+                    trainings WHERE
+                    training_depart = '$employee_acting_depart_id'
+                    -- AND
+                    ORDER BY training_start DESC,
+                    training_end DESC,
+                    training_topic ASC
+                ");
+                if (mysqli_num_rows($get_all_trainings) < 1) {
+                    ?>
+                    <p class="alert alert-danger">
+                        No trainings available!
+                    </p>
+                    <?php
+                }
+                while($data_get_all_trainings = mysqli_fetch_array($get_all_trainings)) {
+                    ?>
+                    <div class="col-md-6">
+                        <div class="mb-3 border bg-white" style="display: flex;">
+                            <img src="trainings/covers/<?php echo $data_get_all_trainings['training_cover']; ?>" style="width: 200px;">
+                            <div class="p-3" style="flex: 1;">
+                                <h5 class="card-title">
+                                    <?php echo $data_get_all_trainings['training_topic']; ?>
+                                </h5>
+                                <p>
+                                    <?php
+                                        $training_id = $data_get_all_trainings['training_id'];
+                                        $get_professional = mysqli_query($server,"SELECT * from training_professionals
+                                            WHERE training = '$training_id'
+                                        ");
+                                        if (mysqli_num_rows($get_professional) < 1) {
+                                            echo"No professional";
+                                        }
+                                        else {
+                                            $data_get_professional_id = mysqli_fetch_array($get_professional);
+                                            $professional_id = $data_get_professional_id['professional'];
+                                            $data_get_profe_info = mysqli_fetch_array(mysqli_query($server,"SELECT * from professionals
+                                                WHERE professional_id = '$professional_id'
+                                            "));
+                                            echo $data_get_profe_info['professional_email'];
+                                        }
+                                    ?>
+                                </p>
+                                <p class="font-weight-bold">
+                                    <i class="fa fa-clock"></i>
+                                    <?php
+                                        echo $data_get_all_trainings['training_start']." - ".$data_get_all_trainings['training_end'];
+                                    ?>
+                                </p>
+                                <p class="font-weight-bold text-primary">
+                                    <?php echo $data_get_all_trainings['training_status']; ?>
+                                </p>
+                                <?php
+                                    $get_total_contents = mysqli_query($server,"SELECT * from training_contents 
+                                        WHERE
+                                        training = '$training_id'    
+                                    ");
+                                    $get_passed_contents = mysqli_query($server,"SELECT * from 
+                                        empl_trainings_conent_completion WHERE
+                                        employee = '$acting_employee_id' 
+                                        AND training = '$training_id'
+                                        AND status = 'Completed'
+                                    ");
+                                    if (mysqli_num_rows($get_total_contents) < 1) {
+                                        ?>
+                                        <p class="alert alert-danger">
+                                            No contents to complete
+                                        </p>
+                                        <?php
+                                    }
+                                    else {
+                                        $num_contents = mysqli_num_rows($get_total_contents);
+                                        // $num_contents = 1
+                                        $num_completed = mysqli_num_rows($get_passed_contents);
+                                        // Calculate percentage
+                                        $completetion_percenage = ($num_completed/$num_contents) * 100;
+                                        ?>
+                                        <div class="progress" title="You have completed <?php echo $completetion_percenage."%"; ?> of the training contents.">
+                                            <div class="progress-bar" role="progressbar" style="width: <?php echo $completetion_percenage; ?>%;" aria-valuenow="<?php echo $completionPercentage; ?>" aria-valuemin="0" aria-valuemax="100">
+                                                <?php echo $completetion_percenage; ?>%
+                                            </div>
+                                        </div>
+                                        <?php
+                                    }
+                                ?>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="carousel-item">
-                    <img src="images/pexels-pixabay-301920.jpg" class="d-block w-100" alt="Image 2">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h3>Enhance Your Skills</h3>
-                        <p>Explore our diverse range of training modules.</p>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img src="images/pexels-pixabay-355948.jpg" class="d-block w-100" alt="Image 3">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h3>Effective Communication</h3>
-                        <p>Connect with colleagues and trainers seamlessly.</p>
-                    </div>
-                </div>
-            </div>
-            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
+                    <?php
+                }
+            ?>
         </div>
-    </section>
-    
-    <!-- Other Information Section -->
-    <section class="py-5">
-        <div class="container">
-            <h3>
-                OUR PURPOSES
-            </h3>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="images/pexels-fauxels-3184423.jpg" class="card-img-top" alt="Image 1">
-                        <div class="card-body">
-                            <h5 class="card-title">Efficient Training Management</h5>
-                            <p class="card-text">
-                                Streamline training creation, scheduling, and monitoring for employees. Administrators can easily organize sessions and track progress.
-                            </p>
-                            <!-- <a href="#" class="btn btn-primary">Learn More</a> -->
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="images/pexels-ivan-samkov-4240497.jpg" class="card-img-top" alt="Image 2">
-                        <div class="card-body">
-                            <h5 class="card-title">Enhanced Communication</h5>
-                            <p class="card-text">
-                            Foster interaction between employees and trainers. Integrated messaging allows quick questions and collaboration.
-                            </p>
-                            <!-- <a href="#" class="btn btn-primary">Learn More</a> -->
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="images/pexels-rdne-stock-project-7948054.jpg" class="card-img-top" alt="Image 3">
-                        <div class="card-body">
-                            <h5 class="card-title">Data-Driven Insights</h5>
-                            <p class="card-text">
-                            Access performance analytics and reports. Evaluate training impact and make informed decisions for improvement.
-                            </p>
-                            <!-- <a href="#" class="btn btn-primary">Learn More</a> -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    </div>
+</section>
     
     <!-- Footer -->
-    <?php include("php/footer.php") ?>
+    <?php
+        include("php/footer.php");
+    ?>
     
     <!-- Link Bootstrap JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
