@@ -43,69 +43,67 @@
     <!-- Header -->
     <?php include("php/administration-header.php"); ?>
 
-    <div class="">
-        <div class="row">
-            <!-- Left navigation links -->
-            <?php
-                include("php/administration-left-links.php");
-            ?>
-            <!-- Dashboard Content -->
-            <div class="col-md-8">
-                <!-- Right div with dashboard content -->
-                <h2>Dashboard</h2>
-                <div class="row p-3">
-                    <div class="col-md-4 m-2">
-                        <div class="dashboard-box bg-primary text-light p-2 row">
-                            <div class="mr-3">
-                                <i class="fas fa-user-friends fa-3x mb-3 flex-1"></i>
-                                <h4>Employees</h4>
-                            </div>
-                            
-                            <p class="mb-0 fa-3x">
-                                <?php 
-                                    $get_total_employees = mysqli_query($server,"SELECT * from users WHERE user_id != '$acting_admin_id'");
-                                    echo mysqli_num_rows($get_total_employees);
-                                ?>
-                            </p>
+    <div class="row">
+        <!-- Left navigation links -->
+        <?php
+            include("php/administration-left-links.php");
+        ?>
+        <!-- Dashboard Content -->
+        <div class="col-md-8">
+            <!-- Right div with dashboard content -->
+            <h2>Dashboard</h2>
+            <div class="row p-3">
+                <div class="col-md-4 m-2">
+                    <div class="dashboard-box bg-primary text-light p-2 row">
+                        <div class="mr-3">
+                            <i class="fas fa-user-friends fa-3x mb-3 flex-1"></i>
+                            <h4>Employees</h4>
                         </div>
+                        
+                        <p class="mb-0 fa-3x">
+                            <?php 
+                                $get_total_employees = mysqli_query($server,"SELECT * from users WHERE user_id != '$acting_admin_id'");
+                                echo mysqli_num_rows($get_total_employees);
+                            ?>
+                        </p>
                     </div>
-                    <div class="col-md-4 m-2">
-                        <div class="dashboard-box bg-primary text-light p-2 row">
-                            <div class="mr-3">
-                                <i class="fas fa-graduation-cap fa-3x mb-3 flex-1"></i>
-                                <h4>Trainings</h4>
-                            </div>
-                            
-                            <p class="mb-0 fa-3x">
-                                <?php
-                                    $get_total_trainngs = mysqli_query($server,"SELECT * from trainings");
-                                    echo mysqli_num_rows($get_total_trainngs);
-                                ?>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-md-4 m-2">
-                        <div class="dashboard-box bg-primary text-light p-2 row">
-                            <div class="mr-3">
-                                <i class="fas fa-user-tie fa-3x mb-3 flex-1"></i>
-                                <h4>Professionals</h4>
-                            </div>
-                            
-                            <p class="mb-0 fa-3x">
-                                <?php
-                                    $get_total_professionals = mysqli_query($server,"SELECT * from professionals
-
-                                    ");
-                                    echo mysqli_num_rows($get_total_professionals);
-                                ?>
-                            </p>
-                        </div>
-                    </div>
-                    
-                    <!-- Add more dashboard cards here -->
                 </div>
-                <!-- Add your dashboard components here -->
+                <div class="col-md-4 m-2">
+                    <div class="dashboard-box bg-primary text-light p-2 row">
+                        <div class="mr-3">
+                            <i class="fas fa-graduation-cap fa-3x mb-3 flex-1"></i>
+                            <h4>Trainings</h4>
+                        </div>
+                        
+                        <p class="mb-0 fa-3x">
+                            <?php
+                                $get_total_trainngs = mysqli_query($server,"SELECT * from trainings");
+                                echo mysqli_num_rows($get_total_trainngs);
+                            ?>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4 m-2">
+                    <div class="dashboard-box bg-primary text-light p-2 row">
+                        <div class="mr-3">
+                            <i class="fas fa-user-tie fa-3x mb-3 flex-1"></i>
+                            <h4>Professionals</h4>
+                        </div>
+                        
+                        <p class="mb-0 fa-3x">
+                            <?php
+                                $get_total_professionals = mysqli_query($server,"SELECT * from professionals
+
+                                ");
+                                echo mysqli_num_rows($get_total_professionals);
+                            ?>
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Add more dashboard cards here -->
             </div>
+            <!-- Add your dashboard components here -->
         </div>
     </div>
 

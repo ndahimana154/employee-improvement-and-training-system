@@ -30,9 +30,9 @@
                 // echo $today;
                 $get_trainings = mysqli_query($server,"SELECT * from trainings WHERE
                     training_depart='$employee_acting_depart_id'
-                    AND training_start <= '$today'
-                    AND training_end > '$today'
-                    AND training_status = 'Progress'
+                    -- AND training_start <= '$today'
+                    -- AND training_end > '$today'
+                    AND training_status != 'Disabled'
 
 
                     -- AND training_status
@@ -51,10 +51,19 @@
                                     <?php echo $data_trainings['training_start'] ?> until <?php echo $data_trainings['training_end']; ?>
                                 </p>
                                 <p>
-                                    <a href="employee-trainings-content.php?training=<?php echo $data_trainings['training_id']; ?>" class="btn btn-primary w-100">
-                                        <i class="fas fa-newspaper"></i> 
-                                        Contents
-                                    </a>
+                                    <?php
+                                        if ($data_trainings['training_status'] =='Waiting') {
+                                            
+                                        }
+                                        else {
+                                            ?>
+                                            <a href="employee-trainings-content.php?training=<?php echo $data_trainings['training_id']; ?>" class="btn btn-primary w-100">
+                                                <i class="fas fa-newspaper"></i> 
+                                                Contents
+                                            </a>
+                                            <?php
+                                        }
+                                    ?>
                                 </p>
                                 <!-- <a href="#" class="btn btn-primary">Learn More</a> -->
                             </div>
