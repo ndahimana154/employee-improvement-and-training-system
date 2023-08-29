@@ -79,21 +79,29 @@
                                     if(isset($_POST["submit"])) {
                                         $training = $_POST['training'];
                                         $content = mysqli_real_escape_string($server,$_POST['content']);
+                                        $content_type = $_POST['c_type'];
                                         $pdfFileType = strtolower(pathinfo($_FILES["pdfFile"]["name"], PATHINFO_EXTENSION));
                                         $targetDir = "trainings/contents/";
                                         $targetFile = $targetDir .  $content ." - " .  $training_topic . '.' . $pdfFileType;
 
                                         // Check if the uploaded file is a video
-                                        $allowedExtensions = array("mp4", "avi", "mkv");
-                                        if (!in_array($pdfFileType, $allowedExtensions)) {
+                                        $allowedExtensions = array("mp4", "avi", "mkv","pdf");
+                                        if ($content_type == 'Select type..') {
                                             ?>
                                             <p class="alert alert-danger">
-                                                Only video files are allowed.
+                                                Please select content type.
+                                            </p>
+                                            <?php
+                                        }
+                                        elseif (!in_array($pdfFileType, $allowedExtensions)) {
+                                            ?>
+                                            <p class="alert alert-danger">
+                                                Only video files are allowed and PDF file allowed.
                                             </p>
                                             <?php
                                         } else {
                                             if (move_uploaded_file($_FILES["pdfFile"]["tmp_name"], $targetFile)) {
-                                                $new= mysqli_query($server,"INSERT into training_contents VALUES(null,'$training','$content','$targetFile')");
+                                                $new= mysqli_query($server,"INSERT into training_contents VALUES(null,'$training','$content','$content_type','$targetFile')");
                                                 ?>
                                                 <p class="alert alert-success">
                                                     Training content is added successfully.
@@ -117,6 +125,20 @@
                                 <div class="form-group">
                                     <label for="content">Content Name:</label>
                                     <input type="text" class="form-control" id="content" name="content" placeholder="Type..." required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="content">Content Type:</label>
+                                    <select name="c_type" id="" class="form-control">
+                                        <option value="Select type..">
+                                            Select type..
+                                        </option>
+                                        <option value="Video">
+                                            Video
+                                        </option>
+                                        <option value="Document summary">
+                                            Document summary
+                                        </option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="pdfFile">Content file (Only video files):</label>

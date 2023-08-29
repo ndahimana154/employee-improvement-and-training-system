@@ -39,6 +39,18 @@
                     ORDER BY training_start DESC,
                     training_end DESC
                 ");
+
+                if (mysqli_num_rows($get_trainings) < 1) {
+                    ?>
+                    <div class="col-md-4 p-3">
+                        <div class="card">
+                           <div class="font-weight-bold p-3 text-danger bg-dark">
+                            No contents found
+                           </div>
+                        </div>
+                    </div>
+                    <?php
+                }
                 while ($data_trainings = mysqli_fetch_array($get_trainings)) {
                     ?>
                     <div class="col-md-4">
@@ -46,14 +58,21 @@
                             <img src="trainings/covers/<?php echo $data_trainings['training_cover']; ?>" class="card-img-top" alt="Image 1">
                             <div class="card-body">
                                 <h5 class="card-title font-weight-bold"><?php echo $data_trainings['training_topic']; ?></h5>
-                                <p class="card-text font-weight-bold"> 
+                                <p class="card-text font-weight-bold text-success"> 
                                     <i class="fas fa-clock"></i>
                                     <?php echo $data_trainings['training_start'] ?> until <?php echo $data_trainings['training_end']; ?>
                                 </p>
                                 <p>
                                     <?php
                                         if ($data_trainings['training_status'] =='Waiting') {
-                                            
+                                            ?>
+                                            <p class="font-weight-bold">
+                                                Status: 
+                                                <span class="text-danger font-weight-bold">
+                                                    Waiting
+                                                </span>
+                                            </p>
+                                            <?php
                                         }
                                         else {
                                             ?>
@@ -79,7 +98,7 @@
     
     <!-- Footer -->
     <?php
-        include("php/footer.php");
+        // include("php/footer.php");
     ?>
     
     <!-- Link Bootstrap JS -->

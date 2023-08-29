@@ -6,6 +6,8 @@
         // Get the training contents
         $get_trainings_content = mysqli_query($server,"SELECT * from training_contents
             WHERE training='$training'
+            ORDER BY content_type DESC,
+            content_name ASC
         ");
         if (mysqli_num_rows($get_trainings_content) < 1) {
             ?>

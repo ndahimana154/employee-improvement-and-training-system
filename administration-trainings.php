@@ -92,8 +92,8 @@
                                     trainings,departments
                                     WHERE 
                                     trainings.training_depart = departments.depart_id
-                                    ORDER BY training_status DESC,
-                                    training_start DESC,training_end DESC
+                                    ORDER BY 
+                                    training_end DESC,training_start DESC
                                 ");
                                 $count=1;
                                 while ($data_trainings = mysqli_fetch_array($get_trainings)) {
@@ -151,33 +151,40 @@
                                             ?>
                                         </td>
                                         <td>
-                                            <a href="administration-trainings-add-content.php?training_id=<?php echo $data_trainings['training_id'] ?>" title="View training contents" class="btn btn-success">
-                                                <i class="fas fa-file-alt"></i>
-                                            </a>
-                                            <a href="administrator-edit-training.php?training_id=<?php echo $data_trainings['training_id'] ?>" class="btn btn-primary" title="Edit training">
-                                                <i class="fa fa-edit"></i>
-                                            </a>
                                             <?php
                                                 if ($data_trainings['training_status'] == 'Progress') {
                                                     ?>
-                                                    <a href="administrator-ban-training.php?training_id=<?php echo $data_trainings['training_id'] ?>" class="btn btn-danger" title="Disable training">
-                                                        <i class="fas fa-toggle-off"></i>
+                                                    <a href="administrator-ban-training.php?training_id=<?php echo $data_trainings['training_id'] ?>" 
+                                                        class="" title="Disable training">
+                                                        <i class="fas fa-toggle-on text-success"></i>
                                                     </a>
                                                     <?php
                                                 }
                                                 else {
                                                     ?>
-                                                    <a href="administrator-unban-training.php?training_id=<?php echo $data_trainings['training_id'] ?>" class="btn btn-success" title="Enable training">
-                                                        <i class="fas fa-toggle-on"></i>
+                                                    <a href="administrator-unban-training.php?training_id=<?php echo $data_trainings['training_id'] ?>" 
+                                                        class="" title="Enable training">
+                                                        <i class="fas fa-toggle-off text-danger"></i>
                                                     </a>
                                                     <?php
                                                 }
                                             ?>
-                                            <a href="administrator-training-overview.php?training_id=<?php echo $data_trainings['training_id'] ?>" title="Training overview" class="btn btn-primary">
-                                                <i class="fas fa-clipboard-list"></i> 
+                                            <a href="administrator-edit-training.php?training_id=<?php echo $data_trainings['training_id'] ?>"
+                                                class="" title="Edit training">
+                                                <i class="fa fa-edit  text-dark"></i>
                                             </a>
-                                            <a href="trainings/covers/<?php echo $data_trainings['training_cover']; ?>" title="View training image." target="_blank" class="btn btn-warning">
-                                                <i class="fa fa-external-link"></i>
+                                            
+                                            <a href="administration-trainings-add-content.php?training_id=<?php echo $data_trainings['training_id'] ?>" title="New training contents" 
+                                                class="m-1">
+                                                <i class="fas fa-file-alt  text-dark"></i>
+                                            </a>
+                                            <a href="administrator-training-overview.php?training_id=<?php echo $data_trainings['training_id'] ?>" title="Training overview" 
+                                                class="">
+                                                <i class="fas fa-clipboard-list text-dark"></i> 
+                                            </a>
+                                            <a href="trainings/covers/<?php echo $data_trainings['training_cover']; ?>" title="View training image." target="_blank" 
+                                                class="">
+                                                <i class="fa fa-external-link text-dark"></i>
                                             </a>
                                         </td>
                                     </tr>

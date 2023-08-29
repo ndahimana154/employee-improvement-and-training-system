@@ -23,40 +23,15 @@
     <?php
         include("php/employee-header.php");
     ?>
-    <div class="container">
-        <div class="row align-items-center">
-            <!-- <div class="col-md-4">
-                <img src="company_logo.png" alt="Company Logo" class="img-fluid">
-            </div> -->
-            <div class="col-md-8">
-                <?php
-                    if (isset($_GET['welcome'])) {
-                        ?>
-                        <h2>
-                            Welcome <?php echo $acting_employee_usern; ?>
-                        </h2>
-                        <?php
-                    }
-                    else {
-                        ?>
-                        <h2>
-                            <?php echo $acting_employee_usern; ?>
-                        </h2>
-                        <?php
-                    }
-                ?>
-            </div>
-        </div>
-    </div>
     
 
     <!-- Display trainings -->
     <section class="">
-        <div class="" style="width: 80%;margin:auto;">
+        <div class="" style="width: 90%;margin:auto;">
             <?php
                 if (!isset($_GET['training'])) {
                     ?>
-                    <p class="alert alert-danger">
+                    <p class="alert alert-danger " style="">
                         No training sent to the server.
                     </p>
                     <?php
@@ -101,7 +76,7 @@
                                             <?php
                                                 $get_total_contents = mysqli_query($server,"SELECT * from training_contents 
                                                     WHERE
-                                                    training = '$training'    
+                                                    training = '$training'   
                                                 ");
                                                 $get_passed_contents = mysqli_query($server,"SELECT * from 
                                                     empl_trainings_conent_completion WHERE

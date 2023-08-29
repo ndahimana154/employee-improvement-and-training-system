@@ -56,7 +56,7 @@
                         <i class="fas fa-arrow-left"></i>
                     </a>
                     <h3 class="ml-2">
-                        Training disabling
+                        Training enabling
                     </h3>
                 </div>
                 <?php
@@ -78,12 +78,27 @@
                             <?php
                         }
                         else {
-                            $unban = mysqli_query($server,"UPDATE
-                                trainings SET 
-                                training_status = 'Progress'
-                                WHERE
-                                training_id = '$training'
-                            ");
+                            $start_date = date('Y-m-d');
+                            $dataexisttraining = mysqli_fetch_array($checktraing_exists);
+                            $current_sttus = $dataexisttraining['training_start'];
+                            if ($current_sttus == 'Waiting') {
+                                $unban = mysqli_query($server,"UPDATE
+                                    trainings SET 
+                                    training_status = 'Progress'
+                                    AND training_start = '$start_date'
+                                    WHERE
+                                    training_id = '$training'
+                                ");
+                            }
+                            else {
+                                $unban = mysqli_query($server,"UPDATE
+                                    trainings SET 
+                                    training_status = 'Progress'
+                                    WHERE
+                                    training_id = '$training'
+                                ");
+                            }
+                            
                             if (!$unban) {
                                 ?>
                                 <p class="alert alert-danger">
