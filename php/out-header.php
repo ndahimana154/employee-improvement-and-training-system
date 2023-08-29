@@ -16,7 +16,7 @@
                             <a class="nav-link text-light" href="#"><i class="fas fa-home"></i> Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" href="user-login.php"><i class="fas fa-sign-in-alt"></i> Login</a>
+                            <a class="nav-link text-light" href="user-login.php"><i class="fas fa-sign-in-alt"></i> Admin</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-light" href="professional-sign-in.php"><i class="fas fa-user-tie"></i> Professional</a>
