@@ -147,30 +147,41 @@
                                             <?php
                                         }
                                         else {
-                                            $get_professional_info = mysqli_fetch_array(mysqli_query($server,"SELECT * from
+                                            $get_professional_info = mysqli_query($server,"SELECT * from
                                                 professionals WHERE
                                                 professional_email = '$email'
                                                 AND professional_phone = '$phone'
-                                            "));
-                                            $professional_id = $get_professional_info['professional_id'];
-                                            $save_professional_training =mysqli_query($server,"INSERT into training_professionals 
-                                                VALUES(null,'$training','$professional_id','$encryptedID','Progress')
                                             ");
-                                            if (!$save_professional_training) {
+                                            if (mysqli_num_rows($get_professional_info) < 1) {
                                                 ?>
                                                 <p class="alert alert-danger">
-                                                    Assigning Professional to training failed.
+                                                    Professional was not saved!
                                                 </p>
                                                 <?php
                                             }
                                             else {
-                                                $data_check_trainings = mysqli_fetch_array($check_training_exists);
-                                                ?>
-                                                <p class="alert alert-success">
-                                                    Professional is save and assigned to training <b>("<?php echo $data_check_trainings['training_topic']; ?>")</b> successfully
-                                                </p>
-                                                <?php
+                                                $get_professional_info = mysqli_fetch_array($get_professional_info);
+                                                $professional_id = $get_professional_info['professional_id'];
+                                                $save_professional_training =mysqli_query($server,"INSERT into training_professionals 
+                                                    VALUES(null,'$training','$professional_id','$encryptedID','Progress')
+                                                ");
+                                                if (!$save_professional_training) {
+                                                    ?>
+                                                    <p class="alert alert-danger">
+                                                        Assigning Professional to training failed.
+                                                    </p>
+                                                    <?php
+                                                }
+                                                else {
+                                                    $data_check_trainings = mysqli_fetch_array($check_training_exists);
+                                                    ?>
+                                                    <p class="alert alert-success">
+                                                        Professional is save and assigned to training <b>("<?php echo $data_check_trainings['training_topic']; ?>")</b> successfully
+                                                    </p>
+                                                    <?php
+                                                }
                                             }
+                                            
                                         }
                                     }
                                 }

@@ -92,17 +92,17 @@
                                                     <?php
                                                 }
                                                 else {
-                                                    echo $num_contents = mysqli_num_rows($get_total_contents);
+                                                    $num_contents = mysqli_num_rows($get_total_contents);
                                                     // $num_contents = 1
-                                                    echo "<br>";
-                                                    echo $num_completed = mysqli_num_rows($get_passed_contents);
+                                                    $num_completed = mysqli_num_rows($get_passed_contents);
                                                     // Calculate percentage
                                                     $completetion_percenage = ($num_completed/$num_contents) * 100;
+                                                    $completetion_percenage = round($completetion_percenage, 2);
                                                     // echo $completetion_percenage;
                                                     ?>
-                                                    <h4 style="text-transform: uppercase;">
+                                                    <h6 style="text-transform: uppercase;">
                                                         Content completion
-                                                    </h4>
+                                                    </h6>
                                                     <div class="progress" title="You have completed <?php echo $completetion_percenage."%"; ?> of the training contents.">
                                                         <div class="progress-bar" role="progressbar" style="width: <?php echo $completetion_percenage; ?>%;" aria-valuenow="<?php echo $completionPercentage; ?>" aria-valuemin="0" aria-valuemax="100">
                                                             <?php echo $completetion_percenage; ?>%
