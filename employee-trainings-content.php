@@ -78,7 +78,7 @@
                                                     WHERE
                                                     training = '$training'   
                                                 ");
-                                                $get_passed_contents = mysqli_query($server,"SELECT * from 
+                                                $get_passed_contents = mysqli_query($server,"SELECT DISTINCT(employee) from 
                                                     empl_trainings_conent_completion WHERE
                                                     employee = '$acting_employee_id' 
                                                     AND training = '$training'
@@ -92,9 +92,10 @@
                                                     <?php
                                                 }
                                                 else {
-                                                    $num_contents = mysqli_num_rows($get_total_contents);
+                                                    echo $num_contents = mysqli_num_rows($get_total_contents);
                                                     // $num_contents = 1
-                                                    $num_completed = mysqli_num_rows($get_passed_contents);
+                                                    echo "<br>";
+                                                    echo $num_completed = mysqli_num_rows($get_passed_contents);
                                                     // Calculate percentage
                                                     $completetion_percenage = ($num_completed/$num_contents) * 100;
                                                     // echo $completetion_percenage;

@@ -1,8 +1,10 @@
 <!-- Header -->
         <nav class="navbar navbar-expand-lg navbar-light bg-dark">
             <div class="container">
-                <a class="navbar-brand" href="employee-home.php">
-                    <img src="logo.png" alt="Logo" width="50" height="50">
+                <a class="navbar-brand" href="adminstration-home.php">
+                    <h1 class="h1 text-primary">
+                        EITS
+                    </h1>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
