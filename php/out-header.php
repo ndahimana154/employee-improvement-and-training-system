@@ -13,7 +13,7 @@
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link text-light" href="#"><i class="fas fa-home"></i> Home</a>
+                            <a class="nav-link text-light" href="home.php"><i class="fas fa-home"></i> Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-light" href="user-login.php"><i class="fas fa-sign-in-alt"></i> Admin</a>
