@@ -43,7 +43,7 @@
     <!-- Header -->
     <?php include("php/administration-header.php"); ?>
 
-        <div class="row">
+        <div class="row p-2">
             <!-- Left navigation links -->
             <?php
                 include("php/administration-left-links.php");

@@ -54,6 +54,11 @@
                 <h2>
                     Employee trainings
                 </h2>
+                <div class="p-2">
+                    <a class="btn btn-success" href="administration-new-trainings.php">
+                        <i class="fas fa-plus-square"></i> New training
+                    </a>
+                </div>
                 <div class="r">
                     <table class="table table-hover table-responsive">
                         <thead>

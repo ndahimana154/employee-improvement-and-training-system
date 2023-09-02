@@ -59,6 +59,9 @@
                         Employee list
                     </h2>
                 </div>
+                <div class="p-2">
+                    <a class="btn btn-success" href="adminstation-new-employees.php"><i class="fas fa-user-plus"></i> New Employees</a>
+                </div>
                 <table class="table table-hover table-responsive">
                     <thead>
                         <tr>
@@ -148,9 +151,7 @@
                                         ?>
                                     </td>
                                     <td>
-                                        <button class="btn btn-danger">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
+                                        
                                     </td>
                                 </tr>
                                 <?php

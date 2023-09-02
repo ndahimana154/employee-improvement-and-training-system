@@ -7,16 +7,7 @@
                     <a class="nav-link" href="adminstration-home.php"><i class="fas fa-chart-bar"></i> Dashboard</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fas fa-clipboard-list"></i> Training Overview</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="adminstation-new-employees.php"><i class="fas fa-user-plus"></i> New Employees</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="administration-employees.php"><i class="fas fa-users"></i> Employees</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="administration-new-trainings.php"><i class="fas fa-users"></i> New trainings</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="administration-trainings.php"><i class="fas fa-users"></i> Trainings</a>
@@ -24,12 +15,6 @@
                 <li class="nav-item">
                     <a class="nav-link" href="administration-professionals.php">
                     <i class="fas fa-user-tie"></i>
-                    Professionals
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="administration-new-professionals.php">
-                    <i class="fas fa-plus-square"></i>
                     Professionals
                     </a>
                 </li>

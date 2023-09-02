@@ -44,7 +44,7 @@
     <?php include("php/administration-header.php"); ?>
 
     <div class="">
-        <div class="row">
+        <div class="row p-2">
             <!-- Left navigation links -->
             <?php
                 include("php/administration-left-links.php");
@@ -58,6 +58,12 @@
                     <h2>
                         Professionals list
                     </h2>
+                </div>
+                <div class="p-2">
+                    <a class="btn btn-success" href="administration-new-professionals.php">
+                        <i class="fas fa-plus-square"></i>
+                        new professional 
+                    </a>
                 </div>
                 <table class="table table-hover table-responsive">
                     <thead>
@@ -137,9 +143,6 @@
                                         ?>
                                     </td>
                                     <td>
-                                        <button class="btn btn-success">
-                                            <i class="fas fa-chevron-right"></i>
-                                        </button>
                                     </td>
                                 </tr>
                                 <?php
