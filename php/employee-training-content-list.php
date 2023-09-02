@@ -19,7 +19,10 @@
         while ($data_contents = mysqli_fetch_array($get_trainings_content)) {
             ?>
             <div class="row m-2" >
-                <a href="employee-get-training-contnet.php?training=<?php echo $training; ?>&content=<?php echo $data_contents['training_content_id']; ?>" class="btn btn-outline-primary">
+                <div class="chapter-row bg-white btn btn-outline-primary" style="width:100%;">
+                <a href="employee-get-training-contnet.php?training=<?php echo $training; ?>&content=<?php echo $data_contents['training_content_id']; ?>" 
+                    class="" style="display:block;text-align: left;">
+                        <i class="fa fa-bookmark"></i>
                     <?php 
                         $current_content = $data_contents['training_content_id'];
                         echo $data_contents['content_name']; 
@@ -36,6 +39,7 @@
                             }
                     ?>
                 </a>
+                </div>
             </div>
             <?php
         }
