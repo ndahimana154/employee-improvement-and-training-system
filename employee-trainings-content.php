@@ -78,7 +78,7 @@
                                                     WHERE
                                                     training = '$training'   
                                                 ");
-                                                $get_passed_contents = mysqli_query($server,"SELECT DISTINCT(employee) from 
+                                                $get_passed_contents = mysqli_query($server,"SELECT DISTINCT(content) from 
                                                     empl_trainings_conent_completion WHERE
                                                     employee = '$acting_employee_id' 
                                                     AND training = '$training'
