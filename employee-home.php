@@ -20,111 +20,44 @@
         include("php/employee-header.php");
     ?>
     <!-- Display trainings -->
-    <section class="bg-light">
-    <div class="container">
-        <h2>
-            ACHIEVEMENTS AND PROGRESS
-        </h2>
-        <div class="row">
-            <?php
-                $get_all_trainings = mysqli_query($server,"SELECT * from
-                    trainings WHERE
-                    training_depart = '$employee_acting_depart_id'
-                    -- AND
-                    ORDER BY training_start DESC,
-                    training_end DESC,
-                    training_topic ASC
-                ");
-                if (mysqli_num_rows($get_all_trainings) < 1) {
-                    ?>
-                    <p class="alert alert-danger">
-                        No trainings available!
-                    </p>
-                    <?php
-                }
-                while($data_get_all_trainings = mysqli_fetch_array($get_all_trainings)) {
-                    ?>
-                    <div class="col-md-6">
-                        <div class="mb-3 border bg-white" style="display: flex;">
-                            <img src="trainings/covers/<?php echo $data_get_all_trainings['training_cover']; ?>" style="width: 200px;">
-                            <div class="p-3" style="flex: 1;">
-                                <h5 class="card-title">
-                                    <?php echo $data_get_all_trainings['training_topic']; ?>
-                                </h5>
-                                <p>
-                                    <?php
-                                        $training_id = $data_get_all_trainings['training_id'];
-                                        $get_professional = mysqli_query($server,"SELECT * from training_professionals
-                                            WHERE training = '$training_id'
-                                        ");
-                                        if (mysqli_num_rows($get_professional) < 1) {
-                                            echo"No professional";
-                                        }
-                                        else {
-                                            $data_get_professional_id = mysqli_fetch_array($get_professional);
-                                            $professional_id = $data_get_professional_id['professional'];
-                                            $data_get_profe_info = mysqli_fetch_array(mysqli_query($server,"SELECT * from professionals
-                                                WHERE professional_id = '$professional_id'
-                                            "));
-                                            echo $data_get_profe_info['professional_email'];
-                                        }
-                                    ?>
-                                </p>
-                                <p class="font-weight-bold">
-                                    <i class="fa fa-clock"></i>
-                                    <?php
-                                        echo $data_get_all_trainings['training_start']." - ".$data_get_all_trainings['training_end'];
-                                    ?>
-                                </p>
-                                <p class="font-weight-bold text-primary">
-                                    <?php echo $data_get_all_trainings['training_status']; ?>
-                                </p>
-                                <?php
-                                    $get_total_contents = mysqli_query($server,"SELECT * from training_contents 
-                                        WHERE
-                                        training = '$training_id'    
-                                    ");
-                                    $get_passed_contents = mysqli_query($server,"SELECT * from 
-                                        empl_trainings_conent_completion WHERE
-                                        employee = '$acting_employee_id' 
-                                        AND training = '$training_id'
-                                        AND status = 'Completed'
-                                    ");
-                                    if (mysqli_num_rows($get_total_contents) < 1) {
-                                        ?>
-                                        <p class="alert alert-danger">
-                                            No contents to complete
-                                        </p>
-                                        <?php
-                                    }
-                                    else {
-                                        $num_contents = mysqli_num_rows($get_total_contents);
-                                        // $num_contents = 1
-                                        $num_completed = mysqli_num_rows($get_passed_contents);
-                                        // Calculate percentage
-                                        $completetion_percenage = ($num_completed/$num_contents) * 100;
-                                        ?>
-                                        <div class="progress" title="You have completed <?php echo $completetion_percenage."%"; ?> of the training contents.">
-                                            <div class="progress-bar" role="progressbar" style="width: <?php echo $completetion_percenage; ?>%;" aria-valuenow="<?php echo $completionPercentage; ?>" aria-valuemin="0" aria-valuemax="100">
-                                                <?php echo $completetion_percenage; ?>%
-                                            </div>
-                                        </div>
-                                        <?php
-                                    }
-                                ?>
+    <section class="bg-light" style="height: 100vh">
+        <div class="container">
+            <div class="dash-board">
+                <h3>
+                    Dashboard
+                </h3>
+                <div class="row m-2">
+                    <div class="col-md-4 m-2">
+                        <div class="dashboard-box bg-primary text-light p-2 row rounded">
+                            <div class="mr-3">
+                                    <i class="fas fa-check-circle fa-3x mb-3 flex-1"></i>
+                                <h4>COMPLETED TRAININGS</h4>
                             </div>
+                            
+                            <p class="mb-0 fa-3x">
+                                <?php 
+                                    $get_all_contents = mysqli_fetch_array(mysqli_query($server,"SELECT users.user_id, COUNT(DISTINCT empl_trainings_conent_completion.training) AS completed_trainings
+                                        FROM users
+                                        LEFT JOIN empl_trainings_conent_completion ON users.user_id = empl_trainings_conent_completion.employee
+                                        GROUP BY users.user_id
+                                        HAVING users.user_id = $acting_employee_id;
+                                    "));
+                                    echo $get_all_contents['completed_trainings']; 
+                                    // $get_total_employees = mysqli_query($server,"SELECT * from users WHERE user_id != '$acting_admin_id'");
+                                    // echo mysqli_num_rows($get_total_employees);
+                                    // $get_total_completed = mysqli_query($server,"SELECT * from")
+                                ?>
+                            </p>
                         </div>
                     </div>
-                    <?php
-                }
-            ?>
+                </div>
+            </div>
         </div>
-    </div>
 </section>
     
     <!-- Footer -->
     <?php
-        include("php/footer.php");
+        // include("php/footer.php");
     ?>
     
     <!-- Link Bootstrap JS -->
