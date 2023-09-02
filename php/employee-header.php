@@ -3,7 +3,7 @@
             <div class="container">
                 <a class="navbar-brand" href="employee-home.php">
                     <h1 class="h1 text-primary">
-                        EITS
+                        ETIS
                     </h1>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
