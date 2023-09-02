@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 30, 2023 at 01:34 AM
+-- Generation Time: Sep 02, 2023 at 02:31 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -89,7 +89,9 @@ INSERT INTO `empl_trainings_conent_completion` (`id`, `employee`, `training`, `c
 (18, 13, 13, 21, 'Completed', '2023-08-30 01:37:30'),
 (19, 13, 13, 21, 'Completed', '2023-08-30 01:37:36'),
 (20, 13, 13, 22, 'Completed', '2023-08-30 01:44:01'),
-(21, 13, 13, 23, 'Completed', '2023-08-30 01:47:23');
+(21, 13, 13, 23, 'Completed', '2023-08-30 01:47:23'),
+(22, 13, 13, 25, 'Completed', '2023-09-02 13:00:32'),
+(23, 13, 13, 24, 'Completed', '2023-09-02 14:06:08');
 
 -- --------------------------------------------------------
 
@@ -127,7 +129,9 @@ INSERT INTO `msgs_professional_employee` (`msg_id`, `msg_sender`, `msg_receiver`
 (14, 1, 10, 'csdfdg;', '2023-08-12 18:18:19', 'Not read.'),
 (15, 9, 3, 'Hello', '2023-08-12 18:47:16', 'Not read.'),
 (16, 1, 10, 'What are you saying?', '2023-08-15 08:37:50', 'Not read.'),
-(17, 1, 10, 'Saying what?', '2023-08-15 08:38:01', 'Not read.');
+(17, 1, 10, 'Saying what?', '2023-08-15 08:38:01', 'Not read.'),
+(18, 13, 7, 'Hello', '2023-09-02 12:59:58', 'Not read.'),
+(19, 13, 7, 'WHo are you??', '2023-09-02 13:00:04', 'Not read.');
 
 -- --------------------------------------------------------
 
@@ -151,7 +155,9 @@ CREATE TABLE `professionals` (
 INSERT INTO `professionals` (`professional_id`, `professional_fn`, `professional_ln`, `professional_email`, `professional_phone`, `professional_status`) VALUES
 (1, 'Kagame', 'Paul', 'kagame@gmail.com', 788722727, 'Online'),
 (2, 'Fally', 'Merci', 'fally@gmail.com', 882928372, 'Offline'),
-(3, 'Profesional ', 'Lastname', 'orife@gmail.cd', 23892298, 'Offline');
+(3, 'Profesional ', 'Lastname', 'orife@gmail.cd', 23892298, 'Offline'),
+(5, 'Je ', 'Suis', 'jayas@gmail.com', 2147483647, 'Offline'),
+(7, 'sdfi', 'iwer09fi', 'ewopk@rfioj.ffvdf', 3209439, 'Offline');
 
 -- --------------------------------------------------------
 
@@ -187,7 +193,8 @@ INSERT INTO `trainings` (`training_id`, `training_topic`, `training_description`
 (10, 'Web Development Basics', '\"Web Development Basics\" is a foundational training that introduces participants to the essential concepts of web development. Participants will learn about HTML, CSS, and JavaScript – the building blocks of modern websites. By the end of the training, attendees will have a solid understanding of creating static web pages and basic interactivity, setting them on the path to becoming proficient web developers.', '2023-08-12', '2023-09-02', '56074198-e74f-4ef2-9472-8868686afa6b.png', 8, 'Progress'),
 (11, 'Starting JS', 'Description', '2023-08-21', '2023-08-31', 'pexels-işıl-17795142.jpg', 8, 'Progress'),
 (12, 'Hello world', 'Hello world what is this', '2023-08-30', '2023-08-30', 'Screenshot (98).png', 8, 'Progress'),
-(13, 'Amazon devices workout', 'How to use amazon Devices', '2023-10-10', '2023-11-11', 'pexels-cottonbro-studio-5473337.jpg', 2, 'Progress');
+(13, 'Amazon devices workout', 'How to use amazon Devices', '2023-10-10', '2023-11-11', 'pexels-cottonbro-studio-5473337.jpg', 2, 'Progress'),
+(14, 'Tri Phase', 'What is triPhase?', '2023-09-14', '2023-09-29', 'pexels-stanislav-kondratiev-10816120.jpg', 2, 'Waiting');
 
 -- --------------------------------------------------------
 
@@ -230,7 +237,9 @@ INSERT INTO `training_contents` (`training_content_id`, `training`, `content_nam
 (20, 13, 'Overall summaryy', 'Document summary', 'trainings/contents/Overall summaryy - Amazon devices workout.pdf'),
 (21, 13, 'How to start', 'Video', 'trainings/contents/How to start - Amazon devices workout.mp4'),
 (22, 13, 'DFVLJKFSK', 'Video', 'trainings/contents/DFVLJKFSK - Amazon devices workout.mp4'),
-(23, 13, 'fgfq', 'Video', 'trainings/contents/fgfq - Amazon devices workout.mp4');
+(23, 13, 'fgfq', 'Video', 'trainings/contents/fgfq - Amazon devices workout.mp4'),
+(24, 13, 'Chipper Cash', 'Video', 'trainings/contents/Chipper Cash - Amazon devices workout.mp4'),
+(25, 13, 'ddu', 'Video', 'trainings/contents/ddu - Amazon devices workout.mp4');
 
 -- --------------------------------------------------------
 
@@ -253,7 +262,8 @@ CREATE TABLE `training_professionals` (
 INSERT INTO `training_professionals` (`tr_pro_id`, `training`, `professional`, `unique_id`, `tr_pro_status`) VALUES
 (1, 2, 1, '00', 'Progress'),
 (2, 7, 2, '6ad885410077a30caa428bd429e542cb', 'Progress'),
-(3, 10, 3, 'f2bf8ab8a484ddf9f464bb24af975f75', 'Progress');
+(3, 10, 3, 'f2bf8ab8a484ddf9f464bb24af975f75', 'Progress'),
+(5, 13, 7, '1eab0c41920ecce64955786bffe46aef', 'Progress');
 
 -- --------------------------------------------------------
 
@@ -361,37 +371,37 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT for table `empl_trainings_conent_completion`
 --
 ALTER TABLE `empl_trainings_conent_completion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `msgs_professional_employee`
 --
 ALTER TABLE `msgs_professional_employee`
-  MODIFY `msg_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `msg_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `professionals`
 --
 ALTER TABLE `professionals`
-  MODIFY `professional_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `professional_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `trainings`
 --
 ALTER TABLE `trainings`
-  MODIFY `training_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `training_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `training_contents`
 --
 ALTER TABLE `training_contents`
-  MODIFY `training_content_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `training_content_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `training_professionals`
 --
 ALTER TABLE `training_professionals`
-  MODIFY `tr_pro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `tr_pro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users`
