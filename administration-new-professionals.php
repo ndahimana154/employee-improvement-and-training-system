@@ -123,65 +123,79 @@
                                     <?php
                                 }
                                 else {
-                                    // Save the professional
-                                    $save = mysqli_query($server,"INSERT into professionals
-                                        VALUES(null,'$firstname','$lastname','$email','$phone','Offline')
+                                    // Check if the training doesn't have the professional
+                                    $check_trapro = mysqli_query($server,"SELECT * from training_professionals 
+                                        WHERE training = '$training'
                                     ");
-                                    if (!$save) {
+                                    if (mysqli_num_rows($check_trapro) > 0) {
                                         ?>
                                         <p class="alert alert-danger">
-                                            Saving professional has failed.
+                                            Sorry!
+                                            This training already have professional.
                                         </p>
                                         <?php
                                     }
                                     else {
-                                        $check_training_exists =mysqli_query($server,"SELECT * from trainings
-                                            WHERE 
-                                            training_id = '$training'
+                                        // Save the professional
+                                        $save = mysqli_query($server,"INSERT into professionals
+                                            VALUES(null,'$firstname','$lastname','$email','$phone','Offline')
                                         ");
-                                        if (mysqli_num_rows($check_training_exists) !=1) {
+                                        if (!$save) {
                                             ?>
                                             <p class="alert alert-danger">
-                                                The professional is saved! But the training is not found.
+                                                Saving professional has failed.
                                             </p>
                                             <?php
                                         }
                                         else {
-                                            $get_professional_info = mysqli_query($server,"SELECT * from
-                                                professionals WHERE
-                                                professional_email = '$email'
-                                                AND professional_phone = '$phone'
+                                            $check_training_exists =mysqli_query($server,"SELECT * from trainings
+                                                WHERE 
+                                                training_id = '$training'
                                             ");
-                                            if (mysqli_num_rows($get_professional_info) < 1) {
+                                            if (mysqli_num_rows($check_training_exists) !=1) {
                                                 ?>
                                                 <p class="alert alert-danger">
-                                                    Professional was not saved!
+                                                    The professional is saved! But the training is not found.
                                                 </p>
                                                 <?php
                                             }
                                             else {
-                                                $get_professional_info = mysqli_fetch_array($get_professional_info);
-                                                $professional_id = $get_professional_info['professional_id'];
-                                                $save_professional_training =mysqli_query($server,"INSERT into training_professionals 
-                                                    VALUES(null,'$training','$professional_id','$encryptedID','Progress')
+                                                $get_professional_info = mysqli_query($server,"SELECT * from
+                                                    professionals WHERE
+                                                    professional_email = '$email'
+                                                    AND professional_phone = '$phone'
                                                 ");
-                                                if (!$save_professional_training) {
+                                                if (mysqli_num_rows($get_professional_info) < 1) {
                                                     ?>
                                                     <p class="alert alert-danger">
-                                                        Assigning Professional to training failed.
+                                                        Professional was not saved!
                                                     </p>
                                                     <?php
                                                 }
                                                 else {
-                                                    $data_check_trainings = mysqli_fetch_array($check_training_exists);
-                                                    ?>
-                                                    <p class="alert alert-success">
-                                                        Professional is save and assigned to training <b>("<?php echo $data_check_trainings['training_topic']; ?>")</b> successfully
-                                                    </p>
-                                                    <?php
+                                                    $get_professional_info = mysqli_fetch_array($get_professional_info);
+                                                    $professional_id = $get_professional_info['professional_id'];
+                                                    $save_professional_training =mysqli_query($server,"INSERT into training_professionals 
+                                                        VALUES(null,'$training','$professional_id','$encryptedID','Progress')
+                                                    ");
+                                                    if (!$save_professional_training) {
+                                                        ?>
+                                                        <p class="alert alert-danger">
+                                                            Assigning Professional to training failed.
+                                                        </p>
+                                                        <?php
+                                                    }
+                                                    else {
+                                                        $data_check_trainings = mysqli_fetch_array($check_training_exists);
+                                                        ?>
+                                                        <p class="alert alert-success">
+                                                            Professional is save and assigned to training <b>("<?php echo $data_check_trainings['training_topic']; ?>")</b> successfully
+                                                        </p>
+                                                        <?php
+                                                    }
                                                 }
+                                                
                                             }
-                                            
                                         }
                                     }
                                 }
