@@ -38,5 +38,11 @@
             AND unique_id = '$acting_training_unique_id'
         "));
         $acting_professional_training = $get_profff['training'];
-    }
+        // Get the training infos
+        $get_training = mysqli_query($server,"SELECT * from trainings
+            WHERE training_id = '$training'
+        ");
+        $data_training = mysqli_fetch_array($get_training);
+        $acting_training_topic = $data_training['training_topic'];
+    }       
 ?>

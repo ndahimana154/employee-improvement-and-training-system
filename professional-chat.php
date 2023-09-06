@@ -2,12 +2,6 @@
     session_start();
     include("php/connection.php");
     include("php/professional-sessions.php");
-    if (!isset($_GET['employee'])) {
-        header("location: professional-home.php");
-    }
-    else {
-        $employee = $_GET['employee'];
-    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,13 +20,20 @@
         include("php/professional-header.php");
     ?>
     <!--  -->
-    <div class="container-fluid chat-container row mt-3">
+    <div class="container-fluid chat-container row">
         
         <!-- Chat List Section -->
         <?php include("php/professional-chat-list.php") ?>
 
         <!-- Chat Conversation Section -->
-        <?php include("php/professional-chats.php") ?>
+        <div class="col-md-9 mt-5">
+            <div class="text-center mt-4">
+                <i class="fas fa-comments fa-5x"></i>
+                <h1 class="mt-3">Chat Section</h1>
+                <h3>No chat selected</h3>
+            </div>
+        </div>
+
     </div>
 
     
@@ -47,7 +48,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    
     <style>
         /* Custom CSS for hero section */
         #hero {

@@ -1,6 +1,6 @@
-<div class="chat-list col-md-3" >
+<div class="chat-list col-md-3 " >
     <h4 class="p-3">Chat List</h4>
-    <ul class="list-group" style="height: calc(100vh - 150px);overflow-y: auto;">
+    <ul class="list-group" style="margin-bottom: 30px;">
         <?php
             // Get the list of all chats according to training
             $get_chats = mysqli_query($server,"SELECT * from users

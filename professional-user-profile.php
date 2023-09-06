@@ -157,7 +157,7 @@
     </div>
     <!-- Footer -->
     <?php
-        include("php/footer.php");
+        // include("php/footer.php");
     ?>
     
     <!-- Link Bootstrap JS -->
