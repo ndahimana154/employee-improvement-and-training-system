@@ -39,7 +39,21 @@
                     Training: <b><?php echo $acting_training_topic; ?></b>
                 </h4>
             </div>
-            
+            <div class="row">
+                <b>
+                    Schedule: &nbsp;
+                </b>
+                <?php
+                    echo $acting_training_start." - ".$acting_training_end;
+                ?>
+                <p>&nbsp;&nbsp; || &nbsp;&nbsp;</p>
+                <b>
+                    Status:  &nbsp;
+                </b>
+                <?php
+                    echo " ".$acting_training_status
+                ?>
+            </div>
         </div>
     </div>
     <div class="dash-board p-3">

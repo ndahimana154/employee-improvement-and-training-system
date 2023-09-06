@@ -30,6 +30,9 @@
         $get_training_department = mysqli_fetch_array(mysqli_query($server,"SELECT * from
             trainings WHERE training_id = '$training'
         "));
+        $acting_training_start = $get_training_department['training_start'];
+        $acting_training_end = $get_training_department['training_end'];
+        $acting_training_status = $get_training_department['training_status'];
         $training_depart = $get_training_department['training_depart'];
 
         // Get the professional unique id
