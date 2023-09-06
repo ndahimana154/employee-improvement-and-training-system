@@ -29,7 +29,7 @@
                 <th>
                     Topic:
                 </th>
-                <th colspan="3">
+                <th colspan="10">
                     <?php echo $acting_training_topic ?>
                 </th>
             </tr>
@@ -60,7 +60,10 @@
                     Completed contents
                 </th>
                 <th>
-                    Percentage
+                    Completion rate
+                </th>
+                <th>
+                    Revision test
                 </th>
             </tr>
         </thead>
@@ -116,6 +119,13 @@
                                     echo "%";
                                 }
                                 
+                            ?>
+                        </td>
+                        <td>
+                            <?php
+                                if ($percentage != 100) {
+                                    echo "Not eligible";
+                                }
                             ?>
                         </td>
                     </tr>
