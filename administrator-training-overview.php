@@ -72,6 +72,7 @@
                         else {
                             $data_training_exists = mysqli_fetch_array($checktraing_exists);
                             $training_topic = $data_training_exists['training_topic'];
+                        
                             $get_training_contents = mysqli_query($server,"SELECT * from training_contents
                                 WHERE training = '$training'
                             ");
@@ -89,7 +90,7 @@
                                 <a href="administration-trainings.php" class="btn btn-primary">
                                     <i class="fas fa-arrow-left"></i>
                                 </a>
-                                <h3 class="ml-2">Training overview</h3>
+                                <h4 class="ml-2">TRAININGS OVERVIEW</h4>
                             </div>
                             <table class="table table-hover table-responsive">
                                 <thead>
@@ -159,12 +160,14 @@
                                                 </td>
                                                 <td>
                                                     <?php
+                                                        $total_contents = mysqli_num_rows($get_training_contents);
                                                         $employeee_id = $data_training_employees['user_id'];
                                                         $get_completion_num = mysqli_query($server,"SELECT * from empl_trainings_conent_completion
-                                                            WHERE employee = '$employeee_id'
-                                                            AND training = '$training'
+                                                            WHERE employee = $employeee_id AND training = '$training'
                                                         ");
-                                                        echo mysqli_num_rows($get_completion_num)."/".mysqli_num_rows($get_training_contents);
+                                                        $total_completed = mysqli_num_rows($get_completion_num);
+                                                        echo $total_completed."/".$total_contents;
+                                                        // echo mysqli_num_rows($get_completion_num)."/".mysqli_num_rows($get_training_contents);
                                                     ?>
                                                 </td>
                                                 <td>
@@ -177,7 +180,7 @@
                                                             <?php
                                                         }
                                                         else {
-                                                            echo $percentage = (mysqli_num_rows($get_completion_num)/mysqli_num_rows($get_training_contents))*100;
+                                                            echo $percentage = round(($total_completed/$total_contents)*100,2);
                                                             echo "%";
                                                         }
                                                         
@@ -188,29 +191,26 @@
                                         }
                                     ?>
                                 </tbody>
-                            </table>
-                            
-                            <div class="training_contents">
-                                <div class="row p-2">
-                                    <h3>
-                                        TRAINING CONTENTS
-                                    </h3>
-                                </div>
-                                <table class="table table-responsive table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>
-                                                #
-                                            </th>
-                                            <th>
-                                                Content name
-                                            </th>
-                                            <th>
-                                                Content file
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
+                                <thead>
+                                    <tr>
+                                        <th colspan="10">TRAINING CONTENTS</th>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            #
+                                        </th>
+                                        <th>
+                                            Content name
+                                        </th>
+                                        <th>
+                                            Completion rate
+                                        </th>
+                                        <th>
+                                            Content file
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
                                         <?php
                                             $get_training_contents = mysqli_query($server,"SELECT * from training_contents
                                                 WHERE training = '$training'
@@ -237,8 +237,18 @@
                                                         <?php echo $data_contents['content_name']; ?>
                                                     </td>
                                                     <td>
+                                                        <?php 
+                                                            $content_id = $data_contents['training_content_id'];
+                                                            $selectcontentcompletion = mysqli_query($server,"SELECT * from empl_trainings_conent_completion
+                                                                WHERE content = '$content_id' AND training = '$training'
+                                                            ");
+                                                            $completion_num = mysqli_num_rows($selectcontentcompletion);
+                                                            echo $completion_num."/".$total_contents;
+                                                        ?>
+                                                    </td>
+                                                    <td>
                                                         <a href="<?php echo $data_contents['content_file']; ?>" target="_blank" title="View file" class="btn btn-primary">
-                                                            <i class="fa fa-file-pdf"></i>
+                                                            <i class="fas fa-folder-open"></i>
                                                         </a>
                                                         
                                                     </td>
@@ -247,9 +257,7 @@
                                             }
                                         ?>
                                     </tbody>
-                                </table>
-                            </div>
-                            
+                            </table>
                             <?php
                         }
                     }
