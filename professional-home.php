@@ -68,6 +68,20 @@
             <div class="col-md-3 m-2">
                 <div class="dashboard-box bg-primary text-light p-2 row rounded">
                     <div class="mr-3">
+                        <i class="fas fa-list-ol fa-3x mb-3 flex-1"></i>
+                        <h6>CONTENTS NUMBER</h6>
+                    </div>
+                    
+                    <p class="mb-0 fa-3x">
+                        <?php
+                            echo mysqli_num_rows($actingtraining_contents);
+                        ?>
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-3 m-2">
+                <div class="dashboard-box bg-primary text-light p-2 row rounded">
+                    <div class="mr-3">
                             <i class="fas fa-percent fa-3x mb-3 flex-1"></i>
                         <h6>COMPLETION PERCENTAGE</h6>
                     </div>
