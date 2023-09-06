@@ -58,6 +58,7 @@
                         <?php
                             $get_all_employees = mysqli_query($server,"SELECT * from users
                                 WHERE department = '$training_depart'
+                                AND user_state !='Not Working'
                             ");
                             echo mysqli_num_rows($get_all_employees);
                         ?>

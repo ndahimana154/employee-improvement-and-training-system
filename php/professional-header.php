@@ -20,6 +20,9 @@
                             <a class="nav-link text-light" href="professional-chat.php"><i class="fas fa-comment-dots"></i> Communication</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link text-light" href="professional-performance.php"><i class="fas fa-chart-line"></i> Performances</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-light" href="professional-user-profile.php"><i class="fas fa-user-cog"></i> Profile</a>
                         </li>
                         <li class="nav-item">

@@ -44,5 +44,14 @@
         ");
         $data_training = mysqli_fetch_array($get_training);
         $acting_training_topic = $data_training['training_topic'];
+
+        $actingtraining_contents = mysqli_query($server,"SELECT * from empl_trainings_conent_completion
+            WHERE training = '$training'
+        ");
+
+        $acting_employees_num = mysqli_query($server,"SELECT * from users 
+            WHERE department = '$training_depart'
+            AND user_state !='Not Working'
+            ");
     }       
 ?>
