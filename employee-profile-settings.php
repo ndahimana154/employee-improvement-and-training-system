@@ -22,7 +22,6 @@
     <!-- Display trainings -->
     <section class="bg-light">
     <div class="container">
-       
         <div class="col-md-8">
             <h2>
                 User Profile
