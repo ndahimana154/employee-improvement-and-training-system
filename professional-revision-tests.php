@@ -80,15 +80,34 @@
                             <?php echo $data_tests['test_start']; ?>
                         </td>
                         <td>
-                            <?php echo $data_tests['question_numbers']; ?>
+                            <?php
+                                $test_id = $data_tests['test_id'];
+                                $get_testquestinfo = mysqli_query($server,"SELECT * from tests_questions
+                                    WHERE test = '$test_id'
+                                "); 
+                                echo mysqli_num_rows($get_testquestinfo)."/".$data_tests['question_numbers']; ?>
                         </td>
                         <td>
                             <?php echo $data_tests['test_status']; ?>
                         </td>
                         <td>
-                            <a href="professional-test-add-question.php?test=<?php echo $data_tests['test_id']; ?>">
-                                <i class="fas fa-plus-circle"></i>
-                            </a>
+                            <?php
+                                if (mysqli_num_rows($get_testquestinfo) != $data_tests['question_numbers']) {
+                                    ?>
+                                    <a href="professional-test-add-question.php?test=<?php echo $data_tests['test_id']; ?>">
+                                        <i class="fas fa-plus-circle"></i>
+                                    </a>
+                                    <?php
+                                }
+                                else {
+                                    ?>
+                                    <a href="professional-test-view-questions.php?test=<?php echo $data_tests['test_id']; ?>">
+                                        <i class="fas fa-list text-dark"></i>
+                                    </a>
+                                    <?php
+                                }
+                            ?>
+                            
                         </td>
                     </tr>
                     <?php
