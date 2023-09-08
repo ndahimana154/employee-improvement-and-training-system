@@ -86,7 +86,9 @@
                             <?php echo $data_tests['test_status']; ?>
                         </td>
                         <td>
-                            
+                            <a href="professional-test-add-question.php?test=<?php echo $data_tests['test_id']; ?>">
+                                <i class="fas fa-plus-circle"></i>
+                            </a>
                         </td>
                     </tr>
                     <?php
