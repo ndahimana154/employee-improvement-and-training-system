@@ -58,7 +58,7 @@
                 $count =1;
                 $get_tests = mysqli_query($server,"SELECT * from tests
                     WHERE training = '$acting_professional_training'
-                    ORDER BY test_start ASC
+                    ORDER BY test_schedule ASC
                 ");
                 if (mysqli_num_rows($get_tests) < 1) {
                     ?>
@@ -77,22 +77,22 @@
                             <?php echo $data_tests['test_name']; ?>
                         </td>
                         <td>
-                            <?php echo $data_tests['test_start']; ?>
+                            <?php echo $data_tests['test_schedule']; ?>
                         </td>
                         <td>
                             <?php
                                 $test_id = $data_tests['test_id'];
                                 $get_testquestinfo = mysqli_query($server,"SELECT * from tests_questions
-                                    WHERE test = '$test_id'
+                                    WHERE test_id = '$test_id'
                                 "); 
-                                echo mysqli_num_rows($get_testquestinfo)."/".$data_tests['question_numbers']; ?>
+                                echo mysqli_num_rows($get_testquestinfo)."/".$data_tests['test_questions_num']; ?>
                         </td>
                         <td>
                             <?php echo $data_tests['test_status']; ?>
                         </td>
                         <td>
                             <?php
-                                if (mysqli_num_rows($get_testquestinfo) != $data_tests['question_numbers']) {
+                                if (mysqli_num_rows($get_testquestinfo) < $data_tests['test_questions_num']) {
                                     ?>
                                     <a href="professional-test-add-question.php?test=<?php echo $data_tests['test_id']; ?>">
                                         <i class="fas fa-plus-circle"></i>

@@ -27,7 +27,7 @@
 
     <!-- Display trainings -->
     <section class="">
-        <div class="" style="width: 90%;margin:auto;">
+        <div class="" style="">
             <?php
                 if (!isset($_GET['training'])) {
                     ?>
@@ -52,7 +52,7 @@
                     else {
                         $data_check_exits = mysqli_fetch_array($check_exists);
                         ?>
-                        <div class="contents m-3">
+                        <div class="contents m-3 p-2">
                             <a href="employee-trainings.php" class="text-dark font-weight-bold">Trainings</a> / <a href="" class="text-dark font-weight-bold"><?php echo $data_check_exits['training_topic']; ?></a>
                         </div>
                         <div class="row bg-light" style="height: 700px;">
@@ -108,6 +108,7 @@
                                                             <?php echo $completetion_percenage; ?>%
                                                         </div>
                                                     </div>
+                                                    
                                                     <?php
                                                 }
                                             ?>

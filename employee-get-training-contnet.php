@@ -22,36 +22,10 @@
     <?php
         include("php/employee-header.php");
     ?>
-    <div class="container">
-        <div class="row align-items-center">
-            <!-- <div class="col-md-4">
-                <img src="company_logo.png" alt="Company Logo" class="img-fluid">
-            </div> -->
-            <div class="col-md-8">
-                <?php
-                    if (isset($_GET['welcome'])) {
-                        ?>
-                        <h2>
-                            Welcome <?php echo $acting_employee_usern; ?>
-                        </h2>
-                        <?php
-                    }
-                    else {
-                        ?>
-                        <h2>
-                            <?php echo $acting_employee_usern; ?>
-                        </h2>
-                        <?php
-                    }
-                ?>
-            </div>
-        </div>
-    </div>
-    
 
     <!-- Display trainings -->
     <section class="">
-        <div class="" style="width: 80%;margin:auto;">
+        <div class="" style="">
             <?php
                 if (!isset($_GET['training']) || !isset($_GET['content'])) {
                     ?>
@@ -85,7 +59,7 @@
                         $data_check_exits = mysqli_fetch_array($check_exists);
                         $data_cehc_content_exists = mysqli_fetch_array($check_content_exiss);
                         ?>
-                        <div class="contents m-3">
+                        <div class="contents m-3 p-2">
                             <a href="employee-trainings.php" class="text-dark font-weight-bold">Trainings</a> 
                             / 
                             <a href="employee-trainings-content.php?training=<?php echo $training; ?>" class="text-dark font-weight-bold"><?php echo $data_check_exits['training_topic']; ?></a>

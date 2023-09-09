@@ -26,6 +26,9 @@
                     <i class="fa fa-arrow-left"></i>
                 </a> -->
                 <h2>
+                    <a href="professional-revision-tests.php" class="btn btn-primary">
+                        <i class="fa fa-arrow-left"></i>
+                    </a>
                     New test
                 </h2>
             </div>
@@ -63,8 +66,8 @@
                             }
                             // Continue by here
                             $new = mysqli_query($server,"INSERT INTO `tests` 
-                                (`test_id`, `training`, `test_name`, `question_numbers`, `test_start`, `test_status`) 
-                                VALUES (NULL, '$acting_professional_training', '$testname', '$question_num', '$fulltime', 'Pending')
+                                (`test_id`, `training`, `test_name`, `test_schedule`, `test_questions_num`, `test_status`)
+                                VALUES (NULL, '$acting_professional_training', '$testname', '$fulltime', '$question_num', 'Pending')
                             ");
                             if (!$new) {
                                 ?>

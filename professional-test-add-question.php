@@ -53,7 +53,7 @@
                     }
                     else {
                         $data_test_info = mysqli_fetch_array($get_inf);
-                        $questions_num = $data_test_info['question_numbers'];
+                        $questions_num = $data_test_info['test_questions_num'];
                         $testname = $data_test_info['test_name'];
                         ?>
                         <h4>
@@ -64,7 +64,7 @@
                                 $allInsertedSuccessfully = true; // Flag variable
 
                                 // Check if there are existing questions for the current test
-                                $existingQuestionsQuery = "SELECT question_text FROM tests_questions WHERE test = ? AND training = ?";
+                                $existingQuestionsQuery = "SELECT question_text FROM tests_questions WHERE test_id = ? AND training = ?";
                                 $stmtExisting = mysqli_prepare($server, $existingQuestionsQuery);
                                 mysqli_stmt_bind_param($stmtExisting, "ii", $test_id, $acting_professional_training);
                                 mysqli_stmt_execute($stmtExisting);
@@ -80,10 +80,14 @@
                                 } else {
                                     // Iterate through each question
                                     foreach ($_POST["question"] as $a => $question_text) {
+                                        // Sanitizing the variable
+                                        $question_text = mysqli_real_escape_string($server, $question_text);
                                         $answer_text = $_POST["answer"][$a]; // Get the corresponding answer
+                                        // /Sanitizing this 
+                                        $answer_text = mysqli_real_escape_string($server, $answer_text);
 
                                         // Insert the question and answer into the test_questions table
-                                        $insert_question_query = "INSERT INTO tests_questions (question_text, question_answer, test, training) 
+                                        $insert_question_query = "INSERT INTO tests_questions (question_text, question_answer, test_id, training) 
                                             VALUES (?, ?, ?, ?)";
                                         $stmt = mysqli_prepare($server, $insert_question_query);
                                         mysqli_stmt_bind_param($stmt, "ssii", $question_text, $answer_text, $test_id, $acting_professional_training);
@@ -130,7 +134,7 @@
                                             <label for="">
                                                 <?php echo "<h6> Question.$i </h6>"; ?>
                                             </label>
-                                            <textarea name="question[]" rows="5" class="form-control" placeholder="Type Question <?php echo $i ?>"></textarea>
+                                            <textarea name="question[]" rows="5" class="form-control" placeholder="Type Question <?php echo $i ?>"  required></textarea>
                                         </div>
                                         <div class="col-md-6">
                                             <label for="">
@@ -138,7 +142,7 @@
                                                     Answer
                                                 </h6>
                                             </label>
-                                            <textarea name="answer[]" rows="5" class="form-control" placeholder="Type..."></textarea>
+                                            <textarea name="answer[]" rows="5" class="form-control" placeholder="Type..." required></textarea>
                                         </div>
                                     </div>
                                     <?php
