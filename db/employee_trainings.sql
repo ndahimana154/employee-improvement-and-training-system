@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 02, 2023 at 02:31 PM
+-- Generation Time: Sep 11, 2023 at 08:19 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -52,6 +52,97 @@ INSERT INTO `departments` (`depart_id`, `depart_name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `employees_test_answers`
+--
+
+CREATE TABLE `employees_test_answers` (
+  `eta_id` int(11) NOT NULL,
+  `employee` int(11) NOT NULL,
+  `training` int(11) NOT NULL,
+  `test` int(11) NOT NULL,
+  `question` int(11) NOT NULL,
+  `answer_text` text NOT NULL,
+  `marking` int(11) NOT NULL DEFAULT 0,
+  `status` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `employees_test_answers`
+--
+
+INSERT INTO `employees_test_answers` (`eta_id`, `employee`, `training`, `test`, `question`, `answer_text`, `marking`, `status`) VALUES
+(26, 10, 2, 7, 12, '0', 0, '0'),
+(27, 10, 2, 7, 13, '0', 0, '0'),
+(28, 10, 2, 7, 14, '0', 0, '0'),
+(29, 10, 2, 7, 15, '0', 0, '0'),
+(30, 10, 2, 7, 12, '0', 0, 'Pending'),
+(31, 10, 2, 7, 13, '0', 0, 'Pending'),
+(32, 10, 2, 7, 14, '0', 0, 'Pending'),
+(33, 10, 2, 7, 15, '0', 0, 'Pending'),
+(34, 10, 2, 7, 12, '0', 0, 'Pending'),
+(35, 10, 2, 7, 13, '0', 0, 'Pending'),
+(36, 10, 2, 7, 14, '0', 0, 'Pending'),
+(37, 10, 2, 7, 15, '0', 0, 'Pending'),
+(38, 10, 2, 7, 12, '0', 0, 'Pending'),
+(39, 10, 2, 7, 13, '0', 0, 'Pending'),
+(40, 10, 2, 7, 14, '0', 0, 'Pending'),
+(41, 10, 2, 7, 15, '0', 0, 'Pending'),
+(54, 10, 2, 7, 12, '0', 0, 'Pending'),
+(55, 10, 2, 7, 13, '0', 0, 'Pending'),
+(56, 10, 2, 7, 14, '0', 0, 'Pending'),
+(57, 10, 2, 7, 15, '0', 0, 'Pending'),
+(58, 10, 2, 7, 12, '0', 0, 'Pending'),
+(59, 10, 2, 7, 13, '0', 0, 'Pending'),
+(60, 10, 2, 7, 14, '0', 0, 'Pending'),
+(61, 10, 2, 7, 15, '0', 0, 'Pending'),
+(62, 10, 2, 7, 12, '0', 0, 'Pending'),
+(63, 10, 2, 7, 13, '0', 0, 'Pending'),
+(64, 10, 2, 7, 14, '0', 0, 'Pending'),
+(65, 10, 2, 7, 15, '0', 0, 'Pending'),
+(66, 10, 2, 7, 12, '0', 0, 'Pending'),
+(67, 10, 2, 7, 13, '0', 0, 'Pending'),
+(68, 10, 2, 7, 14, '0', 0, 'Pending'),
+(69, 10, 2, 7, 15, '0', 0, 'Pending'),
+(70, 10, 2, 7, 12, '0', 0, 'Pending'),
+(71, 10, 2, 7, 13, '0', 0, 'Pending'),
+(72, 10, 2, 7, 14, '0', 0, 'Pending'),
+(73, 10, 2, 7, 15, '0', 0, 'Pending'),
+(74, 10, 2, 6, 5, '34', 0, 'Pending'),
+(75, 10, 2, 6, 6, '0', 0, 'Pending'),
+(76, 10, 2, 6, 7, '0', 0, 'Pending'),
+(77, 10, 2, 6, 8, '0', 0, 'Pending'),
+(78, 10, 2, 6, 5, '0', 0, 'Pending'),
+(79, 10, 2, 6, 6, '0', 0, 'Pending'),
+(80, 10, 2, 6, 7, '0', 0, 'Pending'),
+(81, 10, 2, 6, 8, '0', 0, 'Pending'),
+(82, 10, 2, 6, 5, '0', 0, 'Pending'),
+(83, 10, 2, 6, 6, '0', 0, 'Pending'),
+(84, 10, 2, 6, 7, '0', 0, 'Pending'),
+(85, 10, 2, 6, 8, '0', 0, 'Pending'),
+(86, 10, 2, 6, 5, '0', 0, 'Pending'),
+(87, 10, 2, 6, 6, '0', 0, 'Pending'),
+(88, 10, 2, 6, 7, '0', 0, 'Pending'),
+(89, 10, 2, 6, 8, '0', 0, 'Pending'),
+(90, 10, 2, 5, 9, '0', 0, 'Pending'),
+(91, 10, 2, 5, 10, '0', 0, 'Pending'),
+(92, 10, 2, 5, 11, '0', 0, 'Pending');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `employees_test_completion`
+--
+
+CREATE TABLE `employees_test_completion` (
+  `etc_id` int(11) NOT NULL,
+  `employee` int(11) NOT NULL,
+  `test` int(11) NOT NULL,
+  `completion_status` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `empl_trainings_conent_completion`
 --
 
@@ -83,15 +174,14 @@ INSERT INTO `empl_trainings_conent_completion` (`id`, `employee`, `training`, `c
 (12, 9, 10, 16, 'Completed', '2023-08-12 18:56:44'),
 (13, 9, 10, 17, 'Completed', '2023-08-12 18:57:27'),
 (14, 13, 13, 19, 'Completed', '2023-08-30 01:13:27'),
-(15, 13, 13, 20, 'Completed', '2023-08-30 01:37:12'),
-(16, 13, 13, 20, 'Completed', '2023-08-30 01:37:21'),
-(17, 13, 13, 21, 'Completed', '2023-08-30 01:37:27'),
 (18, 13, 13, 21, 'Completed', '2023-08-30 01:37:30'),
-(19, 13, 13, 21, 'Completed', '2023-08-30 01:37:36'),
 (20, 13, 13, 22, 'Completed', '2023-08-30 01:44:01'),
 (21, 13, 13, 23, 'Completed', '2023-08-30 01:47:23'),
 (22, 13, 13, 25, 'Completed', '2023-09-02 13:00:32'),
-(23, 13, 13, 24, 'Completed', '2023-09-02 14:06:08');
+(23, 13, 13, 24, 'Completed', '2023-09-02 14:06:08'),
+(24, 10, 2, 2, 'Completed', '2023-09-06 18:14:59'),
+(25, 15, 11, 29, 'Completed', '2023-09-09 13:04:10'),
+(26, 15, 2, 8, 'Completed', '2023-09-09 13:39:40');
 
 -- --------------------------------------------------------
 
@@ -131,7 +221,11 @@ INSERT INTO `msgs_professional_employee` (`msg_id`, `msg_sender`, `msg_receiver`
 (16, 1, 10, 'What are you saying?', '2023-08-15 08:37:50', 'Not read.'),
 (17, 1, 10, 'Saying what?', '2023-08-15 08:38:01', 'Not read.'),
 (18, 13, 7, 'Hello', '2023-09-02 12:59:58', 'Not read.'),
-(19, 13, 7, 'WHo are you??', '2023-09-02 13:00:04', 'Not read.');
+(19, 13, 7, 'WHo are you??', '2023-09-02 13:00:04', 'Not read.'),
+(20, 9, 9, 'r', '2023-09-06 16:54:57', 'Not read.'),
+(21, 9, 11, 'ghh', '2023-09-06 16:56:38', 'Not read.'),
+(22, 15, 10, 'dfghj', '2023-09-09 13:28:45', 'Not read.'),
+(23, 1, 10, 'hello', '2023-09-09 14:39:35', 'Not read.');
 
 -- --------------------------------------------------------
 
@@ -157,7 +251,102 @@ INSERT INTO `professionals` (`professional_id`, `professional_fn`, `professional
 (2, 'Fally', 'Merci', 'fally@gmail.com', 882928372, 'Offline'),
 (3, 'Profesional ', 'Lastname', 'orife@gmail.cd', 23892298, 'Offline'),
 (5, 'Je ', 'Suis', 'jayas@gmail.com', 2147483647, 'Offline'),
-(7, 'sdfi', 'iwer09fi', 'ewopk@rfioj.ffvdf', 3209439, 'Offline');
+(7, 'sdfi', 'iwer09fi', 'ewopk@rfioj.ffvdf', 3209439, 'Offline'),
+(8, 'Hlele', 'ewij', 'ijiej@rsf.erf', 324595304, 'Offline'),
+(9, 'ytu', 'trytr', 'trytr@fgdt.tyyjhtd', 4545445, 'Online'),
+(10, 'John', 'Doe', 'johndoe@gmail.com', 784463746, 'Offline');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `questions_options`
+--
+
+CREATE TABLE `questions_options` (
+  `option_id` int(11) NOT NULL,
+  `question_id` int(11) NOT NULL,
+  `option_text` text NOT NULL,
+  `is_correct` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tests`
+--
+
+CREATE TABLE `tests` (
+  `test_id` int(11) NOT NULL,
+  `training` int(11) NOT NULL,
+  `test_name` varchar(255) NOT NULL,
+  `test_schedule` varchar(255) NOT NULL,
+  `test_questions_num` int(11) NOT NULL,
+  `test_status` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tests`
+--
+
+INSERT INTO `tests` (`test_id`, `training`, `test_name`, `test_schedule`, `test_questions_num`, `test_status`) VALUES
+(1, 2, 'rwfrf', '2023-09-15 03:32', 1, 'Pending'),
+(2, 2, 'Starting from zero', '2023-09-22 15:41', 4, 'Pending'),
+(3, 2, 'ewfef', '2023-09-22 04:15', 2, 'Pending'),
+(4, 2, 'werfr', '2023-09-09 04:20', 34344, 'Pending'),
+(5, 2, 'fffsd', '2023-09-01 04:19', 3, 'Pending'),
+(6, 2, 'weeefeffwe', '2023-08-30 04:23', 4, 'Pending'),
+(7, 2, 'ertyui', '2023-09-12 04:34', 4, 'Pending');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tests_questions`
+--
+
+CREATE TABLE `tests_questions` (
+  `question_id` int(11) NOT NULL,
+  `question_text` text NOT NULL,
+  `question_answer` text NOT NULL,
+  `marks` int(11) NOT NULL DEFAULT 1,
+  `test_id` int(11) NOT NULL,
+  `training` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tests_questions`
+--
+
+INSERT INTO `tests_questions` (`question_id`, `question_text`, `question_answer`, `marks`, `test_id`, `training`) VALUES
+(1, '', '', 0, 2, 2),
+(2, '', '', 0, 2, 2),
+(3, '', '', 0, 2, 2),
+(4, '', '', 0, 2, 2),
+(5, 'wefe', 'efwefwe', 0, 6, 2),
+(6, 'fwdfdf', 'fwefef', 0, 6, 2),
+(7, 'ffefdf', 'sdcsdc', 0, 6, 2),
+(8, 'sdd \\\'', 'sdvsd', 0, 6, 2),
+(9, 'ergefdfvfvdf', 'dfvfdvdfv', 0, 5, 2),
+(10, 'fvdfvdfv', 'dfvdfvdfvdfv', 0, 5, 2),
+(11, 'aaaaaaaaaaaaa', 'fdvdfvdf', 0, 5, 2),
+(12, 'llllllllllll', 'ewfwefwef', 1, 7, 2),
+(13, 'wefdefedf', 'ewfefw', 32, 7, 2),
+(14, '23 sdvsdsd dvdf', 'dfvsdfv df dfva', 133, 7, 2),
+(15, '3ffdf dfvfv', 'vfdvdfvdf', 12, 7, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `test_employee_answers`
+--
+
+CREATE TABLE `test_employee_answers` (
+  `answer_id` int(11) NOT NULL,
+  `question_id` int(11) NOT NULL,
+  `submission_time` varchar(255) NOT NULL,
+  `training` int(11) NOT NULL,
+  `answer_text` text NOT NULL,
+  `answer_status` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -239,7 +428,11 @@ INSERT INTO `training_contents` (`training_content_id`, `training`, `content_nam
 (22, 13, 'DFVLJKFSK', 'Video', 'trainings/contents/DFVLJKFSK - Amazon devices workout.mp4'),
 (23, 13, 'fgfq', 'Video', 'trainings/contents/fgfq - Amazon devices workout.mp4'),
 (24, 13, 'Chipper Cash', 'Video', 'trainings/contents/Chipper Cash - Amazon devices workout.mp4'),
-(25, 13, 'ddu', 'Video', 'trainings/contents/ddu - Amazon devices workout.mp4');
+(25, 13, 'ddu', 'Video', 'trainings/contents/ddu - Amazon devices workout.mp4'),
+(26, 13, 'ewfei', 'Video', 'trainings/contents/ewfei - Amazon devices workout.mp4'),
+(27, 10, 'fh ergrfegr', 'Video', 'trainings/contents/fh ergrfegr - Web Development Basics.mp4'),
+(28, 11, 'Variables declaration', 'Video', 'trainings/contents/Variables declaration - Starting JS.mp4'),
+(29, 11, 'Data types', 'Document summary', 'trainings/contents/Data types - Starting JS.mp4');
 
 -- --------------------------------------------------------
 
@@ -263,7 +456,9 @@ INSERT INTO `training_professionals` (`tr_pro_id`, `training`, `professional`, `
 (1, 2, 1, '00', 'Progress'),
 (2, 7, 2, '6ad885410077a30caa428bd429e542cb', 'Progress'),
 (3, 10, 3, 'f2bf8ab8a484ddf9f464bb24af975f75', 'Progress'),
-(5, 13, 7, '1eab0c41920ecce64955786bffe46aef', 'Progress');
+(5, 13, 7, '1eab0c41920ecce64955786bffe46aef', 'Progress'),
+(7, 1, 9, '6b8961bb123460ae2bb79ccace37794a', 'Progress'),
+(8, 11, 10, '25a4f95ad915cb7f95fe0e067cbedb90', 'Progress');
 
 -- --------------------------------------------------------
 
@@ -292,10 +487,12 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`user_id`, `user_nid`, `user_name`, `user_fn`, `user_ln`, `user_email`, `user_phone`, `user_pass`, `user_type`, `department`, `user_state`) VALUES
 (2, '12222', 'ndahimana154', 'Ndahimana', 'Bonheur', 'ndahimana154@gmail.com', 8746626, '81dc9bdb52d04dc20036dbd8313ed055', 'Administration', 11, 'Working'),
 (9, 'Ll8kmDc4X83mRKKuoF6t5A==', 'twitegure1234', 'Twitegure', 'Pacifique', 'twi@gmail.com', 782277377, '81dc9bdb52d04dc20036dbd8313ed055', 'Employee', 8, 'Working'),
-(10, 'UNnusJAiLsMvlecwnFxGbg==', 'Not set Yet', 'Tsinda', 'Cyimana', 'tsinda@gmail.com', 782736463, '81dc9bdb52d04dc20036dbd8313ed055', 'Employee', 8, 'No account yet'),
+(10, 'UNnusJAiLsMvlecwnFxGbg==', 'tsinda12', 'Tsinda', 'Cyimana', 'tsinda@gmail.com', 782736463, '81dc9bdb52d04dc20036dbd8313ed055', 'Employee', 8, 'Working'),
 (11, 'JCwADL1oOlWbkVwnsaTMEA==', 'Not set Yet', '\'', 'iojio', 'iojoiji@df.fv', 320293, '81dc9bdb52d04dc20036dbd8313ed055', 'Employee', 8, 'No account yet'),
 (12, 'gq5hrdel2tpNv0O1ltszbw==', 'Not set Yet', 'pok', 'powpopo', 'pookp@sop.ec', 38948928, '81dc9bdb52d04dc20036dbd8313ed055', 'Employee', 9, 'No account yet'),
-(13, 'l9OKrUYglSTNoq6jtEQg7w==', 'khalifa', 'Khalifa', 'Ofiiciall', 'khalifa@gmail.com', 789470597, '81dc9bdb52d04dc20036dbd8313ed055', 'Employee', 2, 'Working');
+(13, 'l9OKrUYglSTNoq6jtEQg7w==', 'khalifa', 'Khalifa', 'Ofiiciall', 'khalifa@gmail.com', 789470597, '81dc9bdb52d04dc20036dbd8313ed055', 'Employee', 2, 'Working'),
+(14, 'A3ghiBHDmCLutPte3BCOkQ==', 'Not set Yet', 'Cyubahiro', 'Alain David', 'cyubahiro@gmail.com', 2147483647, 'Not set Yet', 'Employee', 8, 'No account yet'),
+(15, 'H3t7U1pJ96tHGl2sSojNDK9D79hknJgJ+pmiOX3Ey4k=', 'bob', 'Bob', 'Smith', 'bobsmith@gmail.com', 2147483647, '827ccb0eea8a706c4c34a16891f84e7b', 'Employee', 8, 'Working');
 
 --
 -- Indexes for dumped tables
@@ -306,6 +503,24 @@ INSERT INTO `users` (`user_id`, `user_nid`, `user_name`, `user_fn`, `user_ln`, `
 --
 ALTER TABLE `departments`
   ADD PRIMARY KEY (`depart_id`);
+
+--
+-- Indexes for table `employees_test_answers`
+--
+ALTER TABLE `employees_test_answers`
+  ADD PRIMARY KEY (`eta_id`),
+  ADD KEY `erfrawefew` (`test`),
+  ADD KEY `ffreferfrefae` (`training`),
+  ADD KEY `dffdddffff` (`question`),
+  ADD KEY `r3ferfreffdfdffdfdf` (`employee`);
+
+--
+-- Indexes for table `employees_test_completion`
+--
+ALTER TABLE `employees_test_completion`
+  ADD PRIMARY KEY (`etc_id`),
+  ADD KEY `ewfwefefew` (`employee`),
+  ADD KEY `erfgrfgergdffdfvfvdfvfdvdfv` (`test`);
 
 --
 -- Indexes for table `empl_trainings_conent_completion`
@@ -327,6 +542,29 @@ ALTER TABLE `msgs_professional_employee`
 --
 ALTER TABLE `professionals`
   ADD PRIMARY KEY (`professional_id`);
+
+--
+-- Indexes for table `tests`
+--
+ALTER TABLE `tests`
+  ADD PRIMARY KEY (`test_id`),
+  ADD KEY `efewwfwe` (`training`);
+
+--
+-- Indexes for table `tests_questions`
+--
+ALTER TABLE `tests_questions`
+  ADD PRIMARY KEY (`question_id`),
+  ADD KEY `eweweeew` (`test_id`),
+  ADD KEY `ewewfsddds` (`training`);
+
+--
+-- Indexes for table `test_employee_answers`
+--
+ALTER TABLE `test_employee_answers`
+  ADD PRIMARY KEY (`answer_id`),
+  ADD KEY `dsfdfdscdscd` (`training`),
+  ADD KEY `dsferferferg` (`question_id`);
 
 --
 -- Indexes for table `trainings`
@@ -368,22 +606,52 @@ ALTER TABLE `departments`
   MODIFY `depart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
+-- AUTO_INCREMENT for table `employees_test_answers`
+--
+ALTER TABLE `employees_test_answers`
+  MODIFY `eta_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
+
+--
+-- AUTO_INCREMENT for table `employees_test_completion`
+--
+ALTER TABLE `employees_test_completion`
+  MODIFY `etc_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `empl_trainings_conent_completion`
 --
 ALTER TABLE `empl_trainings_conent_completion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `msgs_professional_employee`
 --
 ALTER TABLE `msgs_professional_employee`
-  MODIFY `msg_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `msg_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `professionals`
 --
 ALTER TABLE `professionals`
-  MODIFY `professional_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `professional_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `tests`
+--
+ALTER TABLE `tests`
+  MODIFY `test_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `tests_questions`
+--
+ALTER TABLE `tests_questions`
+  MODIFY `question_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `test_employee_answers`
+--
+ALTER TABLE `test_employee_answers`
+  MODIFY `answer_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `trainings`
@@ -395,23 +663,39 @@ ALTER TABLE `trainings`
 -- AUTO_INCREMENT for table `training_contents`
 --
 ALTER TABLE `training_contents`
-  MODIFY `training_content_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `training_content_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `training_professionals`
 --
 ALTER TABLE `training_professionals`
-  MODIFY `tr_pro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `tr_pro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `employees_test_answers`
+--
+ALTER TABLE `employees_test_answers`
+  ADD CONSTRAINT `dffdddffff` FOREIGN KEY (`question`) REFERENCES `tests_questions` (`question_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `erfrawefew` FOREIGN KEY (`test`) REFERENCES `tests` (`test_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `ffreferfrefae` FOREIGN KEY (`training`) REFERENCES `trainings` (`training_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `r3ferfreffdfdffdfdf` FOREIGN KEY (`employee`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `employees_test_completion`
+--
+ALTER TABLE `employees_test_completion`
+  ADD CONSTRAINT `erfgrfgergdffdfvfvdfvfdvdfv` FOREIGN KEY (`test`) REFERENCES `tests` (`test_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `ewfwefefew` FOREIGN KEY (`employee`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `empl_trainings_conent_completion`
@@ -420,6 +704,26 @@ ALTER TABLE `empl_trainings_conent_completion`
   ADD CONSTRAINT `ciojios` FOREIGN KEY (`employee`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `sdiojsduichi` FOREIGN KEY (`content`) REFERENCES `training_contents` (`training_content_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `sdiovjsdioiojio` FOREIGN KEY (`training`) REFERENCES `trainings` (`training_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `tests`
+--
+ALTER TABLE `tests`
+  ADD CONSTRAINT `efewwfwe` FOREIGN KEY (`training`) REFERENCES `trainings` (`training_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `tests_questions`
+--
+ALTER TABLE `tests_questions`
+  ADD CONSTRAINT `eweweeew` FOREIGN KEY (`test_id`) REFERENCES `tests` (`test_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `ewewfsddds` FOREIGN KEY (`training`) REFERENCES `trainings` (`training_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `test_employee_answers`
+--
+ALTER TABLE `test_employee_answers`
+  ADD CONSTRAINT `dsfdfdscdscd` FOREIGN KEY (`training`) REFERENCES `trainings` (`training_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `dsferferferg` FOREIGN KEY (`question_id`) REFERENCES `tests_questions` (`question_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `trainings`

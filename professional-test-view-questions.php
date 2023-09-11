@@ -53,7 +53,7 @@
                     }
                     else {
                         $data_test_info = mysqli_fetch_array($get_inf);
-                        $questions_num = $data_test_info['question_numbers'];
+                        $questions_num = $data_test_info['test_questions_num'];
                         $testname = $data_test_info['test_name'];
                         ?>
                         <h4 class="text-success">
@@ -61,7 +61,7 @@
                         </h4>
                         <?php
                             $get_test_questions = mysqli_query($server,"SELECT * from tests_questions
-                                WHERE test = '$test_id'
+                                WHERE test_id = '$test_id'
                             ");
                             $count=1;
                             while($data_test_questions = mysqli_fetch_array($get_test_questions)) {
@@ -70,7 +70,7 @@
                                     <div class=" col-md-8">
                                         <div class="col-md-6 ">
                                             <label class="font-weight-bold">
-                                                <?php echo "<h6 class='text-primary'> Question. ".$count++."</h6>"; ?>
+                                                <?php echo "<h6 class='font-weight-bold'> Question. ".$count++."</h6>"; ?>
                                             </label>
                                             <p class=""><?php echo $data_test_questions['question_text'] ?></p>
                                         </div>

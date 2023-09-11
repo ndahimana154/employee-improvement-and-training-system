@@ -83,14 +83,17 @@
                                         // Sanitizing the variable
                                         $question_text = mysqli_real_escape_string($server, $question_text);
                                         $answer_text = $_POST["answer"][$a]; // Get the corresponding answer
-                                        // /Sanitizing this 
+                                        // Sanitizing this
                                         $answer_text = mysqli_real_escape_string($server, $answer_text);
+                                        $marks = $_POST['marks'][$a];
+                                        // Sanitizing
+                                        $marks = mysqli_real_escape_string($server, $marks);
 
                                         // Insert the question and answer into the test_questions table
-                                        $insert_question_query = "INSERT INTO tests_questions (question_text, question_answer, test_id, training) 
-                                            VALUES (?, ?, ?, ?)";
+                                        $insert_question_query = "INSERT INTO tests_questions (question_text, question_answer, marks, test_id, training) 
+                                            VALUES (?, ?, ?, ?, ?)";
                                         $stmt = mysqli_prepare($server, $insert_question_query);
-                                        mysqli_stmt_bind_param($stmt, "ssii", $question_text, $answer_text, $test_id, $acting_professional_training);
+                                        mysqli_stmt_bind_param($stmt, "ssiii", $question_text, $answer_text, $marks, $test_id, $acting_professional_training);
 
                                         if (mysqli_stmt_execute($stmt)) {
                                             // Insertion succeeded for this question
@@ -134,7 +137,7 @@
                                             <label for="">
                                                 <?php echo "<h6> Question.$i </h6>"; ?>
                                             </label>
-                                            <textarea name="question[]" rows="5" class="form-control" placeholder="Type Question <?php echo $i ?>"  required></textarea>
+                                            <textarea name="question[]" rows="8" class="form-control" placeholder="Type Question <?php echo $i ?>"  required></textarea>
                                         </div>
                                         <div class="col-md-6">
                                             <label for="">
@@ -143,6 +146,12 @@
                                                 </h6>
                                             </label>
                                             <textarea name="answer[]" rows="5" class="form-control" placeholder="Type..." required></textarea>
+                                            <div>
+                                                <label for="">
+                                                    Marks
+                                                </label>
+                                                <input type="text" placeholder="Type..." name="marks[]" class="form-control">
+                                            </div>
                                         </div>
                                     </div>
                                     <?php

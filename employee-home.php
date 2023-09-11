@@ -44,6 +44,7 @@
                             
                             <p class="mb-0 fa-3x">
                                 <?php 
+                                
                                     $get_all_contents = mysqli_fetch_array(mysqli_query($server,"SELECT users.user_id, COUNT(DISTINCT empl_trainings_conent_completion.training) AS completed_trainings
                                         FROM users
                                         LEFT JOIN empl_trainings_conent_completion ON users.user_id = empl_trainings_conent_completion.employee

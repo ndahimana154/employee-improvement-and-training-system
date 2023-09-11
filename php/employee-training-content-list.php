@@ -43,5 +43,7 @@
             </div>
             <?php
         }
+        include('employee-trainings-test-list.php');
     ?>
+  
 </div>

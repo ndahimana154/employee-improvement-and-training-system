@@ -55,7 +55,7 @@
                         <div class="contents m-3 p-2">
                             <a href="employee-trainings.php" class="text-dark font-weight-bold">Trainings</a> / <a href="" class="text-dark font-weight-bold"><?php echo $data_check_exits['training_topic']; ?></a>
                         </div>
-                        <div class="row bg-light" style="height: 700px;">
+                        <div class="row bg-light">
                             <!-- Training Contents Column -->
                             <?php include("php/employee-training-content-list.php"); ?>
 
@@ -108,7 +108,61 @@
                                                             <?php echo $completetion_percenage; ?>%
                                                         </div>
                                                     </div>
-                                                    
+                                                    <div class="row p-3">
+                                                        <div class="col-md-4 m-1">
+                                                            <div class="dashboard-box bg-success text-light p-2 row rounded">
+                                                                <div class="mr-3">
+                                                                    <i class="fas fa-flask  fa-2x mb-3 flex-1"></i>
+                                                                    <h6>TOTAL TESTS</h6>
+                                                                </div>
+                                                                <p class="mb-0 fa-3x">
+                                                                    <?php 
+                                                                        $get_all_tests = mysqli_query($server,"SELECT *
+                                                                            FROM tests
+                                                                            WHERE training = '$training'
+                                                                        ");
+                                                                        echo mysqli_num_rows($get_all_tests);
+                                                                    ?>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4 m-1">
+                                                            <div class="dashboard-box bg-success text-light p-2 row rounded">
+                                                                <div class="mr-3">
+                                                                    <i class="fas fa-clock  fa-2x mb-3 flex-1"></i>
+                                                                    <h6>UPCOMING TESTS</h6>
+                                                                </div>
+                                                                <p class="mb-0 fa-3x">
+                                                                    <?php 
+                                                                        $get_all_tests = mysqli_query($server,"SELECT *
+                                                                            FROM tests
+                                                                            WHERE training = '$training'
+                                                                            AND test_status = 'Upcoming'
+                                                                        ");
+                                                                        echo mysqli_num_rows($get_all_tests);
+                                                                    ?>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4 m-1">
+                                                            <div class="dashboard-box bg-success text-light p-2 row rounded">
+                                                                <div class="mr-3">
+                                                                    <i class="fas fa-clock  fa-2x mb-3 flex-1"></i>
+                                                                    <h6>AVERAGE MARKS</h6>
+                                                                </div>
+                                                                <p class="mb-0 fa-3x">
+                                                                    <?php 
+                                                                        $get_all_tests = mysqli_query($server,"SELECT *
+                                                                            FROM tests
+                                                                            WHERE training = '$training'
+                                                                            AND test_status = 'Upcoming'
+                                                                        ");
+                                                                        echo mysqli_num_rows($get_all_tests);
+                                                                    ?>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                     <?php
                                                 }
                                             ?>
