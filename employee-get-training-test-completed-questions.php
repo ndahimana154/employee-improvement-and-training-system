@@ -148,25 +148,36 @@
                                                     <div class="row">
                                                         <div class="col-md-5 m-1">
                                                             <label for="" class="font-weight-bold">
-                                                                Question <?php echo $que_counter++ ?> - <?php echo $data_questions['marks'] ?> Marks
+                                                                Question <?php echo $que_counter++ ?> - 
+                                                                <?php
+                                                                    $current_question = $data_questions['question_id'];
+                                                                    // Check if the question exists
+                                                                    $check_answer_exists = mysqli_query($server,"SELECT * from employees_test_answers 
+                                                                        WHERE test = '$test' 
+                                                                        AND question = '$current_question'
+                                                                    ");
+                                                                    if (mysqli_num_rows($check_answer_exists) > 0) {
+                                                                        $data_check_answer_exists = mysqli_fetch_array($check_answer_exists);
+                                                                        echo "<b class='text-danger'>".$data_check_answer_exists['marking']."/"; 
+                                                                    }
+                                                                    echo $data_questions['marks'] ?> Marks</b>
                                                             </label>
                                                             <p>
                                                                 <?php echo $data_questions['question_text'] ?>
                                                             </p>
                                                         </div>
                                                         <?php
-                                                            $current_question = $data_questions['question_id'];
-                                                            // Check if the question exists
-                                                            $check_answer_exists = mysqli_query($server,"SELECT * from employees_test_answers 
-                                                                WHERE test = '$test' 
-                                                                AND question = '$current_question'
-                                                            ");
+                                                            
                                                         ?>
                                                         <div class="col-md-6 m-1">
                                                             <label for="" class="font-weight-bold">
                                                                 Answer:
                                                             </label>
                                                             <?php
+                                                                $check_answer_exists = mysqli_query($server,"SELECT * from employees_test_answers 
+                                                                    WHERE test = '$test' 
+                                                                    AND question = '$current_question'
+                                                                ");
                                                                 if (mysqli_num_rows($check_answer_exists) > 0) {
                                                                     $data_check_answer_exists = mysqli_fetch_array($check_answer_exists);
                                                                     ?>
@@ -177,6 +188,29 @@
                                                                 }
                                                             ?>
                                                         </div>
+                                                    </div>
+                                                    <?php
+                                                }
+                                                // CHeck if the marks are there and display total
+                                                $check_marks_total = mysqli_query($server,"SELECT * from employees_test_marks
+                                                    WHERE test = '$test'
+                                                    AND employee = '$acting_employee_id'
+                                                ");
+                                                if (mysqli_num_rows($check_marks_total) == 1) {
+                                                    // gET THE TEST QUESTIONS
+                                                    $get_test_questions_marks = mysqli_query($server,"SELECT * from
+                                                        tests_questions WHERE test_id = '$test' AND training = '$training'
+                                                    ");
+                                                    $total_test_marks = 0;
+                                                    while ($data_test_questions_marks = mysqli_fetch_array($get_test_questions_marks)) {
+                                                        $total_test_marks += $data_test_questions_marks['marks'];
+                                                    }
+                                                    ?>
+                                                    <div class="font-weight-bold m-3">
+                                                        <?php
+                                                            $data_check_total = mysqli_fetch_array($check_marks_total);
+                                                            echo "TOTAL MARKS: ".$data_check_total['average_marks']."/".$total_test_marks;
+                                                        ?>
                                                     </div>
                                                     <?php
                                                 }
