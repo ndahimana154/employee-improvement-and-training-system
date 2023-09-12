@@ -89,6 +89,9 @@
                                         Questions answered
                                     </th>
                                     <th>
+                                        Marks
+                                    </th>
+                                    <th>
                                         Actions
                                     </th>
                                 </tr>
@@ -110,7 +113,7 @@
                                 ?>
                                 <tr>
                                     <td>
-                                        
+
                                         <?php echo $count++; ?>
                                     </td>
                                     <td>
@@ -131,6 +134,24 @@
                                     </td>
                                     <td>
                                         <?php
+                                            // Check if the it is marked
+                                            $check_if_test_marks_exists = mysqli_query($server,"SELECT * from employees_test_marks
+                                                WHERE employee = '$ai_empl_id'
+                                                AND test = '$mark_test'
+                                            ");
+                                            if (mysqli_num_rows($check_if_test_marks_exists) != 1) {
+                                                ?>
+                                                Not marked
+                                                <?php
+                                            }
+                                            else {
+                                                $data_if_test_marks_exists = mysqli_fetch_array($check_if_test_marks_exists);
+                                                echo $data_if_test_marks_exists['average_marks'];
+                                            }
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php
                                             if (mysqli_num_rows($get_answer_nums) < 1) {
                                                 ?>
                                                 <a href="" class="">
@@ -138,7 +159,7 @@
                                                 </a>
                                                 <?php
                                             }
-                                            elseif ($data_answer_nums['status'] == 'Pending') {
+                                            elseif (mysqli_num_rows($check_if_test_marks_exists) != 1) {
                                                 ?>
                                                 <a href="professional-test-view-employee-answer.php?test-mark=<?php echo $mark_test ?>&employee-mark=<?php echo $data_check_al_empl['user_id']; ?>">
                                                     View answers

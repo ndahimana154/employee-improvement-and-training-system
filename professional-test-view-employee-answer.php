@@ -90,34 +90,32 @@
                                         $answer_id;
                                         $marks =(int) $_POST['marks'][$arraycounter];
                                         $question = $_POST['question_ids'][$arraycounter++];
-                                        $total_marks += $marks;
-                                        // Check if the marks don't exists
-                                        $check_marks_exis = mysqli_query($server,"SELECT * from employees_test_marks
-                                            WHERE employee = '$employee_mark'
-                                            AND test = '$mark_test'
+                                        echo $total_marks = $total_marks + $marks;
+                                        // Update the marks
+                                        $update_marks = mysqli_query($server,"UPDATE employees_test_answers
+                                            SET marking = '$marks',
+                                            status = 'Markked'
+                                            WHERE eta_id = '$answer_id'
+                                            AND employee = '$employee_mark'
+                                            AND question = '$question'
                                         ");
-                                        if (mysqli_num_rows($check_marks_exis) > 0) {
-                                            $errors[] = "The marks arleady exists";
-                                            $success = false;
-                                            break;
-                                        }
-                                        else {
-                                            // Save in employee test marks
-                                            $save_etm = mysqli_query($server,"INSERT into
-                                                employees_test_marks
-                                                VALUES(null,$employee_mark,$mark_test,$total_marks,current_timestamp(),'Marked');
-                                            ");
-                                            // Update the marks
-                                            $update_marks = mysqli_query($server,"UPDATE employees_test_answers
-                                                SET marking = '$marks',
-                                                status = 'Markked'
-                                                WHERE eta_id = '$answer_id'
-                                                AND employee = '$employee_mark'
-                                                AND question = '$question'
-                                            ");
-                                            $success = true;
-                                        }
+                                        $success = true;
                                     }
+                                    // Check if the marks don't exists
+                                    $check_marks_exis = mysqli_query($server,"SELECT * from employees_test_marks
+                                        WHERE employee = '$employee_mark'
+                                        AND test = '$mark_test'
+                                    ");
+                                    if (mysqli_num_rows($check_marks_exis) > 0) {
+                                        $errors[] = "The marks arleady exists";
+                                        $success = false;
+                                        // continue;
+                                    }
+                                    // Save in employee test marks
+                                    $save_etm = mysqli_query($server,"INSERT into
+                                        employees_test_marks
+                                        VALUES(null,$employee_mark,$mark_test,$total_marks,current_timestamp(),'Marked');
+                                    ");
                                     if ($success) {
                                         ?>
                                         <p class="alert alert-success">
