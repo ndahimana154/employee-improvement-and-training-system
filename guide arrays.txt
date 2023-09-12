@@ -1,0 +1,69 @@
+To handle this form, you want to save marks for each employee's answers to the test questions. Here's how you can process this form:
+
+1. **Form Submission Check:**
+   Wrap the code that processes the form submission inside a check for whether the form has been submitted. You can do this using `isset($_POST['savemarks_btn'])`.
+
+   ```php
+   if (isset($_POST['savemarks_btn'])) {
+       // Form submission code here
+   }
+   ```
+
+2. **Loop Through Employees:**
+   You have a loop that goes through all employees. For each employee, you display their details and the questions they answered.
+
+3. **Display Questions and Answer Fields:**
+   Inside the employee loop, you display each question along with its answer field. For each question, you show a dropdown/select input for marking.
+
+4. **Retrieve and Save Marks:**
+   When processing the form submission, you'll need to retrieve the selected marks from the dropdown/select inputs and save them to your database. You can do this within the loop.
+
+   - Retrieve the selected mark for each question using `$_POST`.
+   - Update the marks in your database.
+
+5. **Validation:**
+   You can add validation to ensure that a mark is selected for each question. If a mark is not selected, you can display an error message.
+
+6. **Success/Failure Messages:**
+   After processing the form, you can display success or failure messages to indicate whether the marks were saved successfully.
+
+Here's an example of how you can structure your code:
+
+```php
+if (isset($_POST['savemarks_btn'])) {
+    // Initialize error messages array
+    $errors = array();
+    $success = true;
+
+    // Loop through employees
+    foreach ($_POST['save_empl_id'] as $employee_id) {
+        // Loop through questions for this employee
+        foreach ($_POST['question_ids'] as $key => $question_id) {
+            // Retrieve the selected mark for this question
+            $selected_mark = $_POST['marks'][$key];
+            
+            // Validate that a mark is selected
+            if ($selected_mark === 'Select marks') {
+                $errors[] = "Select marks for Question $question_id for Employee $employee_id.";
+                $success = false;
+                continue; // Skip to the next iteration
+            }
+
+            // Update the marks in your database
+            // Your database update code here
+        }
+    }
+
+    if ($success) {
+        // Display a success message
+        echo '<p class="alert alert-success">Marks saved successfully.</p>';
+    } else {
+        // Display error messages
+        foreach ($errors as $error) {
+            echo '<p class="alert alert-danger">' . $error . '</p>';
+        }
+    }
+}
+```
+
+Remember to adjust the code to match your database structure and naming conventions.

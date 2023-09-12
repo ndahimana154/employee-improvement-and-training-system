@@ -21,6 +21,9 @@
     ?>
     <div class="container">
         <h2>
+            <a href="professional-revision-tests.php" class="btn btn-primary">
+                <i class="fa fa-arrow-left"></i>
+            </a>
             EMPLOYEES TEST MARKING
         </h2>
         <!-- <div class="ctrls p-3">
@@ -46,6 +49,9 @@
                         AND test_id = '$mark_test'
                         AND test_status = 'Completed'
                     ");
+                    $get_test_questionsnum = mysqli_query($server,"SELECT * from tests_questions
+                        WHERE test_id = '$mark_test'
+                    ");
                     if (mysqli_num_rows($check_exists_complete) != 1) {
                         ?>
                         <p class="alert alert-danger">
@@ -63,13 +69,29 @@
                         $department_check_id = $get_training_info['training_depart'];
                         ?>
                         <table class="table table-hover table-responsive">
-                            <thead class="text-success">
-                                <th>
-                                    Test name:
-                                </th>
-                                <th>
-                                    <?php echo $data_check_exists_complete['test_name'] ?>
-                                </th>
+                            <thead>
+                                <tr  class="text-success">
+                                    <th>
+                                        Test name:
+                                    </th>
+                                    <th colspan="3">
+                                        <?php echo $data_check_exists_complete['test_name'] ?>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        #
+                                    </th>
+                                    <th>
+                                        Employee names
+                                    </th>
+                                    <th>
+                                        Questions answered
+                                    </th>
+                                    <th>
+                                        Actions
+                                    </th>
+                                </tr>
                             </thead>
                             <?php
                             // Get all users of the employees
@@ -83,117 +105,54 @@
                                 </p>
                                 <?php
                             }
+                            $count = 1;
                             while ($data_check_al_empl = mysqli_fetch_array($get_all_employees)) {
                                 ?>
-                                <thead>
                                 <tr>
-                                    <th>
-                                        Employee names:
-                                    </th>
-                                    <th>
-                                        <?php echo $data_check_al_empl['user_fn']." ".$data_check_al_empl['user_ln']; ?>
-                                    </th>
+                                    <td>
+                                        
+                                        <?php echo $count++; ?>
+                                    </td>
+                                    <td>
+                                        <?php 
+                                            echo $data_check_al_empl['user_fn']." ".$data_check_al_empl['user_ln'];
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php 
+                                            $ai_empl_id = $data_check_al_empl['user_id'];
+                                            $get_answer_nums = mysqli_query($server,"SELECT * from employees_test_answers
+                                                WHERE employee = '$ai_empl_id'
+                                                AND test = '$mark_test'
+                                            ");
+                                            echo mysqli_num_rows($get_answer_nums);
+                                            $data_answer_nums = mysqli_fetch_array($get_answer_nums);
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                            if (mysqli_num_rows($get_answer_nums) < 1) {
+                                                ?>
+                                                <a href="" class="">
+                                                    Mark 0
+                                                </a>
+                                                <?php
+                                            }
+                                            elseif ($data_answer_nums['status'] == 'Pending') {
+                                                ?>
+                                                <a href="professional-test-view-employee-answer.php?test-mark=<?php echo $mark_test ?>&employee-mark=<?php echo $data_check_al_empl['user_id']; ?>">
+                                                    View answers
+                                                </a>
+                                                <?php
+                                            }
+                                        ?>
+                                    </td>
                                 </tr>
-                                </thead>
-                                <tbody>
-                                    <?php 
-                                        $check_empl_id = $data_check_al_empl['user_id'];
-                                        $get_empl_answers = mysqli_query($server,"SELECT * from employees_test_answers
-                                            WHERE employee = '$check_empl_id'
-                                            AND training = '$training_check_id'
-                                            AND test = '$mark_test'
-                                        "); 
-                                        if (mysqli_num_rows($get_empl_answers) < 1) {
-                                            ?>
-                                            <tr>
-                                                <td colspan="100">
-                                                    No answers.
-                                                    <b class="text-danger">
-                                                        Employee will be marked zero.
-                                                    </b>
-                                                </td>
-                                            </tr>
-                                            <?php
-                                        }
-                                        else {
-                                            ?>
-                                            <thead>
-                                                <tr>
-                                                    <th>
-                                                        #
-                                                    </th>
-                                                    <th>
-                                                        Question
-                                                    </th>
-                                                    <th>
-                                                        Answer
-                                                    </th>
-                                                    <th>
-                                                        Mark
-                                                    </th>
-                                                </tr>
-                                            </thead>
-                                            <?php
-                                        }
-                                        $count = 1;
-                                        while ($data_get_empl_answers = mysqli_fetch_array($get_empl_answers)) {
-                                            ?>
-                                            <tr>
-                                                <td>
-                                                    <?php echo $count++ ?>
-                                                </td>
-                                                <td>
-                                                    <?php
-                                                        $question_id = $data_get_empl_answers['question'];
-                                                        $question_info = mysqli_query($server,"SELECT * from
-                                                            tests_questions 
-                                                            WHERE question_id = $question_id
-                                                            AND test_id = '$mark_test'
-                                                        ");
-                                                        $question_info =mysqli_fetch_array($question_info);
-                                                        echo $question_info['question_text'];
-                                                    ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $data_get_empl_answers['answer_text']; ?>
-                                                </td>
-                                                <td>
-                                                    <?php
-                                                        $question_mark_count = $question_info['marks'];
-                                                        ?>
-                                                        <select name="" class="form-control">
-                                                            <option value="Select marks">
-                                                                Select marks
-                                                            </option>
-                                                            <?php
-                                                            for ($i=0; $i <= $question_mark_count ; $i++) { 
-                                                                ?>
-                                                                <option value="<?php echo $i; ?>">
-                                                                    <?php
-                                                                        echo $i."Marks";
-                                                                    ?>
-                                                                </option>
-                                                                <?php
-                                                            }
-                                                            ?>
-                                                        </select>
-                                                        <?php
-                                                        
-                                                    ?>
-                                                </td>
-                                            </tr>
-                                            <?php
-                                        }
-                                    ?>
-                                </tbody>
                                 <?php
                             }
                             ?>
+                            
                         </table>
-                        <button class="btn btn-success">
-                            <i class="fa fa-save"></i>
-                            Save marks
-                        </button>
                         <?php
                     }
                 }
