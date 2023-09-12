@@ -21,4 +21,5 @@
     $employee_acting_depart_id = $get_employee_depart_id['department'];
     $get_depart_name = mysqli_fetch_array(mysqli_query($server,"SELECT * from departments WHERE depart_id = '$employee_acting_depart_id'"));
     $acting_employee_depart_name = $get_depart_name['depart_name'];
+    $current_timestamp =  date('Y-m-d H:i');
 ?>

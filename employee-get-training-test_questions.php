@@ -63,7 +63,7 @@
                     }
                     elseif (mysqli_num_rows($check_test_exists) != 1) {
                         ?>
-                        <p class="alert alert-danger">
+                        <p class="alert alert-danger m-2">
                             The test is not found.
                         </p>
                         <?php
@@ -105,6 +105,12 @@
                                                 WHERE test_id = '$test'
                                                 AND training = '$training'
                                             ")); 
+                                            // Set the test to progressing if it is upcoming
+                                            $update_to_progress = mysqli_query($server,"UPDATE tests
+                                                set test_status = 'Progressing'
+                                                WHERE test_id = '$test'
+                                                AND test_status = 'Upcoming'
+                                            ");
                                         ?>
                                         <h6 class="text-primary">
                                             Test questions <b>(<?php echo mysqli_num_rows($get_questions) ?>)</b> -

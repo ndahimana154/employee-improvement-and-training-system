@@ -151,6 +151,11 @@
                                 }
                             }
                         }
+                        // elseif (isset($_GET['start_test'])) {
+                        //     $start_test = $_GET['start_test'];
+                        //     // CHeck if the test exists on the upcoming list
+
+                        // }
                     ?>
                 </div>
                 <table class="table table-hover table-responsive">
@@ -232,21 +237,17 @@
                                         ?>
                                     </td>
                                     <td>
+                                        <!-- <a href="" title="View test questions">
+                                            <i class="fa fa-list"></i>
+                                        </a> -->
                                         <?php
                                             if ($data_training_tests['test_status'] == 'Pending') {
                                                 ?>
-                                                <a href="?approve-test=<?php echo $data_training_tests['test_id']; ?>">
+                                                <a href="?approve-test=<?php echo $data_training_tests['test_id']; ?>" title="Approve test">
                                                     <i class="fa fa-check"></i>
                                                 </a>
-                                                <a href="?reject-test=<?php echo $data_training_tests['test_id']; ?>">
+                                                <a href="?reject-test=<?php echo $data_training_tests['test_id']; ?>" title="Reject the test">
                                                     <i class="fa fa-window-close text-danger"></i>
-                                                </a>
-                                                <?php
-                                            }
-                                            if ($data_training_tests['test_status'] != 'Upcoming' && $data_training_tests['test_status'] != 'Progressing' && $data_training_tests['test_status'] != 'Rejected') {
-                                                ?>
-                                                <a href="">
-                                                    <i class="fa fa-edit text-success"></i>
                                                 </a>
                                                 <?php
                                             }

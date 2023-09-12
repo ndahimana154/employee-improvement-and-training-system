@@ -54,6 +54,57 @@
                         ");
                     }
                 }
+                elseif (isset($_GET['complete-test'])) {
+                    $complete_test = $_GET['complete-test'];
+                    // Check if the test exists and is progressing
+                    $check_complete_test = mysqli_query($server,"SELECT * from 
+                        tests WHERE test_id = '$complete_test'
+                        AND test_status = 'Progressing'
+                        AND training = '$acting_professional_training'
+                    ");
+                    if (mysqli_num_rows($check_complete_test) != 1) {
+                        ?>
+                        <p class="alert alert-danger">
+                            The test is not found on progressing list.
+                        </p>
+                        <?php
+                    }
+                    else {
+                        $set_complete = mysqli_query($server,"UPDATE tests
+                            SET test_status = 'Completed'
+                            WHERE test_id = '$complete_test'
+                        ");
+                        if (!$set_complete) {
+                            ?>
+                            <p class="alert alert-danger">
+                                Completing the test failed.
+                            </p>
+                            <?php
+                        }
+                        else {
+                            // Get all the employees with the current department
+                            $get_employees_in_complete_test = mysqli_query($server,"SELECT * from users
+                                WHERE department = '$training_depart'
+                                OR user_type = 'Administration'
+                            ");
+                            // Save the record in the database
+                            $save_test_completion_time = mysqli_query($server,"INSERT into test_completion_time 
+                                (`completion_id`, `training`, `test`, `action_by`)
+                                VALUES(null,$acting_professional_training,$complete_test,$acting_professional_id)   
+                            ");
+                            ?>
+                            <p class="alert alert-success">
+                                The test is set complete.
+                                <a href="mailto: <?php while ($data_employees_in_complete = mysqli_fetch_array($get_employees_in_complete_test)) {
+                                    echo $data_employees_in_complete['user_email'].",";
+                                } ?>">
+                                    Notify the Employees and Administration
+                                </a>
+                            </p>
+                            <?php
+                        }
+                    }
+                }
             ?>
         </div>
     <table class="table table-hover table-responsive">
@@ -137,6 +188,13 @@
                                     ?>
                                     <a href="?set-upcoming=<?php echo $data_tests['test_id']; ?>">
                                         <i class="fa fa-check text-success"></i>
+                                    </a>
+                                    <?php
+                                }
+                                if ($data_tests['test_status'] == 'Progressing') {
+                                    ?>
+                                    <a href="?complete-test=<?php echo $data_tests['test_id']; ?>">
+                                        <i class="fa fa-clock"></i>
                                     </a>
                                     <?php
                                 }

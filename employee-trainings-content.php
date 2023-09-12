@@ -108,58 +108,64 @@
                                                             <?php echo $completetion_percenage; ?>%
                                                         </div>
                                                     </div>
-                                                    <div class="row p-3">
-                                                        <div class="col-md-4 m-1">
-                                                            <div class="dashboard-box bg-success text-light p-2 row rounded">
-                                                                <div class="mr-3">
-                                                                    <i class="fas fa-flask  fa-2x mb-3 flex-1"></i>
-                                                                    <h6>TOTAL TESTS</h6>
+                                                    <div class="p-3">
+                                                        <h4>
+                                                            Tests progresion
+                                                        </h4>
+                                                        <div class="row">
+                                                            <div class="col-md-4 m-1">
+                                                                <div class="dashboard-box bg-success text-light p-2 row rounded">
+                                                                    <div class="mr-3">
+                                                                        <i class="fas fa-flask  fa-2x mb-3 flex-1"></i>
+                                                                        <h6>TOTAL TESTS</h6>
+                                                                    </div>
+                                                                    <p class="mb-0 fa-3x">
+                                                                        <?php 
+                                                                            $get_all_tests = mysqli_query($server,"SELECT *
+                                                                                FROM tests
+                                                                                WHERE training = '$training'
+                                                                                AND test_status != 'Rejected'
+                                                                            ");
+                                                                            echo mysqli_num_rows($get_all_tests);
+                                                                        ?>
+                                                                    </p>
                                                                 </div>
-                                                                <p class="mb-0 fa-3x">
-                                                                    <?php 
-                                                                        $get_all_tests = mysqli_query($server,"SELECT *
-                                                                            FROM tests
-                                                                            WHERE training = '$training'
-                                                                        ");
-                                                                        echo mysqli_num_rows($get_all_tests);
-                                                                    ?>
-                                                                </p>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-md-4 m-1">
-                                                            <div class="dashboard-box bg-success text-light p-2 row rounded">
-                                                                <div class="mr-3">
-                                                                    <i class="fas fa-clock  fa-2x mb-3 flex-1"></i>
-                                                                    <h6>UPCOMING TESTS</h6>
+                                                            <div class="col-md-4 m-1">
+                                                                <div class="dashboard-box bg-success text-light p-2 row rounded">
+                                                                    <div class="mr-3">
+                                                                        <i class="fas fa-clock  fa-2x mb-3 flex-1"></i>
+                                                                        <h6>UPCOMING TESTS</h6>
+                                                                    </div>
+                                                                    <p class="mb-0 fa-3x">
+                                                                        <?php 
+                                                                            $get_all_tests = mysqli_query($server,"SELECT *
+                                                                                FROM tests
+                                                                                WHERE training = '$training'
+                                                                                AND test_status = 'Upcoming'
+                                                                            ");
+                                                                            echo mysqli_num_rows($get_all_tests);
+                                                                        ?>
+                                                                    </p>
                                                                 </div>
-                                                                <p class="mb-0 fa-3x">
-                                                                    <?php 
-                                                                        $get_all_tests = mysqli_query($server,"SELECT *
-                                                                            FROM tests
-                                                                            WHERE training = '$training'
-                                                                            AND test_status = 'Upcoming'
-                                                                        ");
-                                                                        echo mysqli_num_rows($get_all_tests);
-                                                                    ?>
-                                                                </p>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-md-4 m-1">
-                                                            <div class="dashboard-box bg-success text-light p-2 row rounded">
-                                                                <div class="mr-3">
-                                                                    <i class="fas fa-clock  fa-2x mb-3 flex-1"></i>
-                                                                    <h6>AVERAGE MARKS</h6>
+                                                            <div class="col-md-4 m-1">
+                                                                <div class="dashboard-box bg-success text-light p-2 row rounded">
+                                                                    <div class="mr-3">
+                                                                        <i class="fas fa-check  fa-2x mb-3 flex-1"></i>
+                                                                        <h6>COMPLETED TESTS</h6>
+                                                                    </div>
+                                                                    <p class="mb-0 fa-3x">
+                                                                        <?php 
+                                                                            $get_all_tests = mysqli_query($server,"SELECT *
+                                                                                FROM test_completion_time
+                                                                                WHERE training = '$training'
+                                                                                -- AND (test_status = 'Completed' OR test_status = 'Marked')
+                                                                            ");
+                                                                            echo mysqli_num_rows($get_all_tests);
+                                                                        ?>
+                                                                    </p>
                                                                 </div>
-                                                                <p class="mb-0 fa-3x">
-                                                                    <?php 
-                                                                        $get_all_tests = mysqli_query($server,"SELECT *
-                                                                            FROM tests
-                                                                            WHERE training = '$training'
-                                                                            AND test_status = 'Upcoming'
-                                                                        ");
-                                                                        echo mysqli_num_rows($get_all_tests);
-                                                                    ?>
-                                                                </p>
                                                             </div>
                                                         </div>
                                                     </div>

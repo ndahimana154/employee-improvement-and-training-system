@@ -6,7 +6,8 @@
     // Get the training contents
     $get_trainings_test = mysqli_query($server,"SELECT * from tests
         WHERE training='$training'
-        AND test_status = 'Progressing'
+        AND test_schedule <= '$current_timestamp'
+        AND (test_status = 'Upcoming' OR test_status = 'Progressing')
         ORDER BY test_schedule ASC,
         test_name ASC,
         test_questions_num DESC
