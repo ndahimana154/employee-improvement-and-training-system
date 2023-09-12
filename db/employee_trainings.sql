@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 11, 2023 at 10:12 PM
+-- Generation Time: Sep 12, 2023 at 10:52 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -72,29 +72,23 @@ CREATE TABLE `employees_test_answers` (
 --
 
 INSERT INTO `employees_test_answers` (`eta_id`, `employee`, `training`, `test`, `question`, `answer_text`, `marking`, `status`, `submission_time`) VALUES
-(110, 10, 2, 6, 5, 'aaa', 0, 'Pending', '2023-09-11 21:09:02'),
-(111, 10, 2, 6, 6, 'bb', 0, 'Pending', '2023-09-11 21:09:02'),
-(112, 10, 2, 6, 7, 'ccc', 0, 'Pending', '2023-09-11 21:09:02'),
-(113, 10, 2, 6, 8, 'dddd', 0, 'Pending', '2023-09-11 21:09:02'),
-(114, 10, 2, 2, 1, 'ddaa', 0, 'Pending', '2023-09-11 21:09:24'),
-(115, 10, 2, 2, 2, 'asd', 0, 'Pending', '2023-09-11 21:09:39'),
-(116, 10, 2, 2, 3, 'fddd', 0, 'Pending', '2023-09-11 21:09:39'),
-(117, 10, 2, 2, 4, 'ssssd', 0, 'Pending', '2023-09-11 21:09:39'),
-(118, 10, 2, 7, 12, 'yy', 0, 'Pending', '2023-09-11 21:10:48');
+(119, 10, 2, 11, 18, 'I think i don\'t know', 0, 'Pending', '2023-09-12 09:09:56'),
+(120, 10, 2, 11, 19, 'Yes i get it', 0, 'Pending', '2023-09-12 09:09:56'),
+(121, 10, 2, 11, 20, 'Ok if it\'s cool', 0, 'Pending', '2023-09-12 09:09:57');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `employees_test_completion`
+-- Table structure for table `employees_test_marks`
 --
 
-CREATE TABLE `employees_test_completion` (
-  `etc_id` int(11) NOT NULL,
+CREATE TABLE `employees_test_marks` (
+  `etc_id` int(11) NOT NULL DEFAULT 0,
   `employee` int(11) NOT NULL,
   `test` int(11) NOT NULL,
   `average_marks` int(11) NOT NULL,
-  `completion_time` varchar(255) NOT NULL DEFAULT current_timestamp(),
-  `completion_status` varchar(255) NOT NULL
+  `marking_time` varchar(255) NOT NULL DEFAULT current_timestamp(),
+  `marking_status` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -216,19 +210,6 @@ INSERT INTO `professionals` (`professional_id`, `professional_fn`, `professional
 -- --------------------------------------------------------
 
 --
--- Table structure for table `questions_options`
---
-
-CREATE TABLE `questions_options` (
-  `option_id` int(11) NOT NULL,
-  `question_id` int(11) NOT NULL,
-  `option_text` text NOT NULL,
-  `is_correct` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `tests`
 --
 
@@ -246,13 +227,8 @@ CREATE TABLE `tests` (
 --
 
 INSERT INTO `tests` (`test_id`, `training`, `test_name`, `test_schedule`, `test_questions_num`, `test_status`) VALUES
-(1, 2, 'rwfrf', '2023-09-15 03:32', 1, 'Pending'),
-(2, 2, 'Starting from zero', '2023-09-22 15:41', 4, 'Pending'),
-(3, 2, 'ewfef', '2023-09-22 04:15', 2, 'Pending'),
-(4, 2, 'werfr', '2023-09-09 04:20', 34344, 'Pending'),
-(5, 2, 'fffsd', '2023-09-01 04:19', 3, 'Pending'),
-(6, 2, 'weeefeffwe', '2023-08-30 04:23', 4, 'Pending'),
-(7, 2, 'ertyui', '2023-09-12 04:34', 4, 'Pending');
+(11, 2, 'Test for starting as welcome', '2023-09-12 09:08:41', 3, 'Completed'),
+(12, 2, 'For  rejcting', '2023-09-12 09:08:41', 2, 'Rejected');
 
 -- --------------------------------------------------------
 
@@ -262,6 +238,7 @@ INSERT INTO `tests` (`test_id`, `training`, `test_name`, `test_schedule`, `test_
 
 CREATE TABLE `tests_questions` (
   `question_id` int(11) NOT NULL,
+  `question_added_time` varchar(255) NOT NULL DEFAULT current_timestamp(),
   `question_text` text NOT NULL,
   `question_answer` text NOT NULL,
   `marks` int(11) NOT NULL DEFAULT 1,
@@ -273,22 +250,31 @@ CREATE TABLE `tests_questions` (
 -- Dumping data for table `tests_questions`
 --
 
-INSERT INTO `tests_questions` (`question_id`, `question_text`, `question_answer`, `marks`, `test_id`, `training`) VALUES
-(1, '', '', 0, 2, 2),
-(2, '', '', 0, 2, 2),
-(3, '', '', 0, 2, 2),
-(4, '', '', 0, 2, 2),
-(5, 'wefe', 'efwefwe', 0, 6, 2),
-(6, 'fwdfdf', 'fwefef', 0, 6, 2),
-(7, 'ffefdf', 'sdcsdc', 0, 6, 2),
-(8, 'sdd \\\'', 'sdvsd', 0, 6, 2),
-(9, 'ergefdfvfvdf', 'dfvfdvdfv', 0, 5, 2),
-(10, 'fvdfvdfv', 'dfvdfvdfvdfv', 0, 5, 2),
-(11, 'aaaaaaaaaaaaa', 'fdvdfvdf', 0, 5, 2),
-(12, 'llllllllllll', 'ewfwefwef', 1, 7, 2),
-(13, 'wefdefedf', 'ewfefw', 32, 7, 2),
-(14, '23 sdvsdsd dvdf', 'dfvsdfv df dfva', 133, 7, 2),
-(15, '3ffdf dfvfv', 'vfdvdfvdf', 12, 7, 2);
+INSERT INTO `tests_questions` (`question_id`, `question_added_time`, `question_text`, `question_answer`, `marks`, `test_id`, `training`) VALUES
+(18, '2023-09-12 09:07:00', 'How is a', 'A is a', 5, 11, 2),
+(19, '2023-09-12 09:07:00', 'How is b', 'B is b', 3, 11, 2),
+(20, '2023-09-12 09:07:00', 'How is C', 'C is C', 2, 11, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `test_completion_time`
+--
+
+CREATE TABLE `test_completion_time` (
+  `completion_id` int(11) NOT NULL,
+  `training` int(11) NOT NULL,
+  `test` int(11) NOT NULL,
+  `date_time` varchar(255) NOT NULL DEFAULT current_timestamp(),
+  `action_by` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `test_completion_time`
+--
+
+INSERT INTO `test_completion_time` (`completion_id`, `training`, `test`, `date_time`, `action_by`) VALUES
+(1, 2, 11, '2023-09-12 09:31:20', 1);
 
 -- --------------------------------------------------------
 
@@ -340,7 +326,8 @@ INSERT INTO `trainings` (`training_id`, `training_topic`, `training_description`
 (11, 'Starting JS', 'Description', '2023-08-21', '2023-08-31', 'pexels-işıl-17795142.jpg', 8, 'Progress'),
 (12, 'Hello world', 'Hello world what is this', '2023-08-30', '2023-08-30', 'Screenshot (98).png', 8, 'Progress'),
 (13, 'Amazon devices workout', 'How to use amazon Devices', '2023-10-10', '2023-11-11', 'pexels-cottonbro-studio-5473337.jpg', 2, 'Progress'),
-(14, 'Tri Phase', 'What is triPhase?', '2023-09-14', '2023-09-29', 'pexels-stanislav-kondratiev-10816120.jpg', 2, 'Waiting');
+(14, 'Tri Phase', 'What is triPhase?', '2023-09-14', '2023-09-29', 'pexels-stanislav-kondratiev-10816120.jpg', 2, 'Waiting'),
+(15, 'KWITA Izina', 'wertyu', '2023-09-17', '2023-09-21', 'WhatsApp Image 2023-09-07 at 20.23.32.jpg', 8, 'Progress');
 
 -- --------------------------------------------------------
 
@@ -472,12 +459,11 @@ ALTER TABLE `employees_test_answers`
   ADD KEY `r3ferfreffdfdffdfdf` (`employee`);
 
 --
--- Indexes for table `employees_test_completion`
+-- Indexes for table `employees_test_marks`
 --
-ALTER TABLE `employees_test_completion`
-  ADD PRIMARY KEY (`etc_id`),
-  ADD KEY `ewfwefefew` (`employee`),
-  ADD KEY `erfgrfgergdffdfvfvdfvfdvdfv` (`test`);
+ALTER TABLE `employees_test_marks`
+  ADD KEY `sjhdfsg` (`employee`),
+  ADD KEY `dsf` (`test`);
 
 --
 -- Indexes for table `empl_trainings_conent_completion`
@@ -514,6 +500,15 @@ ALTER TABLE `tests_questions`
   ADD PRIMARY KEY (`question_id`),
   ADD KEY `eweweeew` (`test_id`),
   ADD KEY `ewewfsddds` (`training`);
+
+--
+-- Indexes for table `test_completion_time`
+--
+ALTER TABLE `test_completion_time`
+  ADD PRIMARY KEY (`completion_id`),
+  ADD KEY `asdfjhkh` (`action_by`),
+  ADD KEY `asdfjhdfgef` (`test`),
+  ADD KEY `ertyujhgfsfdwe` (`training`);
 
 --
 -- Indexes for table `test_employee_answers`
@@ -566,13 +561,7 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT for table `employees_test_answers`
 --
 ALTER TABLE `employees_test_answers`
-  MODIFY `eta_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119;
-
---
--- AUTO_INCREMENT for table `employees_test_completion`
---
-ALTER TABLE `employees_test_completion`
-  MODIFY `etc_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `eta_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
 
 --
 -- AUTO_INCREMENT for table `empl_trainings_conent_completion`
@@ -596,13 +585,19 @@ ALTER TABLE `professionals`
 -- AUTO_INCREMENT for table `tests`
 --
 ALTER TABLE `tests`
-  MODIFY `test_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `test_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `tests_questions`
 --
 ALTER TABLE `tests_questions`
-  MODIFY `question_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `question_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT for table `test_completion_time`
+--
+ALTER TABLE `test_completion_time`
+  MODIFY `completion_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `test_employee_answers`
@@ -614,7 +609,7 @@ ALTER TABLE `test_employee_answers`
 -- AUTO_INCREMENT for table `trainings`
 --
 ALTER TABLE `trainings`
-  MODIFY `training_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `training_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `training_contents`
@@ -648,11 +643,11 @@ ALTER TABLE `employees_test_answers`
   ADD CONSTRAINT `r3ferfreffdfdffdfdf` FOREIGN KEY (`employee`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `employees_test_completion`
+-- Constraints for table `employees_test_marks`
 --
-ALTER TABLE `employees_test_completion`
-  ADD CONSTRAINT `erfgrfgergdffdfvfvdfvfdvdfv` FOREIGN KEY (`test`) REFERENCES `tests` (`test_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `ewfwefefew` FOREIGN KEY (`employee`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `employees_test_marks`
+  ADD CONSTRAINT `dsf` FOREIGN KEY (`test`) REFERENCES `tests` (`test_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `sjhdfsg` FOREIGN KEY (`employee`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `empl_trainings_conent_completion`
@@ -674,6 +669,14 @@ ALTER TABLE `tests`
 ALTER TABLE `tests_questions`
   ADD CONSTRAINT `eweweeew` FOREIGN KEY (`test_id`) REFERENCES `tests` (`test_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `ewewfsddds` FOREIGN KEY (`training`) REFERENCES `trainings` (`training_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `test_completion_time`
+--
+ALTER TABLE `test_completion_time`
+  ADD CONSTRAINT `asdfjhdfgef` FOREIGN KEY (`test`) REFERENCES `tests` (`test_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `asdfjhkh` FOREIGN KEY (`action_by`) REFERENCES `professionals` (`professional_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `ertyujhgfsfdwe` FOREIGN KEY (`training`) REFERENCES `trainings` (`training_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `test_employee_answers`
