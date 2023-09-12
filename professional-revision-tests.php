@@ -198,6 +198,14 @@
                                     </a>
                                     <?php
                                 }
+                                if ($data_tests['test_status'] == 'Completed') {
+                                    ?>
+                                    <a href="professional-mark-tests.php?test-mark=<?php echo $data_tests['test_id']; ?>">
+                                        <!-- <i class="fa fa-mark"></i> -->
+                                        Mark
+                                    </a>
+                                    <?php
+                                }
                             ?>
                             
                         </td>
