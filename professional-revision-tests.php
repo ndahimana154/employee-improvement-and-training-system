@@ -29,6 +29,33 @@
                 new test
             </a>
         </div>
+        <div class="">
+            <?php
+                if (isset($_GET['set-upcoming'])) {
+                    $upcoming_id = $_GET['set-upcoming'];
+                    // Check if the upcoming exists
+                    $check_upcoming_exists = mysqli_query($server,"SELECT * from tests
+                        WHERE test_id = '$upcoming_id'
+                        AND test_status = 'Approved'
+                        AND training = '$acting_professional_training'
+                    ");
+                    if (mysqli_num_rows($check_upcoming_exists) != 1) {
+                        ?>
+                        <p class="alert alert-danger">
+                            The test doesn't exist on the Approved list.
+                        </p>
+                        <?php
+                    }
+                    else {
+                        $make_upcoming = mysqli_query($server,"UPDATE tests
+                            set test_status = 'Upcoming'
+                            WHERE test_id = '$upcoming_id'
+                            AND training = '$acting_professional_training'
+                        ");
+                    }
+                }
+            ?>
+        </div>
     <table class="table table-hover table-responsive">
         <thead>
             <tr>
@@ -92,7 +119,7 @@
                         </td>
                         <td>
                             <?php
-                                if (mysqli_num_rows($get_testquestinfo) < $data_tests['test_questions_num']) {
+                                if (mysqli_num_rows($get_testquestinfo) < $data_tests['test_questions_num'] && $data_tests['test_status'] != 'Rejected') {
                                     ?>
                                     <a href="professional-test-add-question.php?test=<?php echo $data_tests['test_id']; ?>">
                                         <i class="fas fa-plus-circle"></i>
@@ -103,6 +130,13 @@
                                     ?>
                                     <a href="professional-test-view-questions.php?test=<?php echo $data_tests['test_id']; ?>">
                                         <i class="fas fa-list text-dark"></i>
+                                    </a>
+                                    <?php
+                                }
+                                if ($data_tests['test_status'] == 'Approved') {
+                                    ?>
+                                    <a href="?set-upcoming=<?php echo $data_tests['test_id']; ?>">
+                                        <i class="fa fa-check text-success"></i>
                                     </a>
                                     <?php
                                 }

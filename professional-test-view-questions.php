@@ -64,6 +64,13 @@
                                 WHERE test_id = '$test_id'
                             ");
                             $count=1;
+                            if (mysqli_num_rows($get_test_questions) < 1) {
+                                ?>
+                                <p class="alert alert-danger">
+                                    No questions for this test
+                                </p>
+                                <?php
+                            }
                             while($data_test_questions = mysqli_fetch_array($get_test_questions)) {
                                 ?>
                                 <div class="bg-light shadow rounded m-2 row">

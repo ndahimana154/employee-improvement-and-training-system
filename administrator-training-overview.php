@@ -110,6 +110,17 @@
                                         <th colspan="10">
                                             <?php echo mysqli_num_rows($get_training_contents); ?>
                                         </th>
+                                        <th>
+                                            Revision tests:
+                                        </th>
+                                        <th colspan="10">
+                                            <?php
+                                                $get_training_tests_num = mysqli_query($server,"SELECT * from tests
+                                                    WHERE   training='$training'
+                                                ");
+                                                echo mysqli_num_rows($get_training_tests_num);
+                                            ?>
+                                        </th>
                                     </tr>
                                     <tr>
                                         <th>

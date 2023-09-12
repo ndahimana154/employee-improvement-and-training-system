@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 11, 2023 at 08:19 PM
+-- Generation Time: Sep 11, 2023 at 10:12 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -63,69 +63,24 @@ CREATE TABLE `employees_test_answers` (
   `question` int(11) NOT NULL,
   `answer_text` text NOT NULL,
   `marking` int(11) NOT NULL DEFAULT 0,
-  `status` varchar(255) NOT NULL
+  `status` varchar(255) NOT NULL,
+  `submission_time` varchar(255) NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `employees_test_answers`
 --
 
-INSERT INTO `employees_test_answers` (`eta_id`, `employee`, `training`, `test`, `question`, `answer_text`, `marking`, `status`) VALUES
-(26, 10, 2, 7, 12, '0', 0, '0'),
-(27, 10, 2, 7, 13, '0', 0, '0'),
-(28, 10, 2, 7, 14, '0', 0, '0'),
-(29, 10, 2, 7, 15, '0', 0, '0'),
-(30, 10, 2, 7, 12, '0', 0, 'Pending'),
-(31, 10, 2, 7, 13, '0', 0, 'Pending'),
-(32, 10, 2, 7, 14, '0', 0, 'Pending'),
-(33, 10, 2, 7, 15, '0', 0, 'Pending'),
-(34, 10, 2, 7, 12, '0', 0, 'Pending'),
-(35, 10, 2, 7, 13, '0', 0, 'Pending'),
-(36, 10, 2, 7, 14, '0', 0, 'Pending'),
-(37, 10, 2, 7, 15, '0', 0, 'Pending'),
-(38, 10, 2, 7, 12, '0', 0, 'Pending'),
-(39, 10, 2, 7, 13, '0', 0, 'Pending'),
-(40, 10, 2, 7, 14, '0', 0, 'Pending'),
-(41, 10, 2, 7, 15, '0', 0, 'Pending'),
-(54, 10, 2, 7, 12, '0', 0, 'Pending'),
-(55, 10, 2, 7, 13, '0', 0, 'Pending'),
-(56, 10, 2, 7, 14, '0', 0, 'Pending'),
-(57, 10, 2, 7, 15, '0', 0, 'Pending'),
-(58, 10, 2, 7, 12, '0', 0, 'Pending'),
-(59, 10, 2, 7, 13, '0', 0, 'Pending'),
-(60, 10, 2, 7, 14, '0', 0, 'Pending'),
-(61, 10, 2, 7, 15, '0', 0, 'Pending'),
-(62, 10, 2, 7, 12, '0', 0, 'Pending'),
-(63, 10, 2, 7, 13, '0', 0, 'Pending'),
-(64, 10, 2, 7, 14, '0', 0, 'Pending'),
-(65, 10, 2, 7, 15, '0', 0, 'Pending'),
-(66, 10, 2, 7, 12, '0', 0, 'Pending'),
-(67, 10, 2, 7, 13, '0', 0, 'Pending'),
-(68, 10, 2, 7, 14, '0', 0, 'Pending'),
-(69, 10, 2, 7, 15, '0', 0, 'Pending'),
-(70, 10, 2, 7, 12, '0', 0, 'Pending'),
-(71, 10, 2, 7, 13, '0', 0, 'Pending'),
-(72, 10, 2, 7, 14, '0', 0, 'Pending'),
-(73, 10, 2, 7, 15, '0', 0, 'Pending'),
-(74, 10, 2, 6, 5, '34', 0, 'Pending'),
-(75, 10, 2, 6, 6, '0', 0, 'Pending'),
-(76, 10, 2, 6, 7, '0', 0, 'Pending'),
-(77, 10, 2, 6, 8, '0', 0, 'Pending'),
-(78, 10, 2, 6, 5, '0', 0, 'Pending'),
-(79, 10, 2, 6, 6, '0', 0, 'Pending'),
-(80, 10, 2, 6, 7, '0', 0, 'Pending'),
-(81, 10, 2, 6, 8, '0', 0, 'Pending'),
-(82, 10, 2, 6, 5, '0', 0, 'Pending'),
-(83, 10, 2, 6, 6, '0', 0, 'Pending'),
-(84, 10, 2, 6, 7, '0', 0, 'Pending'),
-(85, 10, 2, 6, 8, '0', 0, 'Pending'),
-(86, 10, 2, 6, 5, '0', 0, 'Pending'),
-(87, 10, 2, 6, 6, '0', 0, 'Pending'),
-(88, 10, 2, 6, 7, '0', 0, 'Pending'),
-(89, 10, 2, 6, 8, '0', 0, 'Pending'),
-(90, 10, 2, 5, 9, '0', 0, 'Pending'),
-(91, 10, 2, 5, 10, '0', 0, 'Pending'),
-(92, 10, 2, 5, 11, '0', 0, 'Pending');
+INSERT INTO `employees_test_answers` (`eta_id`, `employee`, `training`, `test`, `question`, `answer_text`, `marking`, `status`, `submission_time`) VALUES
+(110, 10, 2, 6, 5, 'aaa', 0, 'Pending', '2023-09-11 21:09:02'),
+(111, 10, 2, 6, 6, 'bb', 0, 'Pending', '2023-09-11 21:09:02'),
+(112, 10, 2, 6, 7, 'ccc', 0, 'Pending', '2023-09-11 21:09:02'),
+(113, 10, 2, 6, 8, 'dddd', 0, 'Pending', '2023-09-11 21:09:02'),
+(114, 10, 2, 2, 1, 'ddaa', 0, 'Pending', '2023-09-11 21:09:24'),
+(115, 10, 2, 2, 2, 'asd', 0, 'Pending', '2023-09-11 21:09:39'),
+(116, 10, 2, 2, 3, 'fddd', 0, 'Pending', '2023-09-11 21:09:39'),
+(117, 10, 2, 2, 4, 'ssssd', 0, 'Pending', '2023-09-11 21:09:39'),
+(118, 10, 2, 7, 12, 'yy', 0, 'Pending', '2023-09-11 21:10:48');
 
 -- --------------------------------------------------------
 
@@ -137,6 +92,8 @@ CREATE TABLE `employees_test_completion` (
   `etc_id` int(11) NOT NULL,
   `employee` int(11) NOT NULL,
   `test` int(11) NOT NULL,
+  `average_marks` int(11) NOT NULL,
+  `completion_time` varchar(255) NOT NULL DEFAULT current_timestamp(),
   `completion_status` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -609,7 +566,7 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT for table `employees_test_answers`
 --
 ALTER TABLE `employees_test_answers`
-  MODIFY `eta_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
+  MODIFY `eta_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119;
 
 --
 -- AUTO_INCREMENT for table `employees_test_completion`

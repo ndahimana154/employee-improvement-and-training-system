@@ -58,6 +58,9 @@
                     <a class="btn btn-success" href="administration-new-trainings.php">
                         <i class="fas fa-plus-square"></i> New training
                     </a>
+                    <a class="btn btn-success" href="administrator-trainings-tests.php">
+                    <i class="fas fa-question"></i> Training Tests
+                    </a>
                 </div>
                 <div class="r">
                     <table class="table table-hover table-responsive">

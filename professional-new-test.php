@@ -54,7 +54,7 @@
                         else {
                             // Check if no schedule test the same day
                             $check_same_day = mysqli_query($server,"SELECT * from tests WHERE
-                                test_start LIKE '$scheduledate%'
+                                test_schedule LIKE '$scheduledate%'
                                 AND training = '$acting_professional_training'
                             ");
                             if (mysqli_num_rows($check_same_day) > 0) {

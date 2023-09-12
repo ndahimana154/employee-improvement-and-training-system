@@ -150,7 +150,7 @@
                                                 <label for="">
                                                     Marks
                                                 </label>
-                                                <input type="text" placeholder="Type..." name="marks[]" class="form-control">
+                                                <input type="number" placeholder="Type..." name="marks[]" class="form-control">
                                             </div>
                                         </div>
                                     </div>
