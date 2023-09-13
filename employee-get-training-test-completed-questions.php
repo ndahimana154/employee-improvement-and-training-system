@@ -13,10 +13,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- Link Font-awesome icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- Link Jquery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Js Files -->
-    <script src="js/employee-get-trainings-content.js"></script>
 </head>
 <body>
     <!-- Header -->
@@ -71,6 +68,8 @@
                     else {
                         // $data_check_exits = mysqli_fetch_array($check_exists);
                         $data_test_exists = mysqli_fetch_array($check_test_exists);
+                        // C
+                        $data_trai_exits = mysqli_fetch_array($check_exists);
                         ?>
                         <div class="contents m-3 p-2">
                             <a href="employee-trainings.php" class="text-dark font-weight-bold">Trainings</a> / <a href=" "  class="text-dark font-weight-bold">Tests</a> / <a href="" class="text-dark font-weight-bold"><?php echo $data_test_exists['test_name']; ?></a>
@@ -81,15 +80,18 @@
                                 <?php include("php/employee-trainings-test-list.php"); ?>
                             </div>
                             <!-- Training Description Column -->
-                            <div class="col-md-5 bg-light p-4">
+                            <div class="col-md-5 bg-light p-4" id="empl_test_marks_div">
                                 <div id="trai_description">
                                     <div class="" style="font-size: 20px;">
                                        <div class="">
-                                            <p class="font-weight-bold text-success" style="margin-left: 10px;">
+                                            <p class="font-weight-bold text-success">
+                                                TRAINING TOPIC: <?php echo $data_trai_exits['training_topic']; ?>
+                                            </p>
+                                            <p class="font-weight-bold text-success">
                                                 TESTNAME: <?php echo $data_test_exists['test_name'] ?>
                                             </p>
                                             <!-- <p> ||</p> -->
-                                            <p class="font-weight-bold text-dark" style="margin-left: 10px;">
+                                            <p class="font-weight-bold text-dark">
                                                 <?php
                                                     $get_questions = mysqli_query($server,"SELECT * from tests_questions
                                                         WHERE test_id = '$test'
@@ -116,8 +118,29 @@
                                     </div>
                                     <!-- Now we are going to find the test questions -->
                                     <div class="">
-                                        
-                                        <h6 class=" ml-2">
+                                        <h5 class="font-weight-bold">
+                                            <?php
+                                                $get_profe_id = mysqli_query($server,"SELECT * from training_professionals
+                                                    WHERE   training = '$training'
+                                                ");
+                                                if (mysqli_num_rows($get_profe_id) < 1) {
+                                                    echo "No professional";
+                                                }
+                                                else {
+                                                    $data_profe_id = mysqli_fetch_array($get_profe_id);
+                                                    $profe_id = $data_profe_id['professional'];
+                                                    $get_profe_more = mysqli_fetch_array(mysqli_query($server,"SELECT * from 
+                                                        professionals WHERE professional_id = '$profe_id'
+                                                    "));
+                                                    ?>
+                                                    Professional name: <?php echo $get_profe_more['professional_fn']." ".$get_profe_more['professional_ln'] ?>
+                                                    <br>
+                                                    Professional email:  <?php echo $get_profe_more['professional_email']; ?>
+                                                    <?php
+                                                }
+                                            ?>
+                                        </h5>
+                                        <h6 class="">
                                             Test questions <b>(<?php echo mysqli_num_rows($get_questions) ?>)</b> <br>
                                             Marks <b>(<?php echo $get_marks_sum[0]; ?>)</b> <br>
                                             Marking status: <?php 
@@ -145,7 +168,7 @@
                                                 $que_counter = 1;
                                                 while ($data_questions = mysqli_fetch_array($get_questions)) {
                                                     ?>
-                                                    <div class="row">
+                                                    <div class="row mt-3">
                                                         <div class="col-md-5 m-1">
                                                             <label for="" class="font-weight-bold">
                                                                 Question <?php echo $que_counter++ ?> - 
@@ -155,10 +178,14 @@
                                                                     $check_answer_exists = mysqli_query($server,"SELECT * from employees_test_answers 
                                                                         WHERE test = '$test' 
                                                                         AND question = '$current_question'
+                                                                        AND employee = '$acting_employee_id'
                                                                     ");
                                                                     if (mysqli_num_rows($check_answer_exists) > 0) {
                                                                         $data_check_answer_exists = mysqli_fetch_array($check_answer_exists);
-                                                                        echo "<b class='text-danger'>".$data_check_answer_exists['marking']."/"; 
+                                                                        echo "<b class='text-success'>".$data_check_answer_exists['marking']."/"; 
+                                                                    }
+                                                                    else {
+                                                                        echo "<b class='text-danger'>0/";
                                                                     }
                                                                     echo $data_questions['marks'] ?> Marks</b>
                                                             </label>
@@ -177,12 +204,20 @@
                                                                 $check_answer_exists = mysqli_query($server,"SELECT * from employees_test_answers 
                                                                     WHERE test = '$test' 
                                                                     AND question = '$current_question'
+                                                                    AND employee = '$acting_employee_id'
                                                                 ");
                                                                 if (mysqli_num_rows($check_answer_exists) > 0) {
                                                                     $data_check_answer_exists = mysqli_fetch_array($check_answer_exists);
                                                                     ?>
                                                                     <p>
                                                                         <?php echo $data_check_answer_exists['answer_text']; ?>
+                                                                    </p>
+                                                                    <?php
+                                                                }
+                                                                else {
+                                                                    ?>
+                                                                    <p>
+                                                                        No answer
                                                                     </p>
                                                                     <?php
                                                                 }
@@ -215,10 +250,13 @@
                                                     <?php
                                                 }
                                                 ?>
-                                                <button type="button" class="btn btn-success">
+                                                <button type="button"  id="emp_print_test_marks_btn" class="btn btn-success">
                                                     <i class="fa fa-print"></i>
                                                     Print
                                                 </button>
+                                                <div id="print_foot_emp_test" class="mt-5 text-bold" style="display: none;">
+                                                    Generated from Employee Training and Improvements System on <?php echo date('Y-m-d H:i'); ?>
+                                                </div>
                                                 <?php
                                             }
                                         ?>
@@ -263,6 +301,10 @@
     <!-- Link Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Link Jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- External Js file -->
+    <script src="js\employee-print-test-marks.js"></script>
     <style>
         /* Custom CSS for hero section */
         #hero {
