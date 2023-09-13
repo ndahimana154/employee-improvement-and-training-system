@@ -34,12 +34,77 @@
         </div> -->
         <div class="">
             <?php
-                if (!isset($_GET['test-mark'])) {
+                if (!isset($_GET['test-mark']) && !isset($_GET['mark-zero'])) {
                     ?>
                     <p class="alert alert-danger">
                         no test sent to the server!
                     </p>
                     <?php
+                }
+                elseif (isset($_GET['mark-zero'])) {
+                    $mark_zero = $_GET['mark-zero'];
+                    $employee_zero = $_GET['employee-zero'];
+                    // 
+                    $check_exists_complete = mysqli_query($server,"SELECT * from tests
+                        WHERE training = '$acting_professional_training'
+                        AND test_id = '$mark_zero'
+                        AND test_status = 'Completed'
+                    ");
+                    if (mysqli_num_rows($check_exists_complete) != 1) {
+                        ?>
+                        <p class="alert alert-danger">
+                            The test is not found on the Completed list!
+                        </p>
+                        <?php
+                    }
+                    else {
+                        // Check if the employee did'nt do the test really
+                        $check_if_no_really = mysqli_query($server,"SELECT * from
+                            employees_test_answers WHERE test = $mark_zero
+                            AND employee = '$employee_zero'
+                        ");
+                        if (mysqli_num_rows($check_if_no_really) > 0) {
+                            ?>
+                            <p class="alert alert-danger">
+                                Looks like the Employee performed some questions of the test.
+                            </p>
+                            <?php
+                        }
+                        else {
+                            // Check if the employee doesn't have zero already
+                            $chek_exist_zero = mysqli_query($server,"SELECT * from employees_test_marks
+                                WHERE employee = '$employee_zero'
+                                AND test = '$mark_zero'
+                            ");
+                            if (mysqli_num_rows($chek_exist_zero) > 0) {
+                                ?>
+                                <p class="alert alert-danger">
+                                    The employee have zero already!
+                                </p>
+                                <?php
+                            }
+                            else {
+                                // Save his zero
+                                $save_zero = mysqli_query($server,"INSERT into employees_test_marks
+                                    VALUES(null,$employee_zero,$mark_zero,0,current_timestamp(),'Marked')
+                                ");
+                                if (!$save_zero) {
+                                    ?>
+                                    <p class="alert alert-danger">
+                                        Marking zero failed!
+                                    </p>
+                                    <?php
+                                }
+                                else {
+                                    ?>
+                                    <p class="alert alert-success">
+                                        Marking zero succed!
+                                    </p>
+                                    <?php
+                                }
+                            }
+                        }
+                    }
                 }
                 else {
                     $mark_test = $_GET['test-mark'];
@@ -89,7 +154,7 @@
                                         Questions answered
                                     </th>
                                     <th>
-                                        Marks
+                                        Marks/Total
                                     </th>
                                     <th>
                                         Actions
@@ -132,7 +197,7 @@
                                             $data_answer_nums = mysqli_fetch_array($get_answer_nums);
                                         ?>
                                     </td>
-                                    <td>
+                                    <td class="font-weight-bold">
                                         <?php
                                             // Check if the it is marked
                                             $check_if_test_marks_exists = mysqli_query($server,"SELECT * from employees_test_marks
@@ -147,14 +212,21 @@
                                             else {
                                                 $data_if_test_marks_exists = mysqli_fetch_array($check_if_test_marks_exists);
                                                 echo $data_if_test_marks_exists['average_marks'];
+                                                $get_total_marks = mysqli_query($server,"SELECT sum(marks)
+                                                    from tests_questions 
+                                                    WHERE test_id = '$mark_test'
+                                                    AND training = '$acting_professional_training'
+                                                ");
+                                                $get_total_marks = mysqli_fetch_array($get_total_marks);
+                                                echo "/".$get_total_marks[0];
                                             }
                                         ?>
                                     </td>
                                     <td>
                                         <?php
-                                            if (mysqli_num_rows($get_answer_nums) < 1) {
+                                            if (mysqli_num_rows($get_answer_nums) < 1 && mysqli_num_rows($check_if_test_marks_exists) != 1) {
                                                 ?>
-                                                <a href="" class="">
+                                                <a href="?mark-zero=<?php echo $mark_test ?>&employee-zero=<?php echo $data_check_al_empl['user_id'] ?>" class="">
                                                     Mark 0
                                                 </a>
                                                 <?php
