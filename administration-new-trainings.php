@@ -182,7 +182,7 @@
                         Training description (at least ten words)
                     </p>
                     <p>
-                        <textarea name="descri" class="form-control" minlength="10" required></textarea>
+                        <textarea name="descri" class="form-control" minlength="10" placeholder="Training description" required></textarea>
                     </p>
                     <p>
                         Training startdate

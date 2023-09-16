@@ -208,25 +208,25 @@
                         Firstname
                     </p>
                     <p>
-                        <input type="text" name="fn" placeholder="Type..." class="form-control">
+                        <input type="text" name="fn" placeholder="Type..." class="form-control" required pattern="[A-Za-z]+">
                     </p>
                     <p>
                         Lastname
                     </p>
                     <p>
-                        <input type="text" name="ln" placeholder="Type..." class="form-control">
+                        <input type="text" name="ln" placeholder="Type..." class="form-control" required pattern="[A-Za-z]+">
                     </p>
                     <p>
                         Email
                     </p>
                     <p>
-                        <input type="email" name="em" placeholder="Type..." class="form-control">
+                        <input type="email" name="em" placeholder="Type..." class="form-control" required>
                     </p>
                     <p>
-                        Phone number
+                        Phone number (Starting with 072, 073, 078, or 079)
                     </p>
                     <p>
-                        <input type="number" name="ph" placeholder="Type..." class="form-control">
+                        <input type="tel" name="ph" placeholder="Type..." class="form-control" required pattern="07[2789]\d{7}">
                     </p>
                     <p>
                         Training
