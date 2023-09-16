@@ -56,6 +56,9 @@
                         <i class="fa fa-arrow-left"></i>
                     </a> -->
                     <h2>
+                        <a href="administration-trainings.php" class="btn btn-primary">
+                            <i class="fa fa-arrow-left"></i>
+                        </a>
                         New training
                     </h2>
                 </div>
@@ -170,16 +173,16 @@
                         }
                    ?>
                     <p>
-                        Training topic
+                        Training topic (at least two words)
                     </p>
                     <p>
-                        <input type="text" name="topic" placeholder="Type..." class="form-control">
+                        <input type="text" name="topic" placeholder="Type..." class="form-control" pattern="(\w+\s+\w+)+" title="Please enter at least two words for the topic." required>
                     </p>
                     <p>
-                        Training description
+                        Training description (at least ten words)
                     </p>
                     <p>
-                        <textarea name="descri" class="form-control"></textarea>
+                        <textarea name="descri" class="form-control" minlength="10" required></textarea>
                     </p>
                     <p>
                         Training startdate
