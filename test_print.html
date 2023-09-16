@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate Template</title>
+    <!-- Include jsPDF library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <div id="certificate">
+        <h1>Certificate of Completion</h1>
+        <p>Name: John Doe</p>
+        <p>Certified Professional</p>
+    </div>
+    <button id="downloadBtn">Download PDF</button>
+
+    <script>
+        // Function to generate and download PDF
+        document.getElementById('downloadBtn').addEventListener('click', function () {
+            const doc = new jsPDF();
+            doc.fromHTML(document.getElementById('certificate'), 15, 15);
+            doc.save('certificate.pdf');
+        });
+    </script>
+</body>
+</html>

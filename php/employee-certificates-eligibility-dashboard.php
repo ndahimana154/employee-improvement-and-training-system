@@ -28,8 +28,12 @@
                         </p>
                         <?php
                     }
-                    elseif () {
-                        # code...
+                    elseif ($status_request == 'Approved') {
+                        ?>
+                        <a href="" title="Save the certificate" class="btn btn-success">
+                            <i class="fa fa-download"></i> Download
+                        </a>
+                        <?php
                     }
                     ?>
                     <?php

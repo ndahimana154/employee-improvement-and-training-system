@@ -59,7 +59,10 @@
                         <i class="fas fa-plus-square"></i> New training
                     </a>
                     <a class="btn btn-success" href="administrator-trainings-tests.php">
-                    <i class="fas fa-question"></i> Training Tests
+                        <i class="fas fa-question"></i> Training Tests
+                    </a>
+                    <a class="btn btn-success" href="administrator-certificates-requests.php">
+                        <i class="fas fa-certificate"></i> Certificates requests
                     </a>
                 </div>
                 <div class="r">
