@@ -56,6 +56,9 @@
                         <i class="fa fa-arrow-left"></i>
                     </a> -->
                     <h2>
+                        <a href="administration-employees.php" class="btn btn-primary">
+                            <i class="fa fa-arrow-left"></i>
+                        </a>
                         New employees
                     </h2>
                 </div>
@@ -128,31 +131,36 @@
                         Firstname
                     </p>
                     <p>
-                        <input type="text" name="fn" placeholder="Type..." class="form-control" required>
+                        <input type="text" name="fn" placeholder="Type..." class="form-control" required pattern="^[A-Za-z]+$">
+                        <!-- Only letters (uppercase or lowercase) are allowed in Firstname -->
                     </p>
                     <p>
                         Lastname
                     </p>
                     <p>
-                        <input type="text" name="ln" placeholder="Type..." class="form-control" required>
+                        <input type="text" name="ln" placeholder="Type..." class="form-control" required pattern="^[A-Za-z]+$">
+                        <!-- Only letters (uppercase or lowercase) are allowed in Lastname -->
                     </p>
                     <p>
                         Email
                     </p>
                     <p>
                         <input type="email" name="em" placeholder="Type..." class="form-control" required>
+                        <!-- Email validation is handled by 'type="email"' -->
                     </p>
                     <p>
-                        Phone number
+                        Phone number (starting with 072, 078, 079, or 073)
                     </p>
                     <p>
-                        <input type="number" name="ph" placeholder="Type..." class="form-control" required>
+                        <input type="tel" name="ph" placeholder="Type..." class="form-control" required pattern="^(072|078|079|073)\d{7}$">
+                        <!-- Only 10-digit numbers starting with 072, 078, 079, or 073 are allowed in Phone number -->
                     </p>
                     <p>
                         National Id
                     </p>
                     <p>
-                        <input type="number" name="nid" placeholder="Type..." class="form-control" required>
+                        <input type="tel" name="nid" placeholder="Type..." class="form-control" required pattern="^1\d{15}$">
+                        <!-- Only 16-digit numbers starting with '1' are allowed in National Id -->
                     </p>
                     <p>
                         Department
