@@ -75,8 +75,9 @@
                             else {
                                 $data_request_exists = mysqli_fetch_array($check_request_exists);
                                 $employee_request = $data_request_exists['employee'];
+                                $training_request = $data_request_exists['training'];
                                 $insert_the_certificate = mysqli_query($server,"INSERT into employees_certificate
-                                    VALUES(null,$request_id,$employee_request,$acting_admin_id,current_timestamp())
+                                    VALUES(null,$request_id,$employee_request,$training_request,$acting_admin_id,current_timestamp())
                                 ");
                                 if (!$insert_the_certificate) {
                                     ?>

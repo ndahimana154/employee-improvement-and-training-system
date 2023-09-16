@@ -30,8 +30,8 @@
                     }
                     elseif ($status_request == 'Approved') {
                         ?>
-                        <a href="" title="Save the certificate" class="btn btn-success">
-                            <i class="fa fa-download"></i> Download
+                        <a href="employees-print-certificate.php?training=<?php echo $_GET['training']; ?>" title="View and Save the certificate" class="btn btn-success">
+                            <i class="fa fa-certificate?training=<?php echo $_GET['training'] ?>"></i> View Certificate
                         </a>
                         <?php
                     }
