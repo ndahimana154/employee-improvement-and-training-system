@@ -156,11 +156,10 @@
                         <!-- Only 10-digit numbers starting with 072, 078, 079, or 073 are allowed in Phone number -->
                     </p>
                     <p>
-                        National Id
+                        National Id (16 digits)
                     </p>
                     <p>
-                        <input type="tel" name="nid" placeholder="Type..." class="form-control" required pattern="^1\d{15}$">
-                        <!-- Only 16-digit numbers starting with '1' are allowed in National Id -->
+                        <input type="tel" name="nid" placeholder="Type..." class="form-control" title="National ID with 16 digits" required pattern="^\d{16}$">
                     </p>
                     <p>
                         Department

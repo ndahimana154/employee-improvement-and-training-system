@@ -56,16 +56,57 @@
                         <i class="fa fa-arrow-left"></i>
                     </a> -->
                     <h2>
-                        Employee list
+                        <a href="administration-employees.php" class="btn btn-primary">
+                            <i class="fa fa-arrow-left"></i>
+                        </a>
+                        Departments List
                     </h2>
                 </div>
-                <div class="p-2">
-                    <a class="btn btn-success" href="adminstation-new-employees.php"><i class="fas fa-user-plus"></i> New Employees</a>
-                    <a class="btn btn-success" href="adminstation-departments.php">
-                        <i class="fas fa-building"></i>
-                        Departments
+                <div class="p-3">
+                    <a href="administrator-new-department.php" class="btn btn-success">
+                        <i class="fa fa-plus"></i>
+                        new department
                     </a>
                 </div>
+                <?php
+                    if (isset($_GET['delete_depart'])) {
+                        $delete_depart = $_GET['delete_depart'];
+                        // Check if exists
+                        $check = mysqli_query($server,"SELECT * from departments
+                            WHERE depart_id = '$delete_depart'
+                            AND depart_status = 'Active'
+                        ");
+                        if (mysqli_num_rows($check) !=1) {
+                            ?>
+                            <p class="m-3 alert alert-danger">
+                                Department doesn't appear on the active list
+                            </p>
+                            <?php
+                        }
+                        else {
+                            // Update
+                            $update_delete = mysqli_query($server,"UPDATE departments 
+                                SET depart_status = 'Inactive'
+                                WHERE depart_id = '$delete_depart'
+                            ");
+                            if (!$update_delete) {
+                                ?>
+                                <p class="m-3 alert alert-danger">
+                                    Department failed to be deleted
+                                </p>
+                                <?php
+                            }
+                            else {
+                                ?>
+                                <p class="m-3 alert alert-success">
+                                    Deleting the department succed!
+                                </p>
+                                <?php
+                            }
+                        }
+                    }
+
+                ?>
                 <table class="table table-hover table-responsive">
                     <thead>
                         <tr>
@@ -73,40 +114,31 @@
                                 #
                             </th>
                             <th>
-                                National id
+                                Department name
                             </th>
                             <th>
-                                Department
+                                Employees number
                             </th>
                             <th>
-                                Firstname
-                            </th>
-                            <th>
-                                Lastname
-                            </th>
-                            <th>
-                                Email
-                            </th>
-                            <th>
-                                Username
-                            </th>
-                            <th>
-                                User type
-                            </th>
-                            <th>
-                                User state
-                            </th>
-                            <th>
-                                Actions
+                                Action
                             </th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
-                            $get_emp = mysqli_query($server,"SELECT * from users,departments 
-                                WHERE (user_type='Employee' OR user_type='Administration') AND user_id!='$acting_admin_id'
-                                AND users.department = departments.depart_id    
+                            $get_emp = mysqli_query($server,"SELECT * from departments
+                                WHERE depart_status = 'Active'
+                                ORDER BY depart_name ASC    
                             ");
+                            if (mysqli_num_rows($get_emp) < 1) {
+                                ?>
+                                <tr>
+                                    <td colspan="100">
+                                        no values found!
+                                    </td>
+                                </tr>
+                                <?php
+                            }
                             $count=1;
                             while ($data_emp = mysqli_fetch_array($get_emp)) {
                                 ?>
@@ -116,46 +148,27 @@
                                     </td>
                                     <td>
                                         <?php
-                                            echo $data_emp['user_nid'];
-                                        ?>
-                                    </td>
-                                    <td>
-                                        <?php
                                             echo $data_emp['depart_name'];
                                         ?>
                                     </td>
                                     <td>
                                         <?php
-                                            echo $data_emp['user_fn'];
+                                            $depart_id = $data_emp['depart_id'];
+                                            // Get the employees num
+                                            $get_emp_num = mysqli_query($server,"SELECT * from
+                                                users WHERE
+                                                department = '$depart_id'
+                                            ");
+                                            echo mysqli_num_rows($get_emp_num);
                                         ?>
                                     </td>
                                     <td>
-                                        <?php
-                                            echo $data_emp['user_ln'];
-                                        ?>
-                                    </td>
-                                    <td>
-                                        <?php
-                                            echo $data_emp['user_email'];
-                                        ?>
-                                    </td>
-                                    <td>
-                                        <?php
-                                            echo $data_emp['user_name'];
-                                        ?>
-                                    </td>
-                                    <td>
-                                        <?php
-                                            echo $data_emp['user_type'];
-                                        ?>
-                                    </td>
-                                    <td>
-                                        <?php
-                                            echo $data_emp['user_state'];
-                                        ?>
-                                    </td>
-                                    <td>
-                                        
+                                        <a href="administrator-edit-department.php?edit-department=<?php echo $data_emp['depart_id'] ?>">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                        <a href="?delete_depart=<?php echo $data_emp['depart_id'] ?>">
+                                            <i class="fa fa-trash text-danger"></i>
+                                        </a>
                                     </td>
                                 </tr>
                                 <?php
