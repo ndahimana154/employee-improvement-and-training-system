@@ -74,7 +74,7 @@
                             $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length('aes-256-cbc'));
 
                             // Encrypt the data using AES-256-CBC encryption
-                            $encryptedNID = openssl_encrypt($nid, 'aes-256-cbc', 'your_encryption_key', 0, $iv);
+                            $encryptedNID = $nid;
 
                             // Store the encrypted data and IV securely, such as in a database
                             // Make sure to keep the IV secret and associated with the encrypted data
