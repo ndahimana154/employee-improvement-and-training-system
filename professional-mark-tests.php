@@ -2,6 +2,7 @@
     session_start();
     include("php/connection.php");
     include("php/professional-sessions.php");
+    $total_test_marks = 0;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,6 +51,10 @@
                         AND test_id = '$mark_zero'
                         AND test_status = 'Completed'
                     ");
+                    $get_questions_total_marks = mysqli_fetch_array(mysqli_query($server,"SELECT sum(marks) from
+                        tests_questions WHERE test_id = '$mark_zero'
+                    "));
+                    $total_test_marks += (int) $get_questions_total_marks[0];
                     if (mysqli_num_rows($check_exists_complete) != 1) {
                         ?>
                         <p class="alert alert-danger">
@@ -86,7 +91,7 @@
                             else {
                                 // Save his zero
                                 $save_zero = mysqli_query($server,"INSERT into employees_test_marks
-                                    VALUES(null,$employee_zero,$mark_zero,0,current_timestamp(),'Marked')
+                                    VALUES(null,$employee_zero,$mark_zero,0,$total_test_marks,current_timestamp(),'Marked')
                                 ");
                                 if (!$save_zero) {
                                     ?>
@@ -204,7 +209,7 @@
                                                 WHERE employee = '$ai_empl_id'
                                                 AND test = '$mark_test'
                                             ");
-                                            if (mysqli_num_rows($check_if_test_marks_exists) != 1) {
+                                            if (mysqli_num_rows($check_if_test_marks_exists) < 1) {
                                                 ?>
                                                 Not marked
                                                 <?php
@@ -231,7 +236,7 @@
                                                 </a>
                                                 <?php
                                             }
-                                            elseif (mysqli_num_rows($check_if_test_marks_exists) != 1) {
+                                            elseif (mysqli_num_rows($check_if_test_marks_exists) < 1) {
                                                 ?>
                                                 <a href="professional-test-view-employee-answer.php?test-mark=<?php echo $mark_test ?>&employee-mark=<?php echo $data_check_al_empl['user_id']; ?>">
                                                     View answers

@@ -202,7 +202,7 @@
                                     ?>
                                     <a href="professional-mark-tests.php?test-mark=<?php echo $data_tests['test_id']; ?>">
                                         <!-- <i class="fa fa-mark"></i> -->
-                                        VIew progress
+                                        <i class="fas fa-chart-bar"></i>
                                     </a>
                                     <?php
                                 }

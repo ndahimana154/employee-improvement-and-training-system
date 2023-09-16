@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 12, 2023 at 07:48 PM
+-- Generation Time: Sep 14, 2023 at 01:28 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -72,9 +72,13 @@ CREATE TABLE `employees_test_answers` (
 --
 
 INSERT INTO `employees_test_answers` (`eta_id`, `employee`, `training`, `test`, `question`, `answer_text`, `marking`, `status`, `submission_time`) VALUES
-(119, 10, 2, 11, 18, 'I think i don\'t know', 0, 'Pending', '2023-09-12 09:09:56'),
-(120, 10, 2, 11, 19, 'Yes i get it', 0, 'Pending', '2023-09-12 09:09:56'),
-(121, 10, 2, 11, 20, 'Ok if it\'s cool', 0, 'Pending', '2023-09-12 09:09:57');
+(119, 10, 2, 11, 18, 'I think i don\'t know', 4, 'Markked', '2023-09-12 09:09:56'),
+(120, 10, 2, 11, 19, 'Yes i get it', 1, 'Markked', '2023-09-12 09:09:56'),
+(121, 10, 2, 11, 20, 'Ok if it\'s cool', 1, 'Markked', '2023-09-12 09:09:57'),
+(122, 15, 2, 13, 21, 'Database management system', 2, 'Markked', '2023-09-13 12:25:48'),
+(123, 15, 2, 13, 22, 'DBS', 3, 'Markked', '2023-09-13 12:25:48'),
+(124, 15, 2, 13, 23, 'User', 8, 'Markked', '2023-09-13 12:25:48'),
+(125, 15, 2, 13, 24, 'Management Information  Server\r\n', 9, 'Markked', '2023-09-13 12:25:48');
 
 -- --------------------------------------------------------
 
@@ -83,13 +87,25 @@ INSERT INTO `employees_test_answers` (`eta_id`, `employee`, `training`, `test`, 
 --
 
 CREATE TABLE `employees_test_marks` (
-  `etc_id` int(11) NOT NULL DEFAULT 0,
+  `etc_id` int(11) NOT NULL,
   `employee` int(11) NOT NULL,
   `test` int(11) NOT NULL,
   `average_marks` int(11) NOT NULL,
+  `total_test_marks` int(11) NOT NULL,
   `marking_time` varchar(255) NOT NULL DEFAULT current_timestamp(),
   `marking_status` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `employees_test_marks`
+--
+
+INSERT INTO `employees_test_marks` (`etc_id`, `employee`, `test`, `average_marks`, `total_test_marks`, `marking_time`, `marking_status`) VALUES
+(14, 10, 11, 6, 0, '2023-09-12 21:59:33', 'Marked'),
+(15, 9, 11, 0, 0, '2023-09-13 09:23:30', 'Marked'),
+(17, 15, 11, 0, 0, '2023-09-13 09:32:44', 'Marked'),
+(20, 15, 13, 22, 26, '2023-09-13 12:44:40', 'Marked'),
+(21, 10, 13, 0, 0, '2023-09-13 12:50:01', 'Marked');
 
 -- --------------------------------------------------------
 
@@ -132,7 +148,8 @@ INSERT INTO `empl_trainings_conent_completion` (`id`, `employee`, `training`, `c
 (23, 13, 13, 24, 'Completed', '2023-09-02 14:06:08'),
 (24, 10, 2, 2, 'Completed', '2023-09-06 18:14:59'),
 (25, 15, 11, 29, 'Completed', '2023-09-09 13:04:10'),
-(26, 15, 2, 8, 'Completed', '2023-09-09 13:39:40');
+(26, 15, 2, 8, 'Completed', '2023-09-09 13:39:40'),
+(27, 10, 2, 1, 'Completed', '2023-09-12 22:29:11');
 
 -- --------------------------------------------------------
 
@@ -228,7 +245,8 @@ CREATE TABLE `tests` (
 
 INSERT INTO `tests` (`test_id`, `training`, `test_name`, `test_schedule`, `test_questions_num`, `test_status`) VALUES
 (11, 2, 'Test for starting as welcome', '2023-09-12 09:08:41', 3, 'Completed'),
-(12, 2, 'For  rejcting', '2023-09-12 09:08:41', 2, 'Rejected');
+(12, 2, 'For  rejcting', '2023-09-12 09:08:41', 2, 'Rejected'),
+(13, 2, 'Database test 4', '20024-10-10 12:23', 4, 'Completed');
 
 -- --------------------------------------------------------
 
@@ -253,7 +271,11 @@ CREATE TABLE `tests_questions` (
 INSERT INTO `tests_questions` (`question_id`, `question_added_time`, `question_text`, `question_answer`, `marks`, `test_id`, `training`) VALUES
 (18, '2023-09-12 09:07:00', 'How is a', 'A is a', 5, 11, 2),
 (19, '2023-09-12 09:07:00', 'How is b', 'B is b', 3, 11, 2),
-(20, '2023-09-12 09:07:00', 'How is C', 'C is C', 2, 11, 2);
+(20, '2023-09-12 09:07:00', 'How is C', 'C is C', 2, 11, 2),
+(21, '2023-09-13 12:25:00', 'What is DBMS?', 'DBMS is Database management System', 2, 13, 2),
+(22, '2023-09-13 12:25:00', 'What is Database?', 'Database is data stored in digital form', 5, 13, 2),
+(23, '2023-09-13 12:25:00', 'What is Database User', 'Someone who uses database', 9, 13, 2),
+(24, '2023-09-13 12:25:00', 'What is MIS', 'Management Information Systems', 10, 13, 2);
 
 -- --------------------------------------------------------
 
@@ -274,7 +296,8 @@ CREATE TABLE `test_completion_time` (
 --
 
 INSERT INTO `test_completion_time` (`completion_id`, `training`, `test`, `date_time`, `action_by`) VALUES
-(1, 2, 11, '2023-09-12 09:31:20', 1);
+(1, 2, 11, '2023-09-12 09:31:20', 1),
+(2, 2, 13, '2023-09-13 12:27:54', 1);
 
 -- --------------------------------------------------------
 
@@ -462,6 +485,7 @@ ALTER TABLE `employees_test_answers`
 -- Indexes for table `employees_test_marks`
 --
 ALTER TABLE `employees_test_marks`
+  ADD PRIMARY KEY (`etc_id`),
   ADD KEY `sjhdfsg` (`employee`),
   ADD KEY `dsf` (`test`);
 
@@ -561,13 +585,19 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT for table `employees_test_answers`
 --
 ALTER TABLE `employees_test_answers`
-  MODIFY `eta_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
+  MODIFY `eta_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
+
+--
+-- AUTO_INCREMENT for table `employees_test_marks`
+--
+ALTER TABLE `employees_test_marks`
+  MODIFY `etc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `empl_trainings_conent_completion`
 --
 ALTER TABLE `empl_trainings_conent_completion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `msgs_professional_employee`
@@ -585,19 +615,19 @@ ALTER TABLE `professionals`
 -- AUTO_INCREMENT for table `tests`
 --
 ALTER TABLE `tests`
-  MODIFY `test_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `test_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `tests_questions`
 --
 ALTER TABLE `tests_questions`
-  MODIFY `question_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `question_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `test_completion_time`
 --
 ALTER TABLE `test_completion_time`
-  MODIFY `completion_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `completion_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `test_employee_answers`

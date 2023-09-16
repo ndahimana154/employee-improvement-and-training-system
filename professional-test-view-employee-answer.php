@@ -85,12 +85,18 @@
                                     // Loop through IDs
                                     $arraycounter = 0;
                                     $total_marks = 0;
+                                    $total_test_marks = 0;
                                     // $array
                                     foreach ($_POST['eta_ids'] as $answer_id) {
                                         $answer_id;
                                         $marks =(int) $_POST['marks'][$arraycounter];
                                         $question = $_POST['question_ids'][$arraycounter++];
-                                        echo $total_marks = $total_marks + $marks;
+                                        // Get the question info 
+                                        $data_question_info = mysqli_fetch_array(mysqli_query($server,"SELECT * from tests_questions
+                                            WHERE question_id = '$question'
+                                        "));
+                                        $total_test_marks += (int) $data_question_info['marks'];
+                                        $total_marks = $total_marks + $marks;
                                         // Update the marks
                                         $update_marks = mysqli_query($server,"UPDATE employees_test_answers
                                             SET marking = '$marks',
@@ -114,7 +120,7 @@
                                     // Save in employee test marks
                                     $save_etm = mysqli_query($server,"INSERT into
                                         employees_test_marks
-                                        VALUES(null,$employee_mark,$mark_test,$total_marks,current_timestamp(),'Marked');
+                                        VALUES(null,$employee_mark,$mark_test,$total_marks,$total_test_marks,current_timestamp(),'Marked');
                                     ");
                                     if ($success) {
                                         ?>
