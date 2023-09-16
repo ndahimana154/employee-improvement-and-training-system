@@ -39,7 +39,7 @@
                         <div class="dashboard-box bg-primary text-light p-2 row rounded">
                             <div class="mr-3">
                                     <i class="fas fa-check-circle fa-3x mb-3 flex-1"></i>
-                                <h6>COMPLETED TRAININGS</h6>
+                                <h6>ATTENDED TRAININGS</h6>
                             </div>
                             
                             <p class="mb-0 fa-3x">
@@ -72,6 +72,24 @@
                                     $get_all_pending = mysqli_query($server,"SELECT * from trainings 
                                         WHERE training_status = 'Waiting'
                                         AND training_depart = '$employee_acting_depart_id'
+                                    ");
+                                    echo mysqli_num_rows($get_all_pending);
+                                ?>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 m-2">
+                        <div class="dashboard-box bg-primary text-light p-2 row rounded" style="display: flex;flex-direction: row;">
+                            <div class="mr-3">
+                                    <!-- <i class="fas fa-check-circle fa-3x mb-3 flex-1"></i> -->
+                                    <i class="fas fa-certificate fa-3x mb-3 flex-1"></i>
+                                <h6>AWARDED CERTIFICATES</h6>
+                            </div>
+                            
+                            <p class="mb-0 fa-3x">
+                                <?php 
+                                    $get_all_pending = mysqli_query($server,"SELECT * from employees_certificate
+                                        WHERE employee = '$acting_employee_id'
                                     ");
                                     echo mysqli_num_rows($get_all_pending);
                                 ?>
