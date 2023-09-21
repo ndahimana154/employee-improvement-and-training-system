@@ -108,6 +108,15 @@
                                 AND users.department = departments.depart_id    
                             ");
                             $count=1;
+                            if (mysqli_num_rows($get_emp) < 1) {
+                                ?>
+                                <tr>
+                                    <td colspan="10">
+                                        no values found!
+                                    </td>
+                                </tr>
+                                <?php
+                            }
                             while ($data_emp = mysqli_fetch_array($get_emp)) {
                                 ?>
                                 <tr>
